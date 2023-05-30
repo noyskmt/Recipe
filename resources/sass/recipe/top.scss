@@ -1,0 +1,11 @@
+// scss
+.parent {
+  .child {
+    a {
+      color: red;
+      .hoge {
+        color: blue;
+      }
+    }
+  }
+}
