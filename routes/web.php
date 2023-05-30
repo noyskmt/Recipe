@@ -37,3 +37,6 @@ Route::middleware([
 Route::get('/toppage', function () {
     return Inertia::render('Toppage');
 });
+Route::get('/stores', function () {
+    return Inertia::render('Stores');
+});

@@ -1,62 +1,89 @@
 <template>
-    <div class="menu">
-        <form action="" method="get">
-            <button type="button" class="btn btn-outline-dark">履歴</button>
-            <button type="button" class="btn btn-outline-dark">モード</button>
-            <button type="button" class="btn btn-dark">検索</button>
-        </form>
-    </div>
-    <div class="main">
-        <p>レシピサーチ</p>
-    </div>
-    <div class="favoriteRecipe">
-        <!-- ループ処理 -->
-        <tr>お気に入りしたレシピ</tr> 
+    <div>
+        <p>window width: {{ width }}</p>
+        <p>window height: {{ height }}</p>
     </div>
     <div>
-        <sideber class="sidebar-area"></sideber>
-        <div class="Toppage-wrapper text-center">
+        <sidebar class="sidebar-area"></sidebar>
+        <div class="toppage-wrapper">
             <router-view/>
         </div>
-
+    </div>
+    <div class="toppage-wrapper">
+        <div class="menu">
+            <button class="btn btn-outline-dark">履歴</button>
+            <button class="btn btn-outline-dark" style="margin-left: 10px;">モード</button>
+            <button class="btn btn-dark" style="margin-left: 50px;">検索</button>
+        </div>
+        <div class="main">
+            <h1>レシピサーチ</h1>
+        
+            <div class="favoriteRecipe">
+                <!-- ループ処理 -->
+                <tr>お気に入りしたレシピ</tr> 
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     // import { Inertia } from '@inertiajs/inertia';
-    import 'bootstrap/dist/css/bootstrap.css';
-    import 'bootstrap-vue/dist/bootstrap-vue.css';
+    // import 'bootstrap/dist/css/bootstrap.css';
+    // import 'bootstrap-vue/dist/bootstrap-vue.css';
+    import Sidebar from './Sidebar.vue';
 
-    import Sidebar from './Sidebar.vue'
-
-    export default {
+    export default{
         components: {
             Sidebar
         },
-    }    
+
+        data: function () {
+            return {
+                width: window.innerWidth,
+                height: window.innerHeight
+            }
+        },
+
+        methods: {
+            handleResize: function() {
+                this.width = window.innerWidth,
+                this.height = window.innerHeight
+            }
+        },
+
+        mounted: function() {
+            window.addEventListener('resize', this.handleResize)
+        },
+
+        beforeDestroy: function () {
+            window.removeEventListener('resize', this.handleResize)
+        }
+    }
 
 </script>
 
 <style>
-    <style scoped>
-    .sidebar-area {
-        /* 左側に固定 */
-        float: left;
-    }
+    /* .toppage-wrapper { */
+        /* float: left; */
 
-    .footer-area {
-        margin-top: 40px;
-    }
-
-    .scafold-wrapper {
-        /* display: flex; 要素を横並びにする */
-        flex-direction: column; /* 要素の並び順の主軸を指定 上 => 下 */
-        min-height: 100vh; /* 要素の高さの最小値を指定 vhはviewport(表示領域) heightの略 */
-
-     /* サイドバーのwidth分だけ範囲を削除 */
-     width: calc(100% - 200px);
+        /* サイドバーのwidth分だけ範囲を削除 */
+        /* width: calc(100% - 700px); */
 
         /* サイドバーで隠れるので右に寄せる */
-        margin: 0 0 0 180px;
+        /* margin: 0 0 0 180px; */
+    /* } */
+
+    .menu {
+        padding: 30px 30px 30px 730px;
     }
+
+    .main {
+        width: 100%;
+        margin: 50px 410px;
+    }
+
+    .favoriteRecipe {
+        margin: 20px 40px;
+    }
+
 </style>
