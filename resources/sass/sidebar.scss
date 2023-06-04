@@ -1,0 +1,44 @@
+.sidebar {
+    background-color: #1919704f;
+    position: fixed;
+    height: 100%;
+    width: 34%;
+    text-align: center;
+    // display: flex;
+    // align-items: flex-start;
+    // justify-content: flex-start;
+    // flex-direction: column;
+
+    .sidebar-wrapper {
+        .sidebar-switching {
+            margin: 4%;
+        }
+    }
+
+    .add {
+        width: 80%;
+        height: 35px;
+        margin: 10%;
+        display: flex;
+        padding: 0 12%;
+
+        .btn {
+            min-width: 30%;
+            max-width: 30%;
+        }
+    }
+
+    .added-content {
+        .form-check {
+            .form-check-input {
+                margin-left: 20%;
+            }
+        }
+    }
+
+    .store-link {
+        .btn {
+            margin: 5% 0;
+        }
+    }
+}
