@@ -1,62 +1,42 @@
 <template>
-    <div class="stores">
-        <div class="store-list">
-            <button class="btn btn-outline-dark" style="margin: 30px;">戻る</button>
-            <div class="add-store">
-                <input type="text" v-model="add" class="form-control" style="max-width:200px;">
-                <button class="btn btn-dark" style="margin-left: 10px;">追加</button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <button class="btn btn-outline-dark">戻る</button>
+                <div class="add-store">
+                    <input type="text" class="form-control">
+                    <button class="btn btn-dark">追加</button>
+                </div>
+                <div class="added-stores">
+                    <p>追加されたストア(ループ処理)</p>
+                </div>
             </div>
-            <div class="added-stores">
-                <p>追加されたストア(ループ処理)</p>
+            <div class="col-5">
+                <div class="best-list">
+                    <p>-最安リスト-</p>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <div v-for="(text,index) in texts">
+                                <input type="text" v-model="texts[index]">
+                                <button class="bi bi-dash-circle-fill" type="button" @click="removeInput(index)"></button>
+                            </div>
+                        </div>
+                        <div class="col-6">bbb 567</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="remarks">
+                    <p>-備考-</p>
+                </div>
             </div>
         </div>
-        <div class="bestprice-list">
-            <h3>-最安リスト-</h3>
-
-        </div>
-        <div class="remarks">
-            <h3>-備考-</h3>
-
-        </div>
-
     </div>
 </template>
 
 <script>
     // import { Inertia } from '@inertiajs/inertia';
-    // import 'bootstrap/dist/css/bootstrap.css';
-    // import 'bootstrap-vue/dist/bootstrap-vue.css';
-
+   
 </script>
-
-<style>
-    .stores {
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    /* .store-list{
-        width: 130%;
-    }
-
-    .bestprice-list {
-        width: 140%;
-    }
-
-    .remarks {
-        /* width: 130%;
-    } */
-
-    .add-store {
-        display: flex;
-        /* justify-content: center; */
-        padding-bottom: 30px;
-    }
-
-    .added-content{
-        display: flex;
-        /* justify-content: center; */
-    }
-
-
-</style>

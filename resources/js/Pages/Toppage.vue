@@ -16,12 +16,26 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
-                <sidebar class="sidebar-area"></sidebar>
-                <div class="toppage-wrapper">
-                    <router-view/>
-                </div>
-            </div>
+            <div class="hamburger-btn" @click='active=!active'>
+                <span class="line line-top" :class="{'rotate-top':active}"></span>
+                <span class="line line-middle" :class="{'rotate-middle':active}"></span>
+                <span class="line line-bottom" :class="{'rotate-bottom':active}"></span>
+                <transition name="hamburger-menu">
+                    <div class="hambuger-menu" v-show="active">
+                        <div class="col">
+                            <sidebar class="sidebar-area"></sidebar>
+                        </div>
+                    </div>
+                </transition>
+                <!-- <slide>
+                    <div class="col-4">
+                            <slide class="sidebar-area"></slide>
+                            <div class="container-fluid">
+                                <router-view/>
+                            </div>
+                    </div>
+                </slide> -->
+            </div>    
         </div>
     </div>    
 </template>
@@ -33,6 +47,12 @@
     export default{
         components: {
             Sidebar
+        },
+
+        data() {
+            return {
+                active:false
+            }
         },
 
     }

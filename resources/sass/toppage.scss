@@ -12,7 +12,58 @@
             text-align: center;
         }
     }
-    .col-4 {
-        padding: 0 0 0 0;
+
+    .hamburger-btn {
+        position: fixed;
+        left: auto;
+        width: 70px;
+        height: 72px;
+        cursor: pointer;
+        z-index: 50;
+        right: 5px;
+        
+        .line {
+            position: absolute;
+            width: 45px;
+            height: 2px;
+            background: #333333;
+            text-align: center;
+        }
+
+        .line-top {
+            top: 16px;
+            transition: 0.4s ease;
+        }
+
+        .line-middle {
+            top: 26px;
+            transition: 0.4s ease;
+        }
+        
+        .line-bottom {
+            top: 36px;
+            transition: 0.4s ease;
+        }
+        
+        .rotate-top {
+            transform: translateY(10px) rotate(-45deg);
+            transition: 0.4s ease;
+        }
+        
+        .rotate-middle {
+            transition: 0.4s ease;
+            opacity: 0;
+        }
+
+        .rotate-bottom {
+            transform: translateY(-10px) rotate(45deg);
+            transition: 0.4s ease;
+        }
+
+        // .col-4 {
+        //     padding: 0 0 0 0;
+        // }
     }
+    
+    
 }
