@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid sto">
         <div class="row">
             <div class="col-3">
                 <button class="btn btn-outline-dark">戻る</button>

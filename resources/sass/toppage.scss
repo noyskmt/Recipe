@@ -1,69 +1,68 @@
-.container-fluid {
-    padding: 0 0 0 0;
-    .col-8 {
-        padding: 0 0 0 0;
+.container {
+    .menu {
+        text-align: right;
+        margin: 2% 2% 2% 2%;
 
-        .menu {
-            float: right;
-            margin: 2% 2%;
-        }
-        .main {
-            margin: 10% 0;
-            text-align: center;
+        .btn {
+            margin-left: 15px;
         }
     }
 
-    .hamburger-btn {
-        position: fixed;
-        left: auto;
-        width: 70px;
-        height: 72px;
-        cursor: pointer;
-        z-index: 50;
-        right: 5px;
+    .main {
+        margin: 5% 0;
+        text-align: center;
         
-        .line {
-            position: absolute;
-            width: 45px;
-            height: 2px;
-            background: #333333;
-            text-align: center;
+        .title {
+            margin-bottom: 5%;
         }
 
-        .line-top {
-            top: 16px;
-            transition: 0.4s ease;
-        }
+        .recipe {
+            padding: 2% 1%;
+            border: 1px solid #333;
+            margin: 2% 5% 0 5%;
 
-        .line-middle {
-            top: 26px;
-            transition: 0.4s ease;
-        }
-        
-        .line-bottom {
-            top: 36px;
-            transition: 0.4s ease;
-        }
-        
-        .rotate-top {
-            transform: translateY(10px) rotate(-45deg);
-            transition: 0.4s ease;
-        }
-        
-        .rotate-middle {
-            transition: 0.4s ease;
-            opacity: 0;
-        }
+            .bi.bi-star {
+                font-size: 20px;
+                float: right;
+            }
 
-        .rotate-bottom {
-            transform: translateY(-10px) rotate(45deg);
-            transition: 0.4s ease;
+            .bi.bi-star-fill {
+                font-size: 20px;
+                float: right;
+                color: #edde0c;
+            }
         }
+    }
 
-        // .col-4 {
-        //     padding: 0 0 0 0;
-        // }
+    .list {
+        .bm-menu {
+            width: 35% !important;
+        }
     }
     
-    
+    .bm-burger-button {
+        left: auto !important;
+        right: 36px !important;
+        top: 0 !important;
+        margin-top: 2%;
+    }
+
+    .bm-menu {
+        padding-top: 0px;
+        // width: 25% !important;
+    }
+
+    .bm-item-list>* {
+        padding: 0 !important;
+    }
+
+    .bm-item-list {
+        margin-left: 0;
+        font-size: 15px;
+    }
+
+    .bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
+        vertical-align: 1em;
+    }
+
 }
