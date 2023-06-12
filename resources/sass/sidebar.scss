@@ -5,9 +5,10 @@
     text-align: center;
     display: flex;flex-direction: column;
 
-    .sidebar-wrapper {
-        .sidebar-switching {
+    #sidebar1 {
+        .switch-btn {
             margin: 4% 0;
+            
 
             .btn.btn-outline-dark {
                 margin: 0 10%;

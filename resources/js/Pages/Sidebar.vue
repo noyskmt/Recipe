@@ -1,7 +1,11 @@
 <template>
     <div class="sidebar">
-        <div id="sidebar1">
-            <div class="sidebar-switching">
+        <main id="sidebar1">
+            <div class="switch-btn">
+                <!-- <button v-if="!ing.editFlag" @click="ingredientList= true" class="btn btn-dark">食材</button>
+                <button v-else @click="ingredientList" class="btn btn-outline-dark"></button>
+                <button v-if="!sea.editFlag" @click="seasoningList= true" class="btn btn-dark">調味料</button>
+                <button v-else @click="seasoningList" class="btn btn-outline-dark">調味料</button> -->
                 <button @click="ingredientList" class="btn btn-outline-dark">食材</button>
                 <button @click="seasoningList" class="btn btn-outline-dark">調味料</button>
             </div>
@@ -47,7 +51,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
         <div class="store-link">
             <button class="btn btn-light">店リスト</button>
         </div>
@@ -55,9 +59,7 @@
 </template>
 
 <script>
-    var app = new Vue({
-        el: '#sidebar1',
-
+    export default {
         data() {
             return {
                 ingredient: true,
@@ -67,13 +69,14 @@
 
         methods: {
             ingredientList: function() {
-                this.ingredientList = true;
-                this.seasoningList = false;
+                this.ingredient = true;
+                this.seasoning = false;
             },
             seasoningList: function() {
-                this.ingredientList = false;
-                this.seasoningList = true;
+                this.ingredient = false;
+                this.seasoning = true;
             },
         }
-    })
+    };
+    
 </script>
