@@ -1,12 +1,10 @@
-.container-fluid.sto{
-    padding: 0 0 0 0;
+.container-fluid{
     height: 100%;
-
     .row {
-        .col-3 {
-            background-color: aquamarine;
-            padding: 0 0 100% 0;
-            height: 100%;
+        .col-3.st {
+            background-color: rgba(0, 0, 0, 0.724);
+            padding: 0 0 0 0;
+            height: 100vh;
 
             .btn {
                 margin: 5% 10%;
@@ -33,34 +31,74 @@
 
             .added-stores {
                 text-align: center;
+                color: #b8b7ad;
 
-                // .p {
-                //     margin-top: 5%;
-                //     margin-bottom: 5%;
-                // }
             }
         }
 
-        .col-5 {
+        .col-6 {
             background-color: bisque;
-            padding: 0 0 100% 0;
-            height: 100%;
+            padding: 0 0 0 0;
+            height: 100vh;
 
             .best-list {
                 font-size: 25px;
-                margin: 5% 8%;
+                margin: 3% 8% 0 8%;
+
+                // .p {
+                //     margin-bottom: 0rem;
+                // }
+            }
+
+            .container.sto {
+                height: 100%;
+                .row {
+                    height: 100%;
+                    .col-4.bl {
+                        height: 35%;
+                        text-align: center;
+
+                        .ol, ul, dl {
+                            list-style: none;
+                            padding-left: 0;
+                        }
+
+                        #add-ingredient {
+                            .addbutton {
+                                padding-right: 100%;
+                            }
+
+                            .ccc {
+                                .sss {
+                                    width: 70%;
+                                }
+                            }
+                        }
+                        
+                    }
+
+                    .col-12 {
+                        background-color: rgb(73, 106, 237);
+                        height: 45%;
+                        
+                        .remarks {
+                            font-size: 25px;
+                            margin: 5% 8%;
+                        }
+                    }
+                }
             }
         }
 
-        .col-4 {
-            background-color: bisque;
-            padding: 0 0 100% 0;
+        .col-3.sb {
+            background-color: rgba(0, 0, 0, 0.724);
+            padding: 0 0 0 0;
             height: 100%;
-            
-            .remarks {
-                font-size: 25px;
-                margin: 5% 10%;
+
+            .sidebar {
+                margin: 1% 2%;
             }
         }
     }
+
 }
