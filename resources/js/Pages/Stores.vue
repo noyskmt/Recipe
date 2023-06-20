@@ -61,6 +61,8 @@
                                 </li>
                             </ul>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-12">
                             <div class="remarks">
                                 <p>-備考-</p>
