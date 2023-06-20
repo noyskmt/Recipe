@@ -1,5 +1,5 @@
 .container-fluid{
-    height: 100%;
+    height: 100vh;
     .row {
         .col-3.st {
             background-color: rgba(0, 0, 0, 0.724);
@@ -40,53 +40,67 @@
             background-color: bisque;
             padding: 0 0 0 0;
             height: 100vh;
+            position: relative;
 
             .best-list {
-                font-size: 25px;
-                margin: 3% 8% 0 8%;
-
-                // .p {
-                //     margin-bottom: 0rem;
-                // }
+                height: 5vh;
+                font-size: 1.5rem;
+                position: absolute;
+                top: 3%;
+                left: 6%;
             }
 
             .container.sto {
-                height: 100%;
-                .row {
-                    height: 100%;
-                    .col-4.bl {
-                        height: 35%;
-                        text-align: center;
+                height: 90vh;
+                position: absolute;
+                top: 10%;
 
-                        .ol, ul, dl {
-                            list-style: none;
-                            padding-left: 0;
-                        }
+                .ssss.list {
+                    height: 45vh;
+                    position: absolute;
 
-                        #add-ingredient {
-                            .addbutton {
-                                padding-right: 100%;
+                    .add-ingredient {
+                        // height: 50%;
+                        // display: flex;
+                        // flex-wrap: wrap;
+
+                        // .add-button {
+                        // list-style: none !important;
+                        // }
+
+                        .ccc {
+                            // flex-wrap: wrap;
+                            .sss {
+                                // box-sizing: border-box;
+                                // display: flex !important;
+                                // flex-wrap: wrap !important;
+                                // width: 30px !important;
+
                             }
-
-                            .ccc {
-                                .sss {
-                                    width: 70%;
-                                }
-                            }
-                        }
-                        
-                    }
-
-                    .col-12 {
-                        background-color: rgb(73, 106, 237);
-                        height: 45%;
-                        
-                        .remarks {
-                            font-size: 25px;
-                            margin: 5% 8%;
                         }
                     }
                 }
+
+                .col-12 {
+                    // background-color: #496aed;
+                    height: 45vh;
+                    width: 97%;
+                    position: absolute;
+                    top: 50%;
+
+                    .remarks {
+                        .tt {
+                            font-size: 1.5rem;
+                            padding-left: 4%;
+                        }
+
+                        .dd {
+                            font-size: 1rem;
+                            margin: 0 2% 0 2%;
+                        }
+                    }
+                }
+                
             }
         }
 

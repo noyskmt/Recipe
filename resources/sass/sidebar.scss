@@ -3,16 +3,30 @@
     height: 100%;
     width: 300px;
     text-align: center;
-    display: flex;flex-direction: column;
+    flex-direction: column;
+    display: none;
 
     #sidebar1 {
         .switch-btn {
             margin: 4% 0;
             
+            // .btn.btn-dark.a {
+            //     margin: 0 10%;
+            //     --bs-btn-color: #ffffff;
+            // }
 
-            .btn.btn-outline-dark {
-                margin: 0 10%;
-            }
+            // .btn.btn-dark.b {
+            //     margin: 0 10%;
+            //     --bs-btn-color: #ffffff40;
+            // }
+
+            // .btn.btn-dark {
+            //     margin: 0 10%;
+            // }
+
+            // .btn.btn-light {
+            //     margin: 0 10%;
+            // }
         }
 
         .add {
@@ -43,7 +57,7 @@
     .store-link {
         .btn.btn-light {
             margin-top: 10%;
-            border: 1px black;
+            border: 1px black solid;
         }
     }
 

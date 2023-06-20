@@ -27,46 +27,25 @@
                     <p>-最安リスト-</p>
                 </div>
                 <div class="container sto">
-                    <div class="row">
-                        <div class="col-4 bl">
-                            <ul id="add-ingredient">
-                                <li class="addbutton">
+                    <!-- <div class="row"> -->
+                        <div class="ssss li">
+                            <div id="add-ingredient">
+                                <li class="add-button">
                                     <button @click="addFormA()" class="btn btn-link">add</button>
                                 </li>
                                 <li v-for="(form, index) in forms" :key="index" class="ccc">
                                     <input v-model="forms[index]" class="sss">
                                     <button @click="deleteFormA(index)" class="btn btn-link">×</button>
                                 </li>
-                            </ul>
-                        </div>
-                        <div class="col-4 bl">
-                            <ul id="add-ingredient">
-                                <li class="addbutton">
-                                    <button @click="addFormB()" class="btn btn-link">add</button>
-                                </li>
-                                <li v-for="(form, index) in forms" :key="index" class="ccc">
-                                    <input v-model="forms[index]" class="sss">
-                                    <button @click="deleteFormB(index)" class="btn btn-link">×</button>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-4 bl">
-                            <ul id="add-ingredient">
-                                <li class="addbutton">
-                                    <button @click="addFormC()" class="btn btn-link">add</button>
-                                </li>
-                                <li v-for="(form, index) in forms" :key="index" class="ccc">
-                                    <input v-model="forms[index]" class="sss">
-                                    <button @click="deleteFormC(index)" class="btn btn-link">×</button>
-                                </li>
-                            </ul>
+                            </div>
                         </div>
                         <div class="col-12">
                             <div class="remarks">
-                                <p>-備考-</p>
+                                <p class="tt">-備考-</p>
+                                <textarea rows="10" cols="75" class="dd"></textarea>
                             </div>
                         </div>
-                    </div>
+                    <!-- </div> -->
                 </div>
             </div>
             <div class="col-3 sb">

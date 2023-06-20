@@ -43,7 +43,7 @@
         </div>
         <div class="slide">
             <Slide right class=“list”>
-                <sidebar class="sidebar"></sidebar>
+                <sidebar id="sidebar" class="active"></sidebar>
             </Slide>
         </div>
     </div>   
@@ -67,5 +67,16 @@
         },
 
     }
+
+    // let switchBtn = document.getElementsByTagName('bm-burger-button')[0];
+    // let sidebar = document.getElementById('sidebar');
+
+    // let changeElement = (el)=> {
+    //     el.classList.toggle('active');
+    // }
+
+    // switchBtn.addEventListener('click', ()=> {
+    //     changeElement(sidebar);
+    // }, false);
 
 </script>
