@@ -68,15 +68,5 @@
 
     }
 
-    // let switchBtn = document.getElementsByTagName('bm-burger-button')[0];
-    // let sidebar = document.getElementById('sidebar');
-
-    // let changeElement = (el)=> {
-    //     el.classList.toggle('active');
-    // }
-
-    // switchBtn.addEventListener('click', ()=> {
-    //     changeElement(sidebar);
-    // }, false);
 
 </script>
