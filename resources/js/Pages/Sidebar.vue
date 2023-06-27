@@ -1,10 +1,9 @@
 <template>
     <div class="sidebar">
-        <main id="sidebar1">
+        <div class="sidebar-area">
             <div class="switch-btn">
-                <button @click="clickTab()" class="btn btn-danger" :class="{ 'btn btn-warning': isTabFlag, 'text-danger': hasError }">食材</button>
-                <button @click="clickTab()" class="btn btn-primary" :class="{ 'btn btn-success': isTabFlag, 'text-danger': hasError }">調味料</button>
-                <!-- <button @click="clickTab()" class="btn btn-primary" >調味料</button> -->
+                <button @click="clickTab(true)" class="btn" :class="{ 'btn-dark b': isTabFlag, 'btn-dark a': !isTabFlag}">食材</button>
+                <button @click="clickTab(false)" class="btn" :class="{ 'btn-dark a': isTabFlag, 'btn-dark b': !isTabFlag }">調味料</button>
             </div>
             <div class="add">
                 <input type="text" class="form-control">
@@ -48,7 +47,7 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
         <div class="store-link">
             <button class="btn btn-light">店リスト</button>
         </div>
@@ -64,8 +63,9 @@
         },
 
         methods: {
-            clickTab() {
-                this.isTabFlag = !this.isTabFlag;
+            clickTab(flag) {
+                this.isTabFlag = flag;
+                console.log(this.isTabFlag);
             }
         }
     };

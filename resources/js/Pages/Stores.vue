@@ -3,11 +3,26 @@
         <div class="row">
             <div class="col-3 st">
                 <button class="btn btn-light">戻る</button>
+                <!-- <div v-for="(store, index) in stores" :key="store" class="add-store"> -->
                 <div class="add-store">
                     <input type="text" class="form-control">
                     <button class="btn btn-dark">追加</button>
                 </div>
                 <div class="added-stores">
+                    <!-- <p> {{ store.name }} </p> -->
+                    <p>追加されたストア(ループ処理)</p>
+                    <p>追加されたストア(ループ処理)</p>
+                    <p>追加されたストア(ループ処理)</p>
+                    <p>追加されたストア(ループ処理)</p>
+                    <p>追加されたストア(ループ処理)</p>
+                    <p>追加されたストア(ループ処理)</p>
+                    <p>追加されたストア(ループ処理)</p>
+                    <p>追加されたストア(ループ処理)</p>
+                    <p>追加されたストア(ループ処理)</p>
+                    <p>追加されたストア(ループ処理)</p>
+                    <p>追加されたストア(ループ処理)</p>
+                    <p>追加されたストア(ループ処理)</p>
+                    <p>追加されたストア(ループ処理)</p>
                     <p>追加されたストア(ループ処理)</p>
                     <p>追加されたストア(ループ処理)</p>
                     <p>追加されたストア(ループ処理)</p>
@@ -24,28 +39,20 @@
             </div>
             <div class="col-6">
                 <div class="best-list">
-                    <p>-最安リスト-</p>
+                    <p class="title">-最安リスト-</p>
+                    <button @click="addForm()" class="bi bi-patch-plus"></button>
                 </div>
-                <div class="container sto">
-                    <!-- <div class="row"> -->
-                        <div class="ssss li">
-                            <div id="add-ingredient">
-                                <li class="add-button">
-                                    <button @click="addFormA()" class="btn btn-link">add</button>
-                                </li>
-                                <li v-for="(form, index) in forms" :key="index" class="ccc">
-                                    <input v-model="forms[index]" class="sss">
-                                    <button @click="deleteFormA(index)" class="btn btn-link">×</button>
-                                </li>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="remarks">
-                                <p class="tt">-備考-</p>
-                                <textarea rows="10" cols="75" class="dd"></textarea>
-                            </div>
-                        </div>
-                    <!-- </div> -->
+                <div id="add-ingredient">
+                    <li v-for="(form, index) in forms" :key="index" class="addform">
+                        <input v-model="forms[index]" class="form">
+                        <button @click="deleteForm(index)" class="bi bi-patch-minus"></button>
+                    </li>
+                </div>
+                <div class="col-12">
+                    <div class="remarks">
+                        <p class="title">-備考-</p>
+                        <textarea rows="20" cols="110" class="textarea"></textarea>
+                    </div>
                 </div>
             </div>
             <div class="col-3 sb">
@@ -64,34 +71,27 @@
             Sidebar,
         },
 
+        // props: {
+        //     stores:[
+        //         Array
+        //     ]
+        // },
+
         data () {
             return {
                 forms: [],
+                // name: "",
             }
         },
 
         methods: {
-            addFormA() {
+            addForm() {
                 this.forms.push('')
             },
-            addFormB() {
-                this.forms.push('')
-            },
-            addFormC() {
-                this.forms.push('')
-            },
-         
-            deleteFormA (index) {
-                this.forms.splice(index, 1)
-            },
-            deleteFormB (index) {
-                this.forms.splice(index, 1)
-            },
-            deleteFormC (index) {
-                this.forms.splice(index, 1)
-            },
-        
 
+            deleteForm (index) {
+                this.forms.splice(index, 1)
+            },
         }
     }
    

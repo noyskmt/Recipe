@@ -1,32 +1,20 @@
 .sidebar {
-    position: fixed;
-    height: 100%;
-    width: 300px;
+    height: 100vh;
     text-align: center;
     flex-direction: column;
-    display: none;
+    display: block;
 
-    #sidebar1 {
+    .sidebar-area {
         .switch-btn {
-            margin: 4% 0;
-            
-            // .btn.btn-dark.a {
-            //     margin: 0 10%;
-            //     --bs-btn-color: #ffffff;
-            // }
+            .btn.btn-dark.a {
+                margin: 4% 5%;
+                --bs-btn-color: #ffffff;
+            }
 
-            // .btn.btn-dark.b {
-            //     margin: 0 10%;
-            //     --bs-btn-color: #ffffff40;
-            // }
-
-            // .btn.btn-dark {
-            //     margin: 0 10%;
-            // }
-
-            // .btn.btn-light {
-            //     margin: 0 10%;
-            // }
+            .btn.btn-dark.b {
+                margin: 4% 5%;
+                --bs-btn-color: #ffffff40;
+            }
         }
 
         .add {
@@ -42,6 +30,7 @@
         }
 
         .added-content {
+            color: #b8b7ad;
             .form-check {
                 .form-check-input {
                     margin-left: 3%;
