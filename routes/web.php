@@ -40,3 +40,8 @@ Route::get('/toppage', function () {
 Route::get('/stores', function () {
     return Inertia::render('Stores');
 });
+
+// テスト用
+// Route::get('/bbb', function () {
+//     return Inertia::render('Bbb');
+// });

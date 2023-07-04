@@ -13,37 +13,45 @@
                 <div v-if="isTabFlag" key="ingredient">
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label class="form-check-label" for="switch_1">食材名ループ処理</label>
+                        <label @click="openModal" class="form-check-label">食材名ループ処理</label>
+                        <MyModal @close="closeModal" v-if="modal"></MyModal>
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label class="form-check-label" for="switch_1">食材名</label>
+                        <label @click="openModal" class="form-check-label">食材名</label>
+                        <MyModal @close="closeModal" v-if="modal"></MyModal>
                     </div>
                 </div>
                 <div v-else key="seasoning">
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label class="form-check-label" for="switch_1">調味料ループ処理</label>
+                        <label @click="openModal" class="form-check-label">調味料ループ処理</label>
+                        <MyModal @close="closeModal" v-if="modal"></MyModal>
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label class="form-check-label" for="switch_1">調味料</label>
+                        <label @click="openModal" class="form-check-label">調味料</label>
+                        <MyModal @close="closeModal" v-if="modal"></MyModal>
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label class="form-check-label" for="switch_1">調味料ループ処理</label>
+                        <label @click="openModal" class="form-check-label">調味料ループ処理</label>
+                        <MyModal @close="closeModal" v-if="modal"></MyModal>
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label class="form-check-label" for="switch_1">調味料</label>
+                        <label @click="openModal" class="form-check-label">調味料</label>
+                        <MyModal @close="closeModal" v-if="modal"></MyModal>
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label class="form-check-label" for="switch_1">調味料ループ処理</label>
+                        <label @click="openModal" class="form-check-label">調味料ループ処理</label>
+                        <MyModal @close="closeModal" v-if="modal"></MyModal>
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label class="form-check-label" for="switch_1">調味料</label>
+                        <label @click="openModal" class="form-check-label">調味料</label>
+                        <MyModal @close="closeModal" v-if="modal"></MyModal>
                     </div>
                 </div>
             </div>
@@ -55,10 +63,14 @@
 </template>
 
 <script>
+    import MyModal from './MyModal.vue';
+
     export default {
+        components: { MyModal },
         data() {
             return {
                 isTabFlag: true,
+                modal: false,
             };
         },
 
@@ -66,8 +78,16 @@
             clickTab(flag) {
                 this.isTabFlag = flag;
                 console.log(this.isTabFlag);
-            }
-        }
+            },
+
+            openModal() {
+                this.modal = true
+            },
+            closeModal() {
+                this.modal = false
+            },
+        },
+        
     };
     
 </script>

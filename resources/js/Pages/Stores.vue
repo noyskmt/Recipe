@@ -44,6 +44,7 @@
                 </div>
                 <div id="add-ingredient">
                     <li v-for="(form, index) in forms" :key="index" class="addform">
+                        <select v-model="forms[index]" class="form"></select>
                         <input v-model="forms[index]" class="form">
                         <button @click="deleteForm(index)" class="bi bi-patch-minus"></button>
                     </li>
@@ -71,6 +72,7 @@
             Sidebar,
         },
 
+        // 店のループ処理
         // props: {
         //     stores:[
         //         Array
