@@ -1,0 +1,56 @@
+.sidebar {
+    height: 100vh;
+    text-align: center;
+    flex-direction: column;
+    display: block;
+
+    .sidebar-area {
+        .switch-btn {
+            .btn.btn-dark.a {
+                margin: 4% 5%;
+                --bs-btn-color: #ffffff;
+            }
+
+            .btn.btn-dark.b {
+                margin: 4% 5%;
+                --bs-btn-color: #ffffff40;
+            }
+        }
+
+        .add {
+            width: 80%;
+            height: 35px;
+            margin: 10%;
+            display: flex;
+    
+            .btn {
+                min-width: 30%;
+                max-width: 30%;
+            }
+        }
+
+        .added-content {
+            color: #b8b7ad;
+            .form-check {
+                .form-check-input {
+                    margin-left: 3%;
+                }
+
+                .form-check-label {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+
+    .store-link {
+        .btn.btn-light {
+            margin-top: 10%;
+            border: 1px black solid;
+        }
+    }
+
+    .sidebar *::before, .sidebar *::after {
+        box-sizing: 0;
+    }
+}

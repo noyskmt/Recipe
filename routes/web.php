@@ -33,3 +33,15 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::get('/toppage', function () {
+    return Inertia::render('Toppage');
+});
+Route::get('/stores', function () {
+    return Inertia::render('Stores');
+});
+
+// テスト用
+// Route::get('/bbb', function () {
+//     return Inertia::render('Bbb');
+// });

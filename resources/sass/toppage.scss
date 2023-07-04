@@ -1,0 +1,67 @@
+.container {
+    .menu {
+        text-align: right;
+        margin: 2% 2% 2% 2%;
+
+        .btn {
+            margin-left: 15px;
+        }
+    }
+
+    .main {
+        margin: 5% 0;
+        text-align: center;
+        
+        .title {
+            margin-bottom: 5%;
+        }
+
+        .recipe {
+            padding: 2% 1%;
+            border: 1px solid #333;
+            margin: 2% 5% 0 5%;
+
+            .bi.bi-star {
+                font-size: 20px;
+                float: right;
+            }
+
+            .bi.bi-star-fill {
+                font-size: 20px;
+                float: right;
+                color: #edde0c;
+            }
+        }
+    }
+
+    .list {
+        .bm-menu {
+            width: 35% !important;
+        }
+    }
+    
+    .bm-burger-button {
+        left: auto !important;
+        right: 36px !important;
+        top: 0 !important;
+        margin-top: 2%;
+    }
+
+    .bm-menu {
+        padding-top: 0px;
+        // width: 25% !important;
+    }
+
+    .bm-item-list>* {
+        padding: 0 !important;
+    }
+
+    .bm-item-list {
+        margin-left: 0;
+        font-size: 15px;
+    }
+
+    .bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
+        vertical-align: 1em;
+    }
+}
