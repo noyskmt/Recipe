@@ -64,37 +64,30 @@
 </template>
 
 <script>
-    // import { Inertia } from '@inertiajs/inertia';
-    import Sidebar from './Sidebar.vue';
+import Sidebar from './Sidebar.vue';
 
-    export default {
-        components: {
-            Sidebar,
-        },
-
-        // 店のループ処理
-        // props: {
-        //     stores:[
-        //         Array
-        //     ]
-        // },
-
-        data () {
-            return {
-                forms: [],
-                // name: "",
-            }
-        },
-
-        methods: {
-            addForm() {
-                this.forms.push('')
-            },
-
-            deleteForm (index) {
-                this.forms.splice(index, 1)
-            },
+export default {
+    components: {
+        Sidebar,
+    },
+    // props: {
+    //     stores:[
+    //         Array
+    //     ]
+    // },
+    data () {
+        return {
+            forms: [],
+            // name: "",
         }
+    },
+    methods: {
+        addForm() {
+            this.forms.push('')
+        },
+        deleteForm (index) {
+            this.forms.splice(index, 1)
+        },
     }
-   
+}
 </script>
