@@ -6,26 +6,36 @@
 
     .sidebar-area {
         .switch-btn {
+            position: sticky;
+            top: 1.5rem;
+            margin-bottom: 2rem;
+
             .btn.btn-dark.a {
-                margin: 4% 5%;
+                margin: 0 1rem;
                 --bs-btn-color: #ffffff;
             }
 
             .btn.btn-dark.b {
-                margin: 4% 5%;
+                margin: 0 1rem;
                 --bs-btn-color: #ffffff40;
             }
         }
 
         .add {
-            width: 80%;
+            position: sticky;
+            top: 6rem;
+            width: 100%;
             height: 35px;
-            margin: 10%;
+            margin-bottom: 4rem;
+            padding: 0 10%;
             display: flex;
+            gap: 1rem;
     
             .btn {
                 min-width: 30%;
                 max-width: 30%;
+                margin: 0;
+                padding: 0;
             }
         }
 

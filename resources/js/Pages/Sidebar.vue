@@ -56,6 +56,7 @@
                 </div>
             </div>
         </div>
+        <!-- <div v-if= "test()" class="store-link"> -->
         <div class="store-link">
             <button class="btn btn-light">店リスト</button>
         </div>
@@ -77,7 +78,6 @@
         methods: {
             clickTab(flag) {
                 this.isTabFlag = flag;
-                console.log(this.isTabFlag);
             },
 
             openModal() {
@@ -86,6 +86,12 @@
             closeModal() {
                 this.modal = false
             },
+        },
+
+        computed: {
+            // test() {
+            //     return location.pathname.match(localhost/toppage);
+            // },
         },
         
     };
