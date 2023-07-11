@@ -34,12 +34,10 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/toppage', function () {
-    return Inertia::render('Toppage');
-});
-Route::get('/stores', function () {
-    return Inertia::render('Stores');
-});
+Route::get('/toppage', function () { return Inertia::render('Toppage'); });
+Route::get('/stores', function () { return Inertia::render('Stores'); });
+Route::get('/calendar', function () { return Inertia::render('Calendar'); });
+
 
 // テスト用
 // Route::get('/bbb', function () {
