@@ -1,13 +1,13 @@
 <template>
     <FullCalendar 
         :options='calendarOptions'
-        @dateClick="handleDateClick()"
     />
 </template>
 
 <script>
 import FullCalendar from '@fullcalendar/vue3';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from "@fullcalendar/interaction";
 // import jaLocale from "@fullcalendar/core/locales/ja"; 日本語化
 
 export default {
@@ -18,15 +18,19 @@ export default {
     data: function() {
         return {
             calendarOptions: {
-                plugins: [dayGridPlugin],
+                plugins: [ dayGridPlugin, interactionPlugin ],
                 initialView: 'dayGridMonth',
-                events: [],
+                events: [
+                    { title: 'event 1', date: '2023-07-11' },
+                    { title: 'event 2', date: '2023-07-12' }
+                ],
                 // locale: jaLocale, 日本語化
                 headerToolbar: {
                     left: "myCustomButton",
                     center: "title",
                     right: "prev,next today"
                 },
+                dateClick: this.handleDateClick, // 必要
                 default: true,
                 height: '100vh',
                 customButtons: {
@@ -41,14 +45,15 @@ export default {
 
     methods: {
         handleDateClick(arg) {
-            if (confirm("新しいスケジュールを" + arg.dateStr + "に追加しますか ?")) {
-                this.events.push({
-                    // add new event data
-                    title: "新規スケジュール",
-                    start: arg.date,
-                    allDay: arg.allDay
-                });
-            }
+            // if (confirm("新しいスケジュールを" + arg.dateStr + "に追加しますか ?")) {
+            //     console.log(arg);
+            //     this.events.push({
+            //         // add new event data
+            //         title: "新規スケジュール",
+            //         start: arg.date,
+            //         allDay: arg.allDay
+            //     });
+            // }
         }
     },
 }
