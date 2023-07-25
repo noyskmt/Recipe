@@ -2,6 +2,7 @@
     <FullCalendar 
         :options='calendarOptions'
     />
+    <MyModal @close="closeModal" v-if="modal"></MyModal>
 </template>
 
 <script>
@@ -10,20 +11,20 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction";
 // import jaLocale from "@fullcalendar/core/locales/ja"; 日本語化
 
+import MyModal from './MyModal.vue';
+
 export default {
     components: {
-        FullCalendar // make the <FullCalendar> tag available
+        FullCalendar, // make the <FullCalendar> tag available,
+        MyModal,
     },
     
-    data: function() {
+    data() {
         return {
             calendarOptions: {
-                plugins: [ dayGridPlugin, interactionPlugin ],
+                plugins: [ dayGridPlugin, interactionPlugin],
                 initialView: 'dayGridMonth',
-                events: [
-                    { title: 'event 1', date: '2023-07-11' },
-                    { title: 'event 2', date: '2023-07-12' }
-                ],
+                events: [],
                 // locale: jaLocale, 日本語化
                 headerToolbar: {
                     left: "myCustomButton",
@@ -39,12 +40,24 @@ export default {
                         // click: function() クリックした時の挙動
                     },
                 }
-            }
+            },
+            modal: false,
         }            
     },
 
     methods: {
         handleDateClick(arg) {
+            console.log(arg);
+        
+            // openModal() {
+            //     this.modal = true
+            // },
+
+            // closeModal() {
+            //     this.modal = false
+            // };
+
+
             // if (confirm("新しいスケジュールを" + arg.dateStr + "に追加しますか ?")) {
             //     console.log(arg);
             //     this.events.push({
@@ -56,5 +69,6 @@ export default {
             // }
         }
     },
+
 }
 </script>

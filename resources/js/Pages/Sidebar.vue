@@ -56,8 +56,7 @@
                 </div>
             </div>
         </div>
-        <!-- <div v-if= "test()" class="store-link"> -->
-        <div class="store-link">
+        <div v-if= "test" class="store-link">
             <button class="btn btn-light">店リスト</button>
         </div>
     </div>
@@ -89,11 +88,11 @@
         },
 
         computed: {
-            // test() {
-            //     return location.pathname.match(localhost/toppage);
-            // },
+            test() {
+                return location.pathname.match(/toppage/);
+            },
         },
-        
+
     };
     
 </script>
