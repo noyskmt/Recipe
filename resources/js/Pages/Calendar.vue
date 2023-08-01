@@ -2,7 +2,7 @@
     <FullCalendar 
         :options='calendarOptions'
     />
-    <MyModal @close="closeModal" v-if="modal"></MyModal>
+    <DayModal @close="closeModal" v-if="modal"></DayModal>
 </template>
 
 <script>
@@ -11,12 +11,12 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction";
 // import jaLocale from "@fullcalendar/core/locales/ja"; 日本語化
 
-import MyModal from './MyModal.vue';
+import DayModal from './DayModal.vue';
 
 export default {
     components: {
         FullCalendar, // make the <FullCalendar> tag available,
-        MyModal,
+        DayModal,
     },
     
     data() {
@@ -47,17 +47,8 @@ export default {
 
     methods: {
         handleDateClick(arg) {
-            console.log(arg);
+            this.openModal(arg);
         
-            // openModal() {
-            //     this.modal = true
-            // },
-
-            // closeModal() {
-            //     this.modal = false
-            // };
-
-
             // if (confirm("新しいスケジュールを" + arg.dateStr + "に追加しますか ?")) {
             //     console.log(arg);
             //     this.events.push({
@@ -67,7 +58,16 @@ export default {
             //         allDay: arg.allDay
             //     });
             // }
-        }
+        },
+
+        openModal() {
+            this.modal = true
+        },
+
+        closeModal() {
+            this.modal = false
+        },
+
     },
 
 }
