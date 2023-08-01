@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="menu">
-            <button class="btn btn-outline-dark">履歴</button>
+            <button v-on:click="calendar" class="btn btn-outline-dark">カレンダー</button>
             <button class="btn btn-outline-dark mode">モード</button>
             <button class="btn btn-dark">検索</button>
         </div>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-    // import { Inertia } from '@inertiajs/inertia';
+    // import { Link } from '@inertiajs/vue3';
     import Sidebar from './Sidebar.vue';
     import { Slide } from 'vue3-burger-menu';
 
@@ -65,6 +65,12 @@
                 
             }
         },
+
+        methods: {
+            calendar() {
+                this.$router.push('/calendar/')
+            }
+        }
 
     }
 
