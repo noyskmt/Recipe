@@ -37,7 +37,9 @@ export default {
                 customButtons: {
                     myCustomButton: {
                         text: 'HOME',
-                        // click: function() クリックした時の挙動
+                        click: function() {
+                            location.href = '/toppage';
+                        }
                     },
                 }
             },
@@ -47,7 +49,8 @@ export default {
 
     methods: {
         handleDateClick(arg) {
-            this.openModal(arg);
+            this.openModal();
+            console.log(arg);
         
             // if (confirm("新しいスケジュールを" + arg.dateStr + "に追加しますか ?")) {
             //     console.log(arg);

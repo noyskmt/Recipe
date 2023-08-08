@@ -1,10 +1,10 @@
 <template>
-    <transition name="modal" appear>
+    <transition name="modal-cal" appear>
         <div class="modal modal-overlay" @click.self="$emit('close')">
             <div class="modal-window">
                 <div class="modal-content">
                     <div class="title md cal">
-                        <label>'選択した日付'</label>
+                        <label>"arg.dateStr"</label>
                     </div>
                     <div class="dish">
                         <label>料理名</label><br>

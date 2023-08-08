@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="menu">
-            <button v-on:click="calendar" class="btn btn-outline-dark">カレンダー</button>
+            <button v-on:click="redirectCalendarPage" class="btn btn-outline-dark">カレンダー</button>
             <button class="btn btn-outline-dark mode">モード</button>
             <button class="btn btn-dark">検索</button>
         </div>
@@ -67,8 +67,8 @@
         },
 
         methods: {
-            calendar() {
-                this.$router.push('/calendar/')
+            redirectCalendarPage() {
+                location.href = '/calendar';
             }
         }
 

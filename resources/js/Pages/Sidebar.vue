@@ -57,7 +57,7 @@
             </div>
         </div>
         <div v-if= "test" class="store-link">
-            <button class="btn btn-light">店リスト</button>
+            <button v-on:click="redirectStorePage" class="btn btn-light">店リスト</button>
         </div>
     </div>
 </template>
@@ -85,6 +85,10 @@
             closeModal() {
                 this.modal = false
             },
+
+            redirectStorePage() {
+                location.href = '/stores';
+            }
         },
 
         computed: {

@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-3 st">
-                <button class="btn btn-light">戻る</button>
+                <button v-on:click="redirectTopPage" class="btn btn-light">戻る</button>
                 <!-- <div v-for="(store, index) in stores" :key="store" class="add-store"> -->
                 <div class="add-store">
                     <input type="text" class="form-control">
@@ -88,6 +88,10 @@ export default {
         deleteForm (index) {
             this.forms.splice(index, 1)
         },
+
+        redirectTopPage() {
+            location.href = '/toppage';
+        }
     }
 }
 </script>
