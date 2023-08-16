@@ -2,7 +2,7 @@
     <FullCalendar 
         :options='calendarOptions'
     />
-    <DayModal @close="closeModal" v-if="modal"></DayModal>
+    <DayModal @close="closeModal" v-if="modal" :date ="date" ></DayModal>
 </template>
 
 <script>
@@ -44,12 +44,14 @@ export default {
                 }
             },
             modal: false,
+            date: [],
+
         }            
     },
 
     methods: {
         handleDateClick(arg) {
-            this.openModal();
+            this.openModal(arg);
             console.log(arg);
         
             // if (confirm("新しいスケジュールを" + arg.dateStr + "に追加しますか ?")) {

@@ -21,6 +21,3 @@
 
 </template>
 
-<script>
-    
-</script>

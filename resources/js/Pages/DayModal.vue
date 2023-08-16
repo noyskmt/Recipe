@@ -1,10 +1,10 @@
 <template>
-    <transition name="modal-cal" appear>
+    <transition name="modal" appear>
         <div class="modal modal-overlay" @click.self="$emit('close')">
-            <div class="modal-window">
+            <div class="modal-window cal">
                 <div class="modal-content">
-                    <div class="title md cal">
-                        <label>"arg.dateStr"</label>
+                    <div class="title cal">
+                        <label>{{ date.dateStr }}</label>
                     </div>
                     <div class="dish">
                         <label>料理名</label><br>
@@ -16,9 +16,16 @@
             </div>
         </div>
   </transition>
-
 </template>
 
 <script>
-    
+export default {
+    props: {
+        // date: Object
+        // date: String
+        date: {
+            type: Array
+        }
+    }
+}
 </script>
