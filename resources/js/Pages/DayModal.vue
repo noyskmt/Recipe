@@ -4,7 +4,7 @@
             <div class="modal-window cal">
                 <div class="modal-content">
                     <div class="title cal">
-                        <label>{{ date.dateStr }}</label>
+                        <label>{{ date }}</label>
                     </div>
                     <div class="dish">
                         <label>料理名</label><br>
@@ -21,11 +21,7 @@
 <script>
 export default {
     props: {
-        // date: Object
-        // date: String
-        date: {
-            type: Array
-        }
+        date: String
     }
 }
 </script>

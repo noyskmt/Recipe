@@ -44,7 +44,7 @@ export default {
                 }
             },
             modal: false,
-            date: [],
+            date: '',
 
         }            
     },
@@ -52,17 +52,7 @@ export default {
     methods: {
         handleDateClick(arg) {
             this.openModal(arg);
-            console.log(arg);
-        
-            // if (confirm("新しいスケジュールを" + arg.dateStr + "に追加しますか ?")) {
-            //     console.log(arg);
-            //     this.events.push({
-            //         // add new event data
-            //         title: "新規スケジュール",
-            //         start: arg.date,
-            //         allDay: arg.allDay
-            //     });
-            // }
+            this.date = arg.dateStr;
         },
 
         openModal() {
