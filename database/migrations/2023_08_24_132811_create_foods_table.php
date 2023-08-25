@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shops', function (Blueprint $table) {
-            $table->id();
+        Schema::table('foods', function (Blueprint $table) {
             $table->string('name');
-            $table->timestamps();
-            $table->timestamps('deleted_at');
-
+            $table->integer('categories');
         });
     }
 
@@ -25,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shops');
+        Schema::table('foods', function (Blueprint $table) {
+            //
+        });
     }
 };
