@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->id('recipe_id');
+            $table->integer('recipe_id');
         });
     }
 

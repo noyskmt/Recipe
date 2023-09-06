@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\TopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,8 @@ Route::middleware([
     })->name('dashboard');
 });
 
-// Route::get('/toppage', [RecipeSrchController::class, 'index']);
-Route::get('/toppage', function () { return Inertia::render('Toppage'); });
+Route::get('/top', [TopController::class, 'index']);
+// Route::get('/top', function () { return Inertia::render('Toppage'); });
 Route::get('/stores', function () { return Inertia::render('Stores'); });
 Route::get('/calendar', function () { return Inertia::render('Calendar'); });
 

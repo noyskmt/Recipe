@@ -46,6 +46,7 @@
                 <sidebar id="sidebar" class="active"></sidebar>
             </Slide>
         </div>
+        <p>{{ hello }}</p>
     </div>   
 </template>
 
@@ -57,7 +58,8 @@
     export default{
         components: {
             Sidebar,
-            Slide
+            Slide,
+            hello
         },
 
         data() {
