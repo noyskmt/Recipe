@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->string('name');
-            $table->char('password');
-            $table->char('email');
+            
+            $table->id('large_category_id');
+            $table->id('medium_category_id');
+            $table->id('small_category_id');
+            //もしくは↓？
+            $table->id('category_id');
+            $table->id('parent_category_id');
         });
     }
 
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('recipes');
     }
 };
