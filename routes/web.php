@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\TopController;
+use App\Http\Controllers\BbbController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,4 @@ Route::get('/calendar', function () { return Inertia::render('Calendar'); });
 
 
 // テスト用
-// Route::get('/bbb', function () {
-//     return Inertia::render('Bbb');
-// });
+Route::get('/bbb', [BbbController::class, 'index']);

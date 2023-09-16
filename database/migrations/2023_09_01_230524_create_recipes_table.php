@@ -16,12 +16,13 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             
-            $table->id('large_category_id');
-            $table->id('medium_category_id');
-            $table->id('small_category_id');
+            $table->integer('large_category_id');
+            $table->integer('medium_category_id');
+            $table->integer('small_category_id');
             //もしくは↓？
-            $table->id('category_id');
-            $table->id('parent_category_id');
+            $table->integer('category_id');
+            $table->integer('parent_category_id');
+            //9月9日時点これでマイグレートしてる再考が必要
         });
     }
 

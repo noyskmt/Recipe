@@ -5,19 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Food extends Model
+class Bbb extends Model
 {
     use HasFactory;
 
     protected $table = "foods";
 
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name',
+        'price',
+        'remarks',
+    ];
 
     protected $guarded = [
-        'id',
         'created_at',
         'updated_at',
         'deleted_at',
-        'categories'
+        'shop_id',
+        'food_id'
     ];
+
 }

@@ -12,7 +12,7 @@
             <div class="favoriteRecipe">
                 <!-- ループ処理 -->
                 <div class="recipe">
-                    <p>お気に入りしたレシピ</p>
+                    <p>{{ hello }}</p>
                     <i class="bi bi-star-fill"></i>
                 </div>
                 <div class="recipe">
@@ -43,10 +43,9 @@
         </div>
         <div class="slide">
             <Slide right class=“list”>
-                <sidebar id="sidebar" class="active"></sidebar>
+                <sidebar id="sidebar" class="active" :title="title"></sidebar>
             </Slide>
         </div>
-        <p>{{ hello }}</p>
     </div>   
 </template>
 
@@ -55,16 +54,19 @@
     import Sidebar from './Sidebar.vue';
     import { Slide } from 'vue3-burger-menu';
 
-    export default{
+    export default {
         components: {
             Sidebar,
             Slide,
-            hello
+        },
+
+        props: {
+            hello: String
         },
 
         data() {
             return {
-                
+                title:'きょうのできごと'
             }
         },
 
@@ -73,7 +75,6 @@
                 location.href = '/calendar';
             }
         }
-
     }
 
 </script>
