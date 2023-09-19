@@ -9,7 +9,7 @@ class Bbb extends Model
 {
     use HasFactory;
 
-    protected $table = "foods";
+    protected $table = "bbb";
 
     protected $fillable = [
         'name',

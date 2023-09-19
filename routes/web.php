@@ -44,3 +44,6 @@ Route::get('/calendar', function () { return Inertia::render('Calendar'); });
 
 // テスト用
 Route::get('/bbb', [BbbController::class, 'index']);
+Route::post('/bbb/store', [BbbController::class, 'store']);
+
+

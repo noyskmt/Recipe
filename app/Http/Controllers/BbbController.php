@@ -5,26 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Bbb;
-// use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Log;
 
 class BbbController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Bbb');
-    }
-
-    public function store(Request $request)
-    {
-       Bbb::create($request->all());
+        return Inertia::render('Bbb', ['bbb' => Bbb::where('name')->get()]);
     }
 
     // public function store(Request $request)
     // {
-    //     $food = new Bbb();
-    //     // Log::debug($request);
-
-    //     $food->name = $request->name;
-    //     $food->save();
+    //    Bbb::create($request->all());
     // }
-}
+
+    public function store(Request $request)
+    {
+        $food = new Bbb();
+
+        $food->name = $request->name;
+        $food->save();
+        Log::debug($request);
+        // return Inertia::render('Bbb', ['foods' => Bbb::latest()->get()]);
+    }
+};
