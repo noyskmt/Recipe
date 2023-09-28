@@ -10,50 +10,20 @@
                 <button @click="addFood()" class="btn btn-dark">追加</button>
             </div>
             <div class="added-content">
-                <div v-if="isTabFlag" key="ingredient">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label @click="openModal" class="form-check-label">食材名ループ処理</label>
-                        <MyModal @close="closeModal" v-if="modal"></MyModal>
+                    <div v-for="food in foods" :key="food" v-if="isTabFlag" key="ingredient">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
+                            <label @click="openModal" class="form-check-label">{{ food.name }}</label>
+                            <MyModal @close="closeModal" v-if="modal"></MyModal>
+                        </div>
                     </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label @click="openModal" class="form-check-label">{{ title }}</label>
-                        <MyModal @close="closeModal" v-if="modal"></MyModal>
+                    <div v-else key="seasoning">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
+                            <label @click="openModal" class="form-check-label">調味料</label>
+                            <MyModal @close="closeModal" v-if="modal"></MyModal>
+                        </div>
                     </div>
-                </div>
-                <div v-else key="seasoning">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label @click="openModal" class="form-check-label">{{ newFood }}</label>
-                        <MyModal @close="closeModal" v-if="modal"></MyModal>
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label @click="openModal" class="form-check-label">調味料</label>
-                        <MyModal @close="closeModal" v-if="modal"></MyModal>
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label @click="openModal" class="form-check-label">調味料ループ処理</label>
-                        <MyModal @close="closeModal" v-if="modal"></MyModal>
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label @click="openModal" class="form-check-label">調味料</label>
-                        <MyModal @close="closeModal" v-if="modal"></MyModal>
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label @click="openModal" class="form-check-label">調味料ループ処理</label>
-                        <MyModal @close="closeModal" v-if="modal"></MyModal>
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                        <label @click="openModal" class="form-check-label">調味料</label>
-                        <MyModal @close="closeModal" v-if="modal"></MyModal>
-                    </div>
-                </div>
             </div>
         </div>
         <div v-if= "storeList" class="store-link">
@@ -63,13 +33,13 @@
 </template>
 
 <script>
+    import { Inertia } from "@inertiajs/inertia";
     import MyModal from './MyModal.vue';
 
     export default {
         components: { MyModal },
 
         props: {
-            title: String,
             foods:[
                 Array
             ]
@@ -100,10 +70,10 @@
             },
 
             addFood() {
-                // Inertia.post('/sidebar', {
-                //     name : this.newFood
-                // })
-                // Inertia.get('/sidebar')
+                Inertia.post('/top/store', {
+                    name : this.newFood
+                })
+                Inertia.get('/top')
             },
         },
 

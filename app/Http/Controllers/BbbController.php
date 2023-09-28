@@ -5,19 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Bbb;
-use Illuminate\Support\Facades\Log;
+// use Illuminate\Support\Facades\Log;
 
 class BbbController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Bbb', ['bbb' => Bbb::where('name')->get()]);
+        return Inertia::render('Bbb', ['bbb' => Bbb::all()]);
     }
-
-    // public function store(Request $request)
-    // {
-    //    Bbb::create($request->all());
-    // }
 
     public function store(Request $request)
     {
@@ -25,7 +20,7 @@ class BbbController extends Controller
 
         $food->name = $request->name;
         $food->save();
-        Log::debug($request);
+        // Log::debug($request);
         // return Inertia::render('Bbb', ['foods' => Bbb::latest()->get()]);
     }
 };

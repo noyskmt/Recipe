@@ -1,5 +1,4 @@
 <template>
-    <p>aaaa</p>
     <div class="add">
         <input type="text" v-model="newFood" class="form-control">
         <button @click="addFood()" class="btn btn-dark">追加</button>
@@ -12,6 +11,7 @@
 
 <script>
     import { Inertia } from "@inertiajs/inertia";
+    // import { router } from '@inertiajs/vue3';
     
     export default {
         props: {
@@ -23,7 +23,6 @@
         data() {
             return {
                 newFood: "",
-                // bbb:[]
             }
         },
 
@@ -33,17 +32,8 @@
                     name : this.newFood
                 })
                 Inertia.get('/bbb')
-                console.log("newFood");
+                // console.log(this.newFood);
             }
-
-            // addFood() {
-            //     let data = {food:this.newFood}
-            //     console.log(food.name)
-            //     data._token = document.getElementsByName('csrf-token')[0].name;
-            //     api.postFood(JSON.stringify(data)).then(()=>{
-            //         this.getFoodList()
-            //     })
-            // },
         }
 
     }

@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->string('name');
-            $table->integer('price');
-            $table->text('remarks');
-            $table->string('shop_id');
-            $table->string('food_id');
+            $table->string('name')->nullable();
+            $table->integer('price')->nullable();
+            $table->text('remarks')->nullable();
+            $table->string('shop_id')->nullable();
+            $table->string('food_id')->nullable();
         });
     }
 

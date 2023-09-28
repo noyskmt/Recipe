@@ -11,18 +11,6 @@ class Bbb extends Model
 
     protected $table = "bbb";
 
-    protected $fillable = [
-        'name',
-        'price',
-        'remarks',
-    ];
-
-    protected $guarded = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-        'shop_id',
-        'food_id'
-    ];
+    protected $guarded = ['id'];
 
 }
