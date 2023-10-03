@@ -12,7 +12,7 @@ class TopController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Toppage', ['foods' => Food::all()]);
+        return Inertia::render('Toppage');
     }
 
     public function store(Request $request)
@@ -22,5 +22,9 @@ class TopController extends Controller
         $food->name = $request->name;
         $food->save();
         Log::debug($request);
+    }
+
+    public function list() {
+        return Food::all();
     }
 }
