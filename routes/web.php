@@ -38,13 +38,13 @@ Route::middleware([
 
 Route::get('/top', [TopController::class, 'index']);
 Route::post('/top/store', [TopController::class, 'store']);
-// Route::get('/top', function () { return Inertia::render('Toppage'); });
+Route::get('/top/list', [TopController::class, 'list']);
 Route::get('/stores', function () { return Inertia::render('Stores'); });
 Route::get('/calendar', function () { return Inertia::render('Calendar'); });
 
 
 // テスト用
-Route::get('/bbb', [BbbController::class, 'index']);
-Route::post('/bbb/store', [BbbController::class, 'store']);
+// Route::get('/bbb', [BbbController::class, 'index']);
+// Route::post('/bbb/store', [BbbController::class, 'store']);
 
 

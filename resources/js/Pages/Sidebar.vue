@@ -10,7 +10,8 @@
                 <button @click="addFood()" class="btn btn-dark">追加</button>
             </div>
             <div class="added-content">
-                    <div v-for="food in foods" :key="food" v-if="isTabFlag" key="ingredient">
+                <div v-for="food in foods">
+                    <div v-if="isTabFlag" key="ingredient">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
                             <label @click="openModal" class="form-check-label">{{ food.name }}</label>
@@ -24,6 +25,7 @@
                             <MyModal @close="closeModal" v-if="modal"></MyModal>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
         <div v-if= "storeList" class="store-link">
@@ -39,17 +41,12 @@
     export default {
         components: { MyModal },
 
-        props: {
-            foods:[
-                Array
-            ]
-        },
-
         data() {
             return {
                 isTabFlag: true,
                 modal: false,
                 newFood: "",
+                foods: [],
             };
         },
 
@@ -82,6 +79,13 @@
                 return location.pathname.match(/top/);
             },
         },
+
+        mounted() {
+            Inertia.get('/top/list')
+            this.foods = "foods"
+            // Inertia.get('/top')
+
+        }
 
     };
     

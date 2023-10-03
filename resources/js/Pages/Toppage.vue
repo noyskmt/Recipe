@@ -12,7 +12,7 @@
             <div class="favoriteRecipe">
                 <!-- ループ処理 -->
                 <div class="recipe">
-                    <p>{{ hello }}</p>
+                    <p>お気に入りしたレシピ</p>
                     <i class="bi bi-star-fill"></i>
                 </div>
                 <div class="recipe">
@@ -61,13 +61,10 @@
         },
 
         props: {
-            hello: String
         },
 
         data() {
-            return {
-                title:'きょうのできごと'
-            }
+            
         },
 
         methods: {
