@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Food;
-use Illuminate\Support\Facades\Log;
+// use Illuminate\Support\Facades\Log;
 
 
 class TopController extends Controller
@@ -21,7 +21,7 @@ class TopController extends Controller
 
         $food->name = $request->name;
         $food->save();
-        Log::debug($request);
+        // Log::debug($request);
     }
 
     public function list() {

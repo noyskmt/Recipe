@@ -2,7 +2,7 @@
     <div class="sidebar">
         <div class="sidebar-area">
             <div class="switch-btn">
-                <button @click="clickTab(true)" class="btn" :class="{ 'btn-dark b': isTabFlag, 'btn-dark a': !isTabFlag}">食材</button>
+                <button @click="clickTab(true)" class="btn" :class="{ 'btn-dark b': isTabFlag, 'btn-dark a': !isTabFlag }">食材</button>
                 <button @click="clickTab(false)" class="btn" :class="{ 'btn-dark a': isTabFlag, 'btn-dark b': !isTabFlag }">調味料</button>
             </div>
             <div class="add">
@@ -72,6 +72,14 @@
                 })
                 Inertia.get('/top')
             },
+
+            async foodList() {
+                const res = await axios.get('top/list')
+                // console.log(res);
+                console.log(res.data);
+                return res.data;
+                
+            }
         },
 
         computed: {
@@ -80,10 +88,8 @@
             },
         },
 
-        mounted() {
-            Inertia.get('/top/list')
-            this.foods = "foods"
-            // Inertia.get('/top')
+        async mounted() {
+            this.foods = await this.foodList();
 
         }
 

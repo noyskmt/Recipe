@@ -38,7 +38,7 @@ export default {
                     myCustomButton: {
                         text: 'HOME',
                         click: function() {
-                            location.href = '/toppage';
+                            location.href = '/top';
                         }
                     },
                 }

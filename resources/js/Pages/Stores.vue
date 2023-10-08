@@ -90,7 +90,7 @@ export default {
         },
 
         redirectTopPage() {
-            location.href = '/toppage';
+            location.href = '/top';
         }
     }
 }

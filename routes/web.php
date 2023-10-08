@@ -4,7 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\TopController;
-use App\Http\Controllers\BbbController;
+// use App\Http\Controllers\BbbController;
 
 /*
 |--------------------------------------------------------------------------

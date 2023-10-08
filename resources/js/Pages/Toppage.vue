@@ -60,13 +60,6 @@
             Slide,
         },
 
-        props: {
-        },
-
-        data() {
-            
-        },
-
         methods: {
             redirectCalendarPage() {
                 location.href = '/calendar';
