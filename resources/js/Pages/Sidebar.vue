@@ -11,18 +11,22 @@
             </div>
             <div class="added-content">
                 <div v-for="food in foods">
-                    <div v-if="isTabFlag" key="ingredient">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                            <label @click="openModal" class="form-check-label">{{ food.name }}</label>
-                            <MyModal @close="closeModal" v-if="modal"></MyModal>
+                    <div v-if="food.categories == '0'">
+                        <div v-show="isTabFlag"  key="ingredient">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
+                                <label @click="openModal" class="form-check-label">{{ food.name }}</label>
+                                <MyModal @close="closeModal" v-if="modal"></MyModal>
+                            </div>
                         </div>
                     </div>
-                    <div v-else key="seasoning">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
-                            <label @click="openModal" class="form-check-label">調味料</label>
-                            <MyModal @close="closeModal" v-if="modal"></MyModal>
+                    <div v-else>
+                        <div v-show="!isTabFlag" key="seasoning">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
+                                <label @click="openModal" class="form-check-label">{{ food.name }}</label>
+                                <MyModal @close="closeModal" v-if="modal"></MyModal>
+                            </div>
                         </div>
                     </div>
                 </div>
