@@ -20,6 +20,7 @@ class TopController extends Controller
         $food = new Food();
 
         $food->name = $request->name;
+        $food->categories = $request->categories;
         $food->save();
         // Log::debug($request);
     }
