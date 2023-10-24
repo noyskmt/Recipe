@@ -14,7 +14,7 @@
                     <div v-if="!food.categories">
                         <div v-show="isTabFlag"  key="ingredient">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
+                                <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" role="switch" checked @click="stockTab">
                                 <label @click="openModal" class="form-check-label">{{ food.name }}</label>
                                 <MyModal @close="closeModal" v-if="modal"></MyModal>
                             </div>
@@ -23,7 +23,7 @@
                     <div v-else>
                         <div v-show="!isTabFlag" key="seasoning">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" checked>
+                                <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" role="switch" checked @click="stockTab">
                                 <label @click="openModal" class="form-check-label">{{ food.name }}</label>
                                 <MyModal @close="closeModal" v-if="modal"></MyModal>
                             </div>
@@ -39,8 +39,9 @@
 </template>
 
 <script>
-    import { Inertia } from "@inertiajs/inertia";
+    // import { Inertia } from "@inertiajs/inertia";
     import MyModal from './MyModal.vue';
+    // import { BIconThreeDotsVertical } from "bootstrap-vue";
 
     export default {
         components: { MyModal },
@@ -69,6 +70,10 @@
                 this.modal = false
             },
 
+            stockTab() {
+
+            },
+
             redirectStorePage() {
                 location.href = '/stores';
             },
@@ -76,7 +81,7 @@
             /**
              *  食材と調味料の追加
              */
-            addFood() {
+            async addFood() {
                 let isTabFlag;
                 if (this.isTabFlag) {
                     isTabFlag = 0;
@@ -84,11 +89,15 @@
                     isTabFlag = 1;
                 }
 
-                Inertia.post('/top/store', {
+                const res =  await axios.post('/top/store', {
                     name : this.newFood,
                     categories : isTabFlag,
                 })
-                Inertia.get('/top')
+
+                if (res.status === 200) {
+                    this.foods = res.data;
+                    this.newFood = "";
+                }
             },
 
             /**
@@ -114,7 +123,6 @@
          */
         async mounted() {
             this.foods = await this.foodList();
-
         }
 
     };

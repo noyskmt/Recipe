@@ -23,6 +23,7 @@ class TopController extends Controller
         $food->categories = $request->categories;
         $food->save();
         // Log::debug($request);
+        return $this->list();
     }
 
     public function list() {
