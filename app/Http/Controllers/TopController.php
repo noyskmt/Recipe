@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Food;
-use Illuminate\Support\Facades\Log;
 
 
 class TopController extends Controller
@@ -23,7 +22,6 @@ class TopController extends Controller
         $food->categories = $request->categories;
         $food->stock = $request->stock;
         $food->save();
-        // Log::debug($request);
         return $this->list();
     }
 
@@ -31,20 +29,16 @@ class TopController extends Controller
         return Food::all();
     }
 
-    public function stock_tab($request, $id) {
+    public function stock_tab($id) {
         $food = Food::find($id);
-        // $food->stock = !$request->stock;
-        $food->stock = ($request->stock) ? 0 : 1; 
+        $food->stock = ($food->stock) ? 0 : 1; 
         $food->save();
-        Log::debug($request);
-        return $this->list();
 
-
-        // if($stock === 1) {
-        //     $stock = '0';
+        // $food->stock = ($food->stock) ? 0 : 1; と同じ↓
+        // if($food->stock) {
+        //     $food->stock = '0';
         // }else{
-        //     $stock  = '1';
+        //     $food->stock = '1';
         // }
-        // return $this->list();
     }
 }

@@ -39,7 +39,7 @@ Route::middleware([
 Route::get('/top', [TopController::class, 'index']);
 Route::post('/top/store', [TopController::class, 'store']);
 Route::get('/top/list', [TopController::class, 'list']);
-Route::post('/top/stock_tab/{id}', [TopController::class, 'stock_tab']);
+Route::get('/top/stock_tab/{id}', [TopController::class, 'stock_tab']);
 Route::get('/stores', function () { return Inertia::render('Stores'); });
 Route::get('/calendar', function () { return Inertia::render('Calendar'); });
 
