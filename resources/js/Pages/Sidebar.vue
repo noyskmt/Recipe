@@ -14,7 +14,7 @@
                     <div v-if="!food.categories">
                         <div v-show="isTabFlag"  key="ingredient">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" role="switch" checked @click="stockTab">
+                                <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" role="switch" @click="stockTab" :checked="food.stock">
                                 <label @click="openModal" class="form-check-label">{{ food.name }}</label>
                                 <MyModal @close="closeModal" v-if="modal"></MyModal>
                             </div>
@@ -23,7 +23,7 @@
                     <div v-else>
                         <div v-show="!isTabFlag" key="seasoning">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" role="switch" checked @click="stockTab">
+                                <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" role="switch" @click="stockTab" :checked="food.stock">
                                 <label @click="openModal" class="form-check-label">{{ food.name }}</label>
                                 <MyModal @close="closeModal" v-if="modal"></MyModal>
                             </div>
@@ -71,7 +71,10 @@
             },
 
             stockTab() {
-
+                let res = axios.post('/top/stock_tab', {
+                    id : this.foodId
+                })
+                this.foods = res.data;
             },
 
             redirectStorePage() {
@@ -92,6 +95,7 @@
                 const res =  await axios.post('/top/store', {
                     name : this.newFood,
                     categories : isTabFlag,
+                    stock : 1
                 })
 
                 if (res.status === 200) {
