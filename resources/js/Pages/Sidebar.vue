@@ -33,7 +33,7 @@
             </div>
         </div>
         <div v-if= "storeList" class="store-link">
-            <button v-on:click="redirectStorePage" class="btn btn-light">店リスト</button>
+            <button v-on:click="redirectStorePage" class="btn btn-light">ショップリスト</button>
         </div>
     </div>
 </template>

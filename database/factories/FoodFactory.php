@@ -1,4 +1,3 @@
-
 <?php
 
 namespace Database\Factories;
@@ -20,11 +19,9 @@ class FoodFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->lastName(),
-            // 'categories' => $this->faker->numberBetween(0,1),
-            // 'stock' => $this->faker->numberBetween(0,1),
-            'categories' => $this->faker->rand(0,1),
-            'stock' => $this->faker->rand(0,1),
+            'name' => $this->faker->firstName(),
+            'categories' => $this->faker->numberBetween(0,1),
+            'stock' => $this->faker->numberBetween(0,1),
         ];
     }
 }
