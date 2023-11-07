@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\TopController;
+use App\Http\Controllers\ShopController;
+
 // use App\Http\Controllers\BbbController;
 
 /*
@@ -37,10 +39,12 @@ Route::middleware([
 });
 
 Route::get('/top', [TopController::class, 'index']);
-Route::post('/top/store', [TopController::class, 'store']);
+Route::post('/top/food', [TopController::class, 'food']);
 Route::get('/top/list', [TopController::class, 'list']);
 Route::get('/top/stock_tab/{id}', [TopController::class, 'stock_tab']);
-Route::get('/stores', function () { return Inertia::render('Stores'); });
+Route::get('/shop', [ShopController::class, 'index']);
+Route::post('/shop/store', [ShopController::class, 'store']);
+Route::get('/shop/list', [ShopController::class, 'list']);
 Route::get('/calendar', function () { return Inertia::render('Calendar'); });
 
 

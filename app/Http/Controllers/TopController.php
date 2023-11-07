@@ -11,10 +11,10 @@ class TopController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Toppage');
+        return Inertia::render('Top');
     }
 
-    public function store(Request $request)
+    public function food(Request $request)
     {
         $food = new Food();
 

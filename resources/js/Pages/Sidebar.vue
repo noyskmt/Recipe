@@ -33,7 +33,7 @@
             </div>
         </div>
         <div v-if= "storeList" class="store-link">
-            <button v-on:click="redirectStorePage" class="btn btn-light">ショップリスト</button>
+            <button v-on:click="redirectShopPage" class="btn btn-light">ショップリスト</button>
         </div>
     </div>
 </template>
@@ -77,8 +77,8 @@
                 axios.get(`/top/stock_tab/${id}`)
             },
 
-            redirectStorePage() {
-                location.href = '/stores';
+            redirectShopPage() {
+                location.href = '/shop';
             },
 
             /**
@@ -92,7 +92,7 @@
                     isTabFlag = 1;
                 }
 
-                const res =  await axios.post('/top/store', {
+                const res =  await axios.post('/top/food', {
                     name : this.newFood,
                     categories : isTabFlag,
                     stock : 1
@@ -110,7 +110,7 @@
             async foodList() {
                 const res = await axios.get('top/list')
                 return res.data;
-            }
+            },
         },
 
         /**
