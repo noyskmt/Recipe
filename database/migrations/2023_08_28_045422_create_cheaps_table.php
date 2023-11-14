@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->string('name')->nullable();
             $table->integer('price')->nullable();
             $table->text('remarks')->nullable();
             $table->string('shop_id')->nullable();

@@ -45,6 +45,7 @@ Route::get('/top/stock_tab/{id}', [TopController::class, 'stock_tab']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::post('/shop/store', [ShopController::class, 'store']);
 Route::get('/shop/list', [ShopController::class, 'list']);
+Route::post('/cheap/store', [cheapController::class, 'store']);
 Route::get('/calendar', function () { return Inertia::render('Calendar'); });
 
 

@@ -10,28 +10,12 @@
                 </div>
                 <div class="added-stores">
                     <div v-for="shop in shops">
-                        <label> {{ shop.name }} </label>
+                        <label @click="selectShop(shop.id)"> {{ shop.name }} </label>
                     </div>
                 </div>
             </div>
             <div class="col-7">
-                <div class="best-list">
-                    <p class="title">-最安リスト-</p>
-                    <button @click="addForm()" class="bi bi-patch-plus"></button>
-                </div>
-                <div id="add-ingredient">
-                    <li v-for="(form, index) in forms" :key="index" class="addform">
-                        <select v-model="forms[index]" class="form"></select>
-                        <input v-model="forms[index]" class="form">
-                        <button @click="deleteForm(index)" class="bi bi-patch-minus"></button>
-                    </li>
-                </div>
-                <div class="col-12">
-                    <div class="remarks">
-                        <p class="title">-備考-</p>
-                        <textarea rows="20" cols="110" class="textarea"></textarea>
-                    </div>
-                </div>
+                <cheaps :shopId="shopId" class="cheaps-list"></cheaps>
             </div>
             <div class="col-3 sb">
                 <sidebar class="sidebar"></sidebar>
@@ -42,11 +26,13 @@
 
 <script>
 import Sidebar from './Sidebar.vue';
+import Cheaps from './CheapsList.vue';
 // import { Inertia } from "@inertiajs/inertia";
 
 export default {
     components: {
         Sidebar,
+        Cheaps,
     },
    
     data () {
@@ -54,10 +40,16 @@ export default {
             forms: [],
             newShop: "",
             shops: [],
+            shopId: id,
         }
     },
 
     methods: {
+
+        redirectTopPage() {
+            location.href = '/top';
+        },
+
         /**
          * ショップの登録処理
          */
@@ -81,15 +73,8 @@ export default {
             return res.data;
         },
 
-        addForm() {
-            this.forms.push('')
-        },
-        deleteForm (index) {
-            this.forms.splice(index, 1)
-        },
-
-        redirectTopPage() {
-            location.href = '/top';
+        selectShop(id) {
+            this.shopId = id
         }
     },
 
