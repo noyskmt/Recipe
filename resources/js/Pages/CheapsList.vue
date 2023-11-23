@@ -1,7 +1,7 @@
 <template>
     <div class="cheaps-list">
         <div class="best-list">
-            <p class="title">-最安リスト-</p>
+            <p class="title">-最安リスト-{{ shopId }}-</p>
             <button @click="addForm()" class="bi bi-patch-plus"></button>
         </div>
         <div id="add-ingredient">
@@ -26,9 +26,9 @@
 export default {
     components: {},
 
-    props: [
-        shopId,
-    ],
+    props: {
+        shopId: Number,
+    },
    
     data () {
         return {
@@ -46,6 +46,7 @@ export default {
             this.forms.splice(index, 1)
         },
 
-    }
+    },
+
 }
 </script>

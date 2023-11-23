@@ -27,6 +27,7 @@
 <script>
 import Sidebar from './Sidebar.vue';
 import Cheaps from './CheapsList.vue';
+import { min } from 'date-fns';
 // import { Inertia } from "@inertiajs/inertia";
 
 export default {
@@ -37,10 +38,9 @@ export default {
    
     data () {
         return {
-            forms: [],
             newShop: "",
             shops: [],
-            shopId: id,
+            shopId: "",
         }
     },
 
@@ -73,8 +73,19 @@ export default {
             return res.data;
         },
 
+        getShopId() {
+            const ids = id;
+            this.shopId = ids.filter(minValue);
+          
+            function minValue(id) {
+                return id = min;
+            }
+
+        },
+
         selectShop(id) {
-            this.shopId = id
+            this.shopId = id;
+            console.log(id);
         }
     },
 
@@ -83,6 +94,10 @@ export default {
      */
     async mounted() {
         this.shops = await this.shopList();
-    }
+
+        this.shopId = this.getShopId();
+    },
+
+  
 }
 </script>
