@@ -12,4 +12,10 @@ class Shop extends Model
     protected $table = "shops";
 
     protected $guarded = ['id'];
+
+    protected $hidden = [
+        'created_at',
+        "updated_at",
+        'deleted_at',
+    ];
 }

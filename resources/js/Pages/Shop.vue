@@ -3,19 +3,18 @@
         <div class="row">
             <div class="col-2 st">
                 <button v-on:click="redirectTopPage" class="btn btn-light">戻る</button>
-                <!-- <div v-for="(store, index) in stores" :key="store" class="add-store"> -->
                 <div class="add-store">
                     <input type="text" v-model="newShop" class="form-control">
                     <button @click="addShop()" class="btn btn-dark">追加</button>
                 </div>
                 <div class="added-stores">
                     <div v-for="shop in shops">
-                        <label @click="selectShop(shop.id)"> {{ shop.name }} </label>
+                        <label @click="selectShop(shop)"> {{ shop.name }} </label>
                     </div>
                 </div>
             </div>
             <div class="col-7">
-                <cheaps :shopId="shopId" class="cheaps-list"></cheaps>
+                <cheaps :shop="shop" class="cheaps-list"></cheaps>
             </div>
             <div class="col-3 sb">
                 <sidebar class="sidebar"></sidebar>
@@ -27,20 +26,23 @@
 <script>
 import Sidebar from './Sidebar.vue';
 import Cheaps from './CheapsList.vue';
-import { min } from 'date-fns';
-// import { Inertia } from "@inertiajs/inertia";
 
 export default {
     components: {
         Sidebar,
         Cheaps,
     },
+
+    props: {
+        cheaps : Array,
+        firstShop : Object
+    },
    
     data () {
         return {
             newShop: "",
             shops: [],
-            shopId: "",
+            shop: this.firstShop,
         }
     },
 
@@ -73,19 +75,11 @@ export default {
             return res.data;
         },
 
-        getShopId() {
-            const ids = id;
-            this.shopId = ids.filter(minValue);
-          
-            function minValue(id) {
-                return id = min;
-            }
-
-        },
-
-        selectShop(id) {
-            this.shopId = id;
-            console.log(id);
+        /**
+         * ショップの情報をdataのshopに代入(CheapsList.vueに渡すため)
+         */
+        selectShop(shop) {
+            this.shop = shop;
         }
     },
 
@@ -94,10 +88,12 @@ export default {
      */
     async mounted() {
         this.shops = await this.shopList();
-
-        this.shopId = this.getShopId();
     },
-
+    
+    //axiosテスト
+    // mounted() {
+    //     axios.get("/shop").then((res) => (this.select_cheaps = res.data));
+    // }
   
 }
 </script>
