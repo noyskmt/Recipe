@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Shop extends Model
 {
@@ -18,4 +19,8 @@ class Shop extends Model
         "updated_at",
         'deleted_at',
     ];
+
+    public function cheap(): HasOne {
+        return $this->hasOne('App\Models\Cheap');
+    }
 }

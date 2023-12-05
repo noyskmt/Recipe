@@ -11,15 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cheaps', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->softDeletes();
-            $table->integer('price')->nullable();
-            $table->text('remarks')->nullable();
-            $table->string('shop_id')->nullable();
-            $table->string('food_id')->nullable();
-        });
+        if(!Schema::hasTable('cheaps')) {
+            Schema::create('cheaps', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->timestamps();
+                $table->softDeletes();
+                $table->integer('price')->nullable();
+                $table->text('remarks')->nullable();
+                $table->unsignedBigInteger('shop_id');
+                $table->unsignedBigInteger('food_id');
+                $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
+                $table->foreign('food_id')->references('id')->on('food')->onDelete('cascade');
+            });
+        }
     }
 
     /**

@@ -11,9 +11,10 @@ class ShopController extends Controller
 {
     public function index()
     {
-        $first_shop = Shop::all()->first();
-        $id = Shop::first()->id;
-        $select_cheaps = Cheap::where("shop_id", $id)->get();
+        // return Inertia::render('Shop');
+
+        $first_shop = Shop::first();
+        $select_cheaps = Cheap::with('shop')->get();
 
         return Inertia::render('Shop', [
             "cheaps" => $select_cheaps,
@@ -21,7 +22,7 @@ class ShopController extends Controller
         ]);
 
         //axiosテスト
-        // return response()->json($select_cheaps);
+        // return response()->json($select_cheaps, $first_shop);
     }
 
     public function store(Request $request)
@@ -36,5 +37,15 @@ class ShopController extends Controller
     public function list() {
         return shop::all();
     }
+
+    //axiosテスト
+    // public function getData() {
+    //     $id = Shop::first()->id;
+    //     $select_cheaps = Cheap::where("shop_id", $id)->get();
+
+    //     $select_cheaps = Shop::with('cheap')->get();
+
+    //     return response()->json($select_cheaps);
+    // } 
 
 }

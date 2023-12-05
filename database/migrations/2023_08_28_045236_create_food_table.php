@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if(!Schema::hasTable('shops')){
-            Schema::create('shops', function (Blueprint $table) {
+        if(!Schema::hasTable('food')) {
+            Schema::create('food', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->timestamps();
                 $table->softDeletes();
                 $table->string('name');
+                $table->integer('categories');
+                $table->integer('stock');
             });
         }
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shops');
+        Schema::dropIfExists('food');
     }
 };

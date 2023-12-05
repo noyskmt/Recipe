@@ -88,12 +88,12 @@ export default {
      */
     async mounted() {
         this.shops = await this.shopList();
+
+        //axiosテスト
+        // await axios.get("/getData")
+        // .then((res) => (this.select_cheaps = res.data));
+        // console.log(res);
     },
     
-    //axiosテスト
-    // mounted() {
-    //     axios.get("/shop").then((res) => (this.select_cheaps = res.data));
-    // }
-  
 }
 </script>

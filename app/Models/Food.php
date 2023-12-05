@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Food extends Model
 {
     use HasFactory;
 
-    protected $table = "foods";
+    protected $table = "food";
 
     protected $guarded = ['id'];
 
@@ -18,4 +19,8 @@ class Food extends Model
         "updated_at",
         'deleted_at',
     ];
+
+    public function cheaps(): HasOne {
+        return $this->hasOne('App\Models\Cheap');
+    }
 }
