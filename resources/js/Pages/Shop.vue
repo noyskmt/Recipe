@@ -34,15 +34,16 @@ export default {
     },
 
     props: {
-        cheaps : Array,
-        firstShop : Object
+        // cheaps : Array,
+        // firstShop : Object
     },
    
     data () {
         return {
             newShop: "",
             shops: [],
-            shop: this.firstShop,
+            firstShopData: [],
+            shop: this.firstShopData[firstShop],
         }
     },
 
@@ -64,14 +65,14 @@ export default {
                 this.shops = res.data;
                 this.newShop = "";
             }
-            console.log(res.data);
+            // console.log(res.data);
         },
 
         /**
          * DBに登録されているショップの取得
          */
-        async shopList() {
-            const res = await axios.get('shop/list')
+        async getAxios(url) {
+            const res = await axios.get(url)
             return res.data;
         },
 
@@ -84,15 +85,12 @@ export default {
     },
 
     /**
-     * ページを読み込むたびにshopListを走らせる
+     * axiosでコントローラーからデータ取得
      */
     async mounted() {
-        this.shops = await this.shopList();
-
-        //axiosテスト
-        // await axios.get("/getData")
-        // .then((res) => (this.select_cheaps = res.data));
-        // console.log(res);
+        this.shops = await this.getAxios('shop/list');
+        this.firstShopData = await this.getAxios('/getData');
+        console.log(this.firstShopData);
     },
     
 }

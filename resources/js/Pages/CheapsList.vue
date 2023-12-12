@@ -27,6 +27,7 @@ export default {
     props: {
         shop: Object,
     },
+
    
     data () {
         return {

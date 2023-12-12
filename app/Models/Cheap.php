@@ -20,7 +20,7 @@ class Cheap extends Model
         'deleted_at',
     ];
 
-    protected $primaryKey = [
+    protected $primaryKeys = [
         'shop_id',
         'food_id',
     ];
