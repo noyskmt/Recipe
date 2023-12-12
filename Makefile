@@ -68,7 +68,7 @@ log-db:
 log-db-watch:
 	docker compose logs --follow db
 php:
-	docker compose exec -it app bash
+	docker compose exec -it laravel.test bash
 migrate:
 	docker compose exec laravel.test php artisan migrate
 fresh:
