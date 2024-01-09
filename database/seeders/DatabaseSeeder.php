@@ -13,5 +13,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         \App\Models\Food::factory(10)->create();
+        \App\Models\Shop::factory(10)->create();
+
+        // $this->call(FoodSeeder::class);
+        // $this->call(ShopSeeder::class);
+
     }
 }

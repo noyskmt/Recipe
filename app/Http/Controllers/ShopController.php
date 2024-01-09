@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Shop;
-use App\Models\Cheap;
+// use App\Models\Cheap;
+use App\Models\Food;
+
 
 class ShopController extends Controller
 {
@@ -31,7 +33,15 @@ class ShopController extends Controller
     public function getData() {
         $first_shop = Shop::first();
         $id = $first_shop->id;
-        $select_cheaps = Cheap::where("shop_id", $id)->get();
+        
+        // wherehas=リレーション先の値を抽出
+        $select_cheaps = Food::with(['cheaps'])
+            ->wherehas('cheaps', function($query) {
+            $query->where('shop_id', 1);
+        })->get();
+        // $select_cheaps = Food::with('cheaps')->find(1);
+        // $select_cheaps = Cheap::where("shop_id", $id)->get();
+        \Log::debug($select_cheaps);
 
         return response()->json([
             "cheaps" => $select_cheaps,

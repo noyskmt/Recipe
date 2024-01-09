@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-7">
-                <cheaps :shop="shop" class="cheaps-list"></cheaps>
+                <cheaps :shop="shop" :cheaps="cheaps" class="cheaps-list"></cheaps>
             </div>
             <div class="col-3 sb">
                 <sidebar class="sidebar"></sidebar>
@@ -43,7 +43,9 @@ export default {
             newShop: "",
             shops: [],
             firstShopData: [],
-            shop: this.firstShopData[firstShop],
+            // shop: this.firstShopData[firstShop],
+            shop: "",
+            chaps: []
         }
     },
 
@@ -84,13 +86,19 @@ export default {
         }
     },
 
-    /**
-     * axiosでコントローラーからデータ取得
-     */
     async mounted() {
+        /**
+         * axiosでコントローラーからデータ取得
+         */
         this.shops = await this.getAxios('shop/list');
         this.firstShopData = await this.getAxios('/getData');
-        console.log(this.firstShopData);
+
+        /**
+         * コントローラーから登録されている店と食材をCheapsListに送るための処理
+         */
+        this.shop = this.firstShopData['firstShop'];
+        this.cheaps = this.firstShopData['cheaps'];
+        // console.log(this.cheaps);
     },
     
 }
