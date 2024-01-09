@@ -34,6 +34,7 @@ class ShopController extends Controller
         $first_shop = Shop::first();
         $id = $first_shop->id;
         
+        $food = Food::all();
         // wherehas=リレーション先の値を抽出
         $select_cheaps = Food::with(['cheaps'])
             ->wherehas('cheaps', function($query) {
@@ -41,11 +42,11 @@ class ShopController extends Controller
         })->get();
         // $select_cheaps = Food::with('cheaps')->find(1);
         // $select_cheaps = Cheap::where("shop_id", $id)->get();
-        \Log::debug($select_cheaps);
 
         return response()->json([
             "cheaps" => $select_cheaps,
-            "firstShop" => $first_shop
+            "firstShop" => $first_shop,
+            "food" => $food,
         ]);
     } 
 

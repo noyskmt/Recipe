@@ -7,8 +7,8 @@
         </div>
         <div id="add-ingredient">
             <li :key="index" class="addform">
-                <select class="form">
-                    <option v-for="(form, index) in cheaps">{{ form.name }}</option>
+                <select class="form" v-for="(cheap, index) in cheaps">
+                    <option v-for="f in food" :selected="f.name == cheap.name">{{ f.name }}</option>
                 </select>
                 <!-- <input v-model="forms[index]" class="form"> -->
                 <button @click="deleteForm(index)" class="bi bi-patch-minus"></button>
@@ -33,20 +33,16 @@
 
 <script>
 export default {
-    components: {},
-
     props: {
         shop: Object,
-        cheaps: Array
+        cheaps: Array,
+        food: Array
     },
-
-   
     data () {
         return {
             forms: [],
         }
     },
-
     methods: {
         addForm() {
             this.forms.push('')
@@ -54,8 +50,9 @@ export default {
         deleteForm (index) {
             this.forms.splice(index, 1)
         },
-
     },
-
+    mounted() {
+        //
+    }
 }
 </script>
