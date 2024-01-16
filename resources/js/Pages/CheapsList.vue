@@ -7,7 +7,9 @@
         </div>
         <div id="add-ingredient">
             <li :key="index" class="addform">
+                <!-- cheapsテーブルの値をfor文で回している。 -->
                 <select class="form" v-for="(cheap, index) in cheaps">
+                    <!-- foodテーブルの値をfor文で回している。 -->
                     <option v-for="f in food" :selected="f.name == cheap.name">{{ f.name }}</option>
                 </select>
                 <!-- <input v-model="forms[index]" class="form"> -->
