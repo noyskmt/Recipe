@@ -6,11 +6,12 @@
             <button @click="update()" class="btn btn-light cl">更新</button>
         </div>
         <div id="add-ingredient">
-            <li :key="index" class="addform">
-                <select class="form">
-                    <option v-for="(form, index) in cheaps">{{ form.name }}</option>
+            <li v-for="(from) in forms" :key="index" class="addform">
+                <select v-model="addFood" class="form">
+                    <option disabled value="">選択してください</option>
+                    <option v-for="(form) in cheaps">{{ form.name }}</option>
                 </select>
-                <!-- <input v-model="forms[index]" class="form"> -->
+                <input v-model="price" class="price-form">
                 <button @click="deleteForm(index)" class="bi bi-patch-minus"></button>
             </li>
         </div>
@@ -44,6 +45,7 @@ export default {
     data () {
         return {
             forms: [],
+            price: "",
         }
     },
 
@@ -54,6 +56,12 @@ export default {
         deleteForm (index) {
             this.forms.splice(index, 1)
         },
+        update() {
+            const res = axios.post('/cheap/store', {
+                price : this.price,
+            })
+            console.log(res.data);
+        }
 
     },
 

@@ -18,7 +18,6 @@ class CheapController extends Controller
         $cheap = new Cheap();
 
         $cheap->price = $request->price;
-        $cheap->remarks = $request->remarks;
         $cheap->shop_id = $request->shop_id;
         $cheap->food_id = $request->food_id;
         $cheap->save();

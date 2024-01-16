@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\CheapController;
+
 
 // use App\Http\Controllers\BbbController;
 

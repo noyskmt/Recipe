@@ -17,9 +17,8 @@ return new class extends Migration
                 $table->timestamps();
                 $table->softDeletes();
                 $table->integer('price')->nullable();
-                $table->text('remarks')->nullable();
-                $table->unsignedBigInteger('shop_id');
-                $table->unsignedBigInteger('food_id');
+                $table->unsignedBigInteger('shop_id')->nullable();;
+                $table->unsignedBigInteger('food_id')->nullable();;
                 $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
                 $table->foreign('food_id')->references('id')->on('food')->onDelete('cascade');
             });
