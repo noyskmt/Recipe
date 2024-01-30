@@ -46,6 +46,7 @@ Route::get('/top/list', [TopController::class, 'list']);
 Route::get('/top/stock_tab/{id}', [TopController::class, 'stock_tab']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::post('/shop/store', [ShopController::class, 'store']);
+// Route::post('/shop/update', [ShopController::class, 'update']);
 Route::get('/shop/list', [ShopController::class, 'list']);
 Route::get('/getData', [ShopController::class, 'getData']);
 Route::post('/cheap/store', [CheapController::class, 'store']);

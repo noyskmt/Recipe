@@ -33,25 +33,27 @@ class ShopController extends Controller
     // $cheap->remarks = $request->remarks;
     // $cheap->save();
     
-
+    public function update(Request $request, $id) {
+        Food::find($id)->update($request->all());
+      }
     
 
     public function list() {
         return shop::all();
     }
 
-    //axiosテスト
     public function getData() {
         $first_shop = Shop::first();
         $id = $first_shop->id;
         
-        $select_cheaps = Food::all();
+        $food = Food::all();
+        // $select_cheaps = Food::all();
 
         // wherehas=リレーション先の値を抽出
-        // $select_cheaps = Food::with(['cheaps'])
-        //     ->wherehas('cheaps', function($query) {
-        //     $query->where('shop_id', 1);
-        // })->get();
+        $select_cheaps = Food::with(['cheaps'])
+            ->wherehas('cheaps', function($query) {
+            $query->where('shop_id', 1);
+        })->get();
 
         // $select_cheaps = Food::with('cheaps')->find(1);
         // $select_cheaps = Cheap::where("shop_id", $id)->get();
@@ -59,7 +61,8 @@ class ShopController extends Controller
 
         return response()->json([
             "cheaps" => $select_cheaps,
-            "firstShop" => $first_shop
+            "firstShop" => $first_shop,
+            "food" => $food,
         ]);
     } 
 
