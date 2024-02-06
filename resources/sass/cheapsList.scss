@@ -44,6 +44,26 @@
                 list-style: none;
                 overflow: auto;
 
+                .added-ingredient {
+                    .form {
+                        margin-left: 1rem;
+                        margin-bottom: 0.5rem;
+                        height: 1.5rem;
+                        width: 5rem;
+                    }
+                    
+                    .price-form {
+                        height: 1.5rem;
+                        width: 3rem;
+                    }
+
+                    .bi-patch-minus {
+                        background:rgba(0,0,0,0.0);
+                        border-width: 0;
+                    }
+
+                }
+
                 .addform {
                     .form {
                         margin-left: 1rem;

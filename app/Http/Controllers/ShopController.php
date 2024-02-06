@@ -25,17 +25,10 @@ class ShopController extends Controller
         return $this->list();
     }
 
-    //子コンポーネントから親へDBの登録の仕方
-    //cheapリスト内の備考をshopテーブルのremarksカラムに入れたい
-    //cheapList.vueの更新ボタンとで発火
-
-    // $cheap = new Cheap();
-    // $cheap->remarks = $request->remarks;
-    // $cheap->save();
     
     public function update(Request $request, $id) {
-        Food::find($id)->update($request->all());
-      }
+        Shop::find($id)->update($request->all());
+    }
     
 
     public function list() {
@@ -47,7 +40,6 @@ class ShopController extends Controller
         $id = $first_shop->id;
         
         $food = Food::all();
-        // $select_cheaps = Food::all();
 
         // wherehas=リレーション先の値を抽出
         $select_cheaps = Food::with(['cheaps'])
@@ -57,7 +49,7 @@ class ShopController extends Controller
 
         // $select_cheaps = Food::with('cheaps')->find(1);
         // $select_cheaps = Cheap::where("shop_id", $id)->get();
-        \Log::debug($select_cheaps);
+        // \Log::debug($select_cheaps);
 
         return response()->json([
             "cheaps" => $select_cheaps,

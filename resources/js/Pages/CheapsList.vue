@@ -3,24 +3,22 @@
         <div class="best-list">
             <p class="title">最安リスト-{{ shop.name }}-</p>
             <button @click="addForm()" class="bi bi-patch-plus"></button>
-            <button @click="update()" class="btn btn-light cl">更新</button>
+            <button @click="update(id)" class="btn btn-light cl">更新</button>
         </div>
         <div id="add-ingredient">
-            <li :key="index" class="added-ingredient" >
-                <li class="test">
-                    <select class="form" v-for="(cheap, index) in cheaps">
-                        <option v-for="f in food" :selected="f.name == cheap.name">{{ f.name }}</option>
-                    </select>
-                </li>
-                <!-- <input v-model="price" class="price-form"> -->
-                <!-- <button @click="deleteForm(index)" class="bi bi-patch-minus"></button> -->
+            <li class="added-ingredient" v-for="(cheap, index) in cheaps" :key="index" >
+                <select class="form">
+                    <option v-for="f in food" :selected="f.name == cheap.name">{{ f.name }}</option>
+                </select>
+                <input class="price-form" :value="cheap.cheaps.price" >
+                <button @click="deleteForm(index)" class="bi bi-patch-minus"></button>
             </li>
             <li v-for="(form, index) in forms" :key="index" class="addform">
-                <select class="from">
+                <select class="form">
                     <option selected value="">-選択-</option>
                     <option v-for="(form) in food">{{ form.name }}</option>
                 </select>
-                <input v-model="price" class="price-form">
+                <input v-model="price[index]" class="price-form">
                 <button @click="deleteForm(index)" class="bi bi-patch-minus"></button>
             </li>
 
@@ -39,13 +37,19 @@ export default {
     props: {
         shop: Object,
         cheaps: Array,
-        food: Array
+        food: Array,
+        
     },
+    //propsの中身を確認
+    setup(props){
+        console.log(props.shop)
+    },
+
     data () {
         return {
             forms: [],
-            price: "",
-            // remarks: "",
+            price: [],
+            remarks: "",
         }
     },
     methods: {
@@ -53,19 +57,22 @@ export default {
             this.forms.push('')
         },
         deleteForm (index) {
-            this.forms.splice(index, 1)
+            this.forms.splice(index, 0)
+            console.log(index);
         },
-        update() {
+
+        update(id) {
             const res = axios.post('/cheap/store', {
                 price : this.price,
+                shop_id : this.shop_id,
+                food_id : this.food_id
             })
-            // const response = axios.post('/shop/update', {
-            //     remarks : this.remarks,
-            // })
-
+            const response = axios.post(`shop/update/${id}`, {
+                remarks : this.remarks,
+            })
+            console.log(res.data);
             console.log(response.data);
         }
     },
-
 }
 </script>

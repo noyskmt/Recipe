@@ -21,8 +21,8 @@ class Cheap extends Model
     ];
 
     protected $primaryKeys = [
-        'shop_id',
-        'food_id',
+        'shop_id' => 'json',
+        'food_id' => 'json',
     ];
 
     public function shop(): BelongsTo {

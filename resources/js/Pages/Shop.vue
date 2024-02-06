@@ -100,6 +100,7 @@ export default {
         this.cheaps = this.firstShopData['cheaps'];
         this.food = this.firstShopData['food'];
         // console.log(this.cheaps);
+
     },
     
 }
