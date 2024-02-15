@@ -3,7 +3,7 @@
         <div class="best-list">
             <p class="title">最安リスト-{{ shop.name }}-</p>
             <button @click="addForm()" class="bi bi-patch-plus"></button>
-            <button @click="update(id)" class="btn btn-light cl">更新</button>
+            <button @click="update(shop.id)" class="btn btn-light cl">更新</button>
         </div>
         <div id="add-ingredient">
             <li class="added-ingredient" v-for="(cheap, index) in cheaps" :key="index" >
@@ -14,11 +14,11 @@
                 <button @click="deleteForm(index)" class="bi bi-patch-minus"></button>
             </li>
             <li v-for="(form, index) in forms" :key="index" class="addform">
-                <select class="form">
+                <select @change="onChange(food.id)" class="form">
                     <option selected value="">-選択-</option>
-                    <option v-for="(form) in food">{{ form.name }}</option>
+                    <option v-for="(form) in food" :key="food.id" :value="food">{{ form.name }}</option>
                 </select>
-                <input v-model="price[index]" class="price-form">
+                <input class="price-form">
                 <button @click="deleteForm(index)" class="bi bi-patch-minus"></button>
             </li>
 
@@ -41,37 +41,56 @@ export default {
         
     },
     //propsの中身を確認
-    setup(props){
-        console.log(props.shop)
-    },
+    // setup(props){
+    //     console.log(props.food);
+    // },
 
     data () {
         return {
-            forms: [],
-            price: [],
+            forms: [
+                {
+                    price: "",
+                    shopId: this.shop.id,
+                    foodId: this.id
+                }
+            ],
             remarks: "",
         }
     },
     methods: {
         addForm() {
-            this.forms.push('')
+            this.forms.push({price:"", shopId:"", foodId:""})
         },
         deleteForm (index) {
-            this.forms.splice(index, 0)
-            console.log(index);
+            this.forms.splice(index, 1)
         },
 
+        //セレクトボックス内のid取得
+        onChange(id) {
+            // this.forms.foodId = id;
+            console.log(id);
+
+        },
+        
+        // getValue(e) {
+        //     console.log(e.target.previousElementSibling.value);
+        // },
+
+
         update(id) {
-            const res = axios.post('/cheap/store', {
-                price : this.price,
-                shop_id : this.shop_id,
-                food_id : this.food_id
-            })
-            const response = axios.post(`shop/update/${id}`, {
-                remarks : this.remarks,
-            })
-            console.log(res.data);
-            console.log(response.data);
+
+            // const res = axios.post('/cheap/store', {
+            //     price : this.price,
+            //     shop_id : this.shop_id,
+            //     food_id : this.food_id
+            // })
+            // const response = axios.post(`shop/update/${id}`, {
+            //     remarks : this.remarks,
+            // })
+            console.log(this.forms);
+            // console.log(this.cheaps);
+            // console.log(this.food);
+            
         }
     },
 }

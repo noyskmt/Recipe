@@ -33,19 +33,13 @@ export default {
         Cheaps,
     },
 
-    props: {
-        // cheaps : Array,
-        // firstShop : Object
-    },
-   
     data () {
         return {
             newShop: "",
             shops: [],
             firstShopData: [],
-            // shop: this.firstShopData[firstShop],
             shop: "",
-            chaps: []
+            cheaps: []
         }
     },
 
@@ -67,7 +61,6 @@ export default {
                 this.shops = res.data;
                 this.newShop = "";
             }
-            // console.log(res.data);
         },
 
         /**
