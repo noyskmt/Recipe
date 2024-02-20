@@ -14,11 +14,11 @@
                 <button @click="deleteForm(index)" class="bi bi-patch-minus"></button>
             </li>
             <li v-for="(form, index) in forms" :key="index" class="addform">
-                <select @change="onChange(food.id)" class="form">
+                <select  v-model="form.foodId" class="form">
                     <option selected value="">-選択-</option>
-                    <option v-for="(form) in food" :key="food.id" :value="food">{{ form.name }}</option>
+                    <option v-for="f in food" :value="f.id">{{ f.name }}</option>
                 </select>
-                <input class="price-form">
+                <input v-model="form.price" class="price-form">
                 <button @click="deleteForm(index)" class="bi bi-patch-minus"></button>
             </li>
 
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+// window.Laravel = {csrfToken: '{{ csrf_token() }}'}
+
 export default {
     props: {
         shop: Object,
@@ -47,50 +49,48 @@ export default {
 
     data () {
         return {
-            forms: [
-                {
-                    price: "",
-                    shopId: this.shop.id,
-                    foodId: this.id
-                }
-            ],
+            forms: [],
             remarks: "",
         }
     },
     methods: {
         addForm() {
-            this.forms.push({price:"", shopId:"", foodId:""})
+            this.forms.push({
+                price: "",
+                shopId: this.shop.id,
+                foodId: "",
+            })
         },
         deleteForm (index) {
             this.forms.splice(index, 1)
         },
-
-        //セレクトボックス内のid取得
-        onChange(id) {
-            // this.forms.foodId = id;
-            console.log(id);
-
-        },
-        
-        // getValue(e) {
-        //     console.log(e.target.previousElementSibling.value);
-        // },
-
-
         update(id) {
 
-            // const res = axios.post('/cheap/store', {
-            //     price : this.price,
-            //     shop_id : this.shop_id,
-            //     food_id : this.food_id
+            //storeファンクション
+            const res = axios.post('/cheap/store', {
+                forms: {
+                    price : this.price,
+                    shop_id : this.shopId,
+                    food_id : this.foodId
+                }
+            })
+
+            //insert ファンクション
+            // const res = axios.post('/cheap/insert', {
+            //    price : this.price,
+            //    shop_id : this.shopId,
+            //    food_id : this.foodId
             // })
+            
+            /**
+             * 備考欄の登録
+             */
             // const response = axios.post(`shop/update/${id}`, {
             //     remarks : this.remarks,
             // })
-            console.log(this.forms);
-            // console.log(this.cheaps);
-            // console.log(this.food);
-            
+
+            // console.log(this.forms);
+            console.log(res);
         }
     },
 }
