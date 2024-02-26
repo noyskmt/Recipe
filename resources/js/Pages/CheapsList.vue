@@ -42,11 +42,6 @@ export default {
         food: Array,
         
     },
-    //propsの中身を確認
-    // setup(props){
-    //     console.log(props.food);
-    // },
-
     data () {
         return {
             forms: [],
@@ -65,32 +60,19 @@ export default {
             this.forms.splice(index, 1)
         },
         update(id) {
-
-            //storeファンクション
             const res = axios.post('/cheap/store', {
-                forms: {
-                    price : this.price,
-                    shop_id : this.shopId,
-                    food_id : this.foodId
-                }
+                forms: this.forms
             })
 
-            //insert ファンクション
-            // const res = axios.post('/cheap/insert', {
-            //    price : this.price,
-            //    shop_id : this.shopId,
-            //    food_id : this.foodId
-            // })
-            
             /**
              * 備考欄の登録
              */
-            // const response = axios.post(`shop/update/${id}`, {
-            //     remarks : this.remarks,
-            // })
+            const response = axios.post(`shop/update/${id}`, {
+                remarks : this.remarks,
+            })
 
-            // console.log(this.forms);
-            console.log(res);
+            console.log(this.forms);
+            // console.log(res);
         }
     },
 }

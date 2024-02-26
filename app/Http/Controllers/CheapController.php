@@ -14,43 +14,20 @@ class CheapController extends Controller
     }
     public function store(Request $request)
     {
-        $forms = $request->all();
-        foreach ($forms as $val){
+        // \Log::debug($request);
+        // $json = json_encode($request);
+        // \Log::debug($json);
+
+        foreach ($request as $vals){
             $cheap = new Cheap();
-            $cheap->price = $val;
-            $cheap->shop_id = $val;
-            $cheap->food_id = $val;
+            $cheap->price = $vals[0];
+            $cheap->shop_id = $vals[1];
+            $cheap->food_id = $vals[2];
             $cheap->save();
         }
-        //foreachネスト
-        // foreach ($forms as $val1){
-        //     foreach ($forms as $val2){
-        //         foreach ($forms as $val3){
-        //             $cheap = new Cheap();
-        //             $cheap->price = $val1;
-        //             $cheap->shop_id = $val2;
-        //             $cheap->food_id = $val3;
-        //             $cheap->save();
-        //         }
-        //     }
-        // }
+
         return $this->list();
     }
-
-    //一致するものを指定するやり方
-    // public function insert(Request $request)
-    // {
-        // foreach ($request->all() as $key => $val) {
-        //     if(preg_match('/cheap/',$key)){
-        //         $cheap = new Cheap();
-        //         $cheap->price = $val;
-        //         $cheap->shop_id = $val;
-        //         $cheap->food_id = $val;
-        //         $cheap->save();
-        //     }
-        // }
-    //     return $this->list();
-    // }
 
     public function list() {
         return Cheap::all();
