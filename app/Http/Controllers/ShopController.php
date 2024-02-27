@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Shop;
-// use App\Models\Cheap;
 use App\Models\Food;
 
 
@@ -21,6 +20,7 @@ class ShopController extends Controller
         $shop = new Shop();
 
         $shop->name = $request->name;
+        // $shop->remarks = $request->remarks;
         $shop->save();
         return $this->list();
     }
@@ -28,6 +28,7 @@ class ShopController extends Controller
     
     public function update(Request $request, $id) {
         Shop::find($id)->update($request->all());
+        return $this->list();
     }
     
 
@@ -40,6 +41,7 @@ class ShopController extends Controller
         $id = $first_shop->id;
         
         $food = Food::all();
+        $remarks = Shop::select('remarks')->first();
 
         // wherehas=リレーション先の値を抽出
         $select_cheaps = Food::with(['cheaps'])
@@ -47,14 +49,13 @@ class ShopController extends Controller
             $query->where('shop_id', 1);
         })->get();
 
-        // $select_cheaps = Food::with('cheaps')->find(1);
-        // $select_cheaps = Cheap::where("shop_id", $id)->get();
-        // \Log::debug($select_cheaps);
+        // \Log::debug($remarks);
 
         return response()->json([
             "cheaps" => $select_cheaps,
             "firstShop" => $first_shop,
             "food" => $food,
+            "addedRemarks" => $remarks,
         ]);
     } 
 

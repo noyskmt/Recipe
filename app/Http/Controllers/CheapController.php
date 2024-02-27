@@ -18,11 +18,11 @@ class CheapController extends Controller
         // $json = json_encode($request);
         // \Log::debug($json);
 
-        foreach ($request as $vals){
+        foreach ($request as $key => $vals){
             $cheap = new Cheap();
-            $cheap->price = $vals[0];
-            $cheap->shop_id = $vals[1];
-            $cheap->food_id = $vals[2];
+            $cheap = $key ->price = $vals[0];
+            $cheap = $key ->shop_id = $vals[1];
+            $cheap = $key ->food_id = $vals[2];
             $cheap->save();
         }
 

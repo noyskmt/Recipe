@@ -26,7 +26,7 @@
         <div class="col-12">
             <div class="remarks">
                 <p class="title">備考</p>
-                <textarea v-model="remarks" rows="20" cols="110" class="textarea"></textarea>
+                <textarea  :value="addedRemarks.remarks" rows="20" cols="110" class="textarea"></textarea>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@ export default {
         shop: Object,
         cheaps: Array,
         food: Array,
-        
+        addedRemarks: Object,
     },
     data () {
         return {
@@ -61,17 +61,17 @@ export default {
         },
         update(id) {
             const res = axios.post('/cheap/store', {
-                forms: this.forms
+                forms: this.forms,
             })
 
             /**
              * 備考欄の登録
              */
-            const response = axios.post(`shop/update/${id}`, {
+            const resp = axios.post(`shop/update/${id}`, {
                 remarks : this.remarks,
             })
 
-            console.log(this.forms);
+            // console.log(this.addedRemarks);
             // console.log(res);
         }
     },
