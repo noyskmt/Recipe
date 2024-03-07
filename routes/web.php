@@ -48,6 +48,7 @@ Route::get('/shop', [ShopController::class, 'index']);
 Route::post('/shop/store', [ShopController::class, 'store']);
 Route::post('/shop/update/{id}', [ShopController::class, 'update']);
 Route::get('/shop/list', [ShopController::class, 'list']);
+Route::get('/shop/remarks', [ShopController::class, 'remarks']);
 Route::get('/getData', [ShopController::class, 'getData']);
 Route::post('/cheap/store', [CheapController::class, 'store']);
 Route::get('/calendar', function () { return Inertia::render('Calendar'); });

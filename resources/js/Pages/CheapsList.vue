@@ -26,26 +26,23 @@
         <div class="col-12">
             <div class="remarks">
                 <p class="title">備考</p>
-                <textarea  :value="addedRemarks.remarks" rows="20" cols="110" class="textarea"></textarea>
+                <textarea v-model="remarks" rows="20" cols="110" class="textarea"></textarea>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-// window.Laravel = {csrfToken: '{{ csrf_token() }}'}
-
 export default {
     props: {
         shop: Object,
         cheaps: Array,
         food: Array,
-        addedRemarks: Object,
     },
     data () {
         return {
             forms: [],
-            remarks: "",
+            remarks: this.shop.remarks,
         }
     },
     methods: {
@@ -67,13 +64,18 @@ export default {
             /**
              * 備考欄の登録
              */
-            const resp = axios.post(`shop/update/${id}`, {
+            const response = axios.post(`shop/update/${id}`, {
                 remarks : this.remarks,
             })
-
-            // console.log(this.addedRemarks);
-            // console.log(res);
-        }
+        },
+        
+    },
+    /**
+     * 登録されている備考の取得
+     */
+    async mounted() {
+        const r = await axios.get('shop/remarks')
+        this.remarks = r.data;
     },
 }
 </script>

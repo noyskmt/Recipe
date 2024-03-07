@@ -14,18 +14,13 @@ class CheapController extends Controller
     }
     public function store(Request $request)
     {
-        // \Log::debug($request);
-        // $json = json_encode($request);
-        // \Log::debug($json);
-
-        foreach ($request as $key => $vals){
+        foreach ($request["forms"] as $form){
             $cheap = new Cheap();
-            $cheap = $key ->price = $vals[0];
-            $cheap = $key ->shop_id = $vals[1];
-            $cheap = $key ->food_id = $vals[2];
+            $cheap->price = $form["price"];
+            $cheap->shop_id = $form["shopId"];
+            $cheap->food_id = $form["foodId"];
             $cheap->save();
         }
-
         return $this->list();
     }
 
