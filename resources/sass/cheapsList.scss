@@ -35,7 +35,7 @@
                 }
             }
 
-            #add-ingredient {
+            #ingredient-list {
                 height: 45vh;
                 display: flex;
                 flex-wrap: wrap; 
@@ -50,6 +50,8 @@
                         margin-bottom: 0.5rem;
                         height: 1.5rem;
                         width: 5rem;
+                        appearance: none;
+                        pointer-events: none;
                     }
                     
                     .price-form {
@@ -64,7 +66,7 @@
 
                 }
 
-                .addform {
+                .add-ingredient {
                     .form {
                         margin-left: 1rem;
                         margin-bottom: 0.5rem;

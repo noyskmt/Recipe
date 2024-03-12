@@ -24,6 +24,11 @@ class CheapController extends Controller
         return $this->list();
     }
 
+    public function update(Request $request, $id) {
+        Cheap::find($id)->update($request->all());
+        return $this->list();
+    }
+
     public function list() {
         return Cheap::all();
     }

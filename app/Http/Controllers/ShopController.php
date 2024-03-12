@@ -10,6 +10,7 @@ use App\Models\Cheap;
 
 
 
+
 class ShopController extends Controller
 {
     public function index()
@@ -31,25 +32,20 @@ class ShopController extends Controller
     }
     
     public function list() {
-        return shop::all();
+        return Shop::all();
     }
 
     // 登録されている備考の取得
     public function remarks() {
-        return shop::where('id', '1')->value('remarks');
+        return Shop::where('id', '1')->value('remarks');
     }
 
     public function getData() {
         $first_shop = Shop::first();
         $id = $first_shop->id;
 
-        // cheapsテーブルに登録されている以外のfoodを取得(where,wherehas?)
-        // 別で変数を準備する必要がある？
         $food = Food::all();
-        // $food = Food::with(['cheaps'])
-        //     ->wherehas('cheaps', function($q) {
-        //     $q->where('food_id', '!==', 'id');
-        // })->get();
+        $select_food =  Food::whereNotIn('id', Cheap::pluck('food_id'))->get();
 
         // wherehas=リレーション先の値を抽出
         $select_cheaps = Food::with(['cheaps'])
@@ -61,6 +57,7 @@ class ShopController extends Controller
             "cheaps" => $select_cheaps,
             "firstShop" => $first_shop,
             "food" => $food,
+            "selectFood" => $select_food,
         ]);
     } 
 

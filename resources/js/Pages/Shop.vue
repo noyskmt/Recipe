@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-7">
-                <cheaps :shop="shop" :cheaps="cheaps" :food="food" class="cheaps-list"></cheaps>
+                <cheaps :shop="shop" :cheaps="cheaps" :food="food" :selectFood="selectFood" class="cheaps-list"></cheaps>
             </div>
             <div class="col-3 sb">
                 <sidebar class="sidebar"></sidebar>
@@ -40,6 +40,7 @@ export default {
             firstShopData: [],
             shop: "",
             cheaps: [],
+            selectFood: [],
         }
     },
 
@@ -92,6 +93,7 @@ export default {
         this.shop = this.firstShopData['firstShop'];
         this.cheaps = this.firstShopData['cheaps'];
         this.food = this.firstShopData['food'];
+        this.selectFood = this.firstShopData['selectFood'];
 
     },
     
