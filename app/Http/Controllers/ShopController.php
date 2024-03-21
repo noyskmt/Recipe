@@ -42,10 +42,10 @@ class ShopController extends Controller
 
     public function getData() {
         $first_shop = Shop::first();
-        $id = $first_shop->id;
-
+        // $id = $first_shop->id;
+        $cheaps_food_ids = Cheap::pluck('food_id');
         $food = Food::all();
-        $select_food =  Food::whereNotIn('id', Cheap::pluck('food_id'))->get();
+        $select_food =  Food::whereNotIn('id', $cheaps_food_ids)->get();
 
         // wherehas=リレーション先の値を抽出
         $select_cheaps = Food::with(['cheaps'])

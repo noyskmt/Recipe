@@ -2,12 +2,12 @@
     <div class="sidebar">
         <div class="sidebar-area">
             <div class="switch-btn">
-                <button @click="clickTab(true)" class="btn" :class="{ 'btn-dark b': isTabFlag, 'btn-dark a': !isTabFlag }">食材</button>
-                <button @click="clickTab(false)" class="btn" :class="{ 'btn-dark a': isTabFlag, 'btn-dark b': !isTabFlag }">調味料</button>
+                <button class="btn" @click="clickTab(true)" :class="{ 'btn-dark b': isTabFlag, 'btn-dark a': !isTabFlag }">食材</button>
+                <button class="btn" @click="clickTab(false)" :class="{ 'btn-dark a': isTabFlag, 'btn-dark b': !isTabFlag }">調味料</button>
             </div>
             <div class="add">
-                <input type="text" v-model="newFood" class="form-control">
-                <button @click="addFood()" class="btn btn-dark">追加</button>
+                <input class="form-control" type="text" v-model="newFood">
+                <button class="btn btn-dark" @click="addFood()">追加</button>
             </div>
             <div class="added-content">
                 <div v-for="food in foods">
@@ -15,8 +15,8 @@
                         <div v-show="isTabFlag"  key="ingredient">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" role="switch" @click="stockTab(food.id)" :checked="food.stock">
-                                <label @click="openModal" class="form-check-label">{{ food.name }}</label>
-                                <MyModal @close="closeModal" v-if="modal"></MyModal>
+                                <label class="form-check-label" @click="openModal">{{ food.name }}</label>
+                                <MyModal  v-if="modal" @close="closeModal"></MyModal>
                             </div>
                         </div>
                     </div>
@@ -24,25 +24,22 @@
                         <div v-show="!isTabFlag" key="seasoning">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="switch_1" name="switch_1" role="switch" @click="stockTab(food.id)" :checked="food.stock">
-                                <label @click="openModal" class="form-check-label">{{ food.name }}</label>
-                                <MyModal @close="closeModal" v-if="modal"></MyModal>
+                                <label class="form-check-label" @click="openModal">{{ food.name }}</label>
+                                <MyModal  v-if="modal" @close="closeModal"></MyModal>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div v-if= "storeList" class="store-link">
-            <button v-on:click="redirectShopPage" class="btn btn-light">ショップリスト</button>
+        <div  class="store-link" v-if= "storeList">
+            <button  class="btn btn-light" v-on:click="redirectShopPage">ショップリスト</button>
         </div>
     </div>
 </template>
 
 <script>
-    // import { Inertia } from "@inertiajs/inertia";
     import MyModal from './MyModal.vue';
-    // import { BIconThreeDotsVertical } from "bootstrap-vue";
-
     export default {
         components: { MyModal },
 

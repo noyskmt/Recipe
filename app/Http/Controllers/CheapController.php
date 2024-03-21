@@ -25,7 +25,13 @@ class CheapController extends Controller
     }
 
     public function update(Request $request, $id) {
-        Cheap::find($id)->update($request->all());
+        // Cheap::find($id)->update($request->all());
+        foreach ($request["editPrices"] as $editedPrice){
+            $cheap =  Cheap::find($id);
+            $cheap->price = $editedPrice["id"];
+            $cheap->shop_id = $editedPrice["price"];
+            $cheap->update();
+        }
         return $this->list();
     }
 

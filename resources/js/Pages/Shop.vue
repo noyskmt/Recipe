@@ -2,10 +2,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-2 st">
-                <button v-on:click="redirectTopPage" class="btn btn-light">戻る</button>
+                <button  class="btn btn-light" v-on:click="redirectTopPage">戻る</button>
                 <div class="add-store">
-                    <input type="text" v-model="newShop" class="form-control">
-                    <button @click="addShop()" class="btn btn-dark">追加</button>
+                    <input class="form-control" type="text" v-model="newShop">
+                    <button class="btn btn-dark" @click="addShop()">追加</button>
                 </div>
                 <div class="added-stores">
                     <div v-for="shop in shops">
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-7">
-                <cheaps :shop="shop" :cheaps="cheaps" :food="food" :selectFood="selectFood" class="cheaps-list"></cheaps>
+                <cheaps class="cheaps-list" :shop="shop" :cheaps="cheaps" :food="food" :selectFood="selectFood"></cheaps>
             </div>
             <div class="col-3 sb">
                 <sidebar class="sidebar"></sidebar>
