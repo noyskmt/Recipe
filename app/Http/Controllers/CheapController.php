@@ -14,7 +14,8 @@ class CheapController extends Controller
     }
     public function store(Request $request)
     {
-        foreach ($request["forms"] as $form){
+        foreach ($request["forms"] as $form)
+        {
             $cheap = new Cheap();
             $cheap->price = $form["price"];
             $cheap->shop_id = $form["shopId"];
@@ -24,14 +25,20 @@ class CheapController extends Controller
         return $this->list();
     }
 
-    public function update(Request $request, $id) {
-        // Cheap::find($id)->update($request->all());
-        foreach ($request["editPrices"] as $editedPrice){
-            $cheap =  Cheap::find($id);
-            $cheap->price = $editedPrice["id"];
-            $cheap->shop_id = $editedPrice["price"];
+    public function update(Request $request) 
+    {
+        foreach ($request["editPrice"] as $editedPrice)
+        {
+            $cheap =  Cheap::find($editedPrice["id"]);
+            $cheap->price = $editedPrice["price"];
             $cheap->update();
         }
+        return $this->list();
+    }
+
+    public function destroy($id) 
+    {
+        Cheap::find($id)->delete();
         return $this->list();
     }
 

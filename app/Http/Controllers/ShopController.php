@@ -8,9 +8,6 @@ use App\Models\Shop;
 use App\Models\Food;
 use App\Models\Cheap;
 
-
-
-
 class ShopController extends Controller
 {
     public function index()
@@ -42,7 +39,6 @@ class ShopController extends Controller
 
     public function getData() {
         $first_shop = Shop::first();
-        // $id = $first_shop->id;
         $cheaps_food_ids = Cheap::pluck('food_id');
         $food = Food::all();
         $select_food =  Food::whereNotIn('id', $cheaps_food_ids)->get();

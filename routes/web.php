@@ -51,7 +51,9 @@ Route::get('/shop/list', [ShopController::class, 'list']);
 Route::get('/shop/remarks', [ShopController::class, 'remarks']);
 Route::get('/getData', [ShopController::class, 'getData']);
 Route::post('/cheap/store', [CheapController::class, 'store']);
-Route::post('/cheap/update/{id}', [CheapController::class, 'update']);
+Route::post('/cheap/update', [CheapController::class, 'update']);
+Route::post('/cheap/destroy/{id}', [CheapController::class, 'destroy']);
+Route::get('/cheap/list', [CheapController::class, 'list']);
 Route::get('/calendar', function () { return Inertia::render('Calendar'); });
 
 

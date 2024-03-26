@@ -7,15 +7,15 @@
             <button class="btn btn-light cl" @click="update(shop.id)">更新</button>
         </div>
         <div id="ingredient-list">
-            <li v-for="(cheap, index) in cheaps" :key="index" class="added-ingredient" >
+            <li class="added-ingredient" v-for="(cheap, index) in cheaps" :key="index" >
                 <select class="form">
                     <option v-for="f in food" :selected="f.name == cheap.name">{{ f.name }}</option>
                 </select>
-                <input  class="price-form" v-model="cheap.cheaps.price" @change="action(cheap.id, cheap.cheaps.price)">
-                <button class="bi bi-patch-minus" @click="deleteForm(index)"></button>
+                <input  class="price-form" v-model="cheap.cheaps.price" @change="actionEdit(cheap.cheaps.id, cheap.cheaps.price)">
+                <button class="bi bi-patch-minus" @click="deleteCheap(cheap.cheaps.id, index)"></button>
             </li>
             <li class="add-ingredient" v-for="(form, index) in forms" :key="index">
-                <select class="form" v-model="form.foodId">
+                <select class="form" v-model="form.foodId" @change="actionAddCheap()">
                     <option selected value="">-選択-</option>
                     <option v-for="f in selectFood" :value="f.id">{{ f.name }}</option>
                 </select>
@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="remarks">
                 <p class="title">備考</p>
-                <textarea class="textarea" v-model="remarks" rows="20" cols="110"></textarea>
+                <textarea class="textarea" v-model="remarks" @change="actionAddRemarks()" rows="20" cols="110"></textarea>
             </div>
         </div>
     </div>
@@ -39,18 +39,17 @@ export default {
         shop: Object,
         cheaps: Array,
         food: Array,
-        selectFood: Object,
+        selectFood: Array,
     },
     data () {
         return {
             forms: [],
+            editedPrice: [],
             remarks: this.shop.remarks,
             isToastFlug: false,
-            isActionFlug: false,
-            editedPrice: [{
-                id: "",
-                price: "",
-            }]
+            isActionEditFlug: false,
+            isActionAddCheapFlug: false,
+            isActionAddRemarksFlug: false,
         }
     },
     methods: {
@@ -60,32 +59,61 @@ export default {
                 shopId: this.shop.id,
                 foodId: "",
             })
+            // console.log(props.selectFood);
+        },
+        deleteCheap (id, index) {
+            const res = axios.post (`/cheap/destroy/${id}`)
+            this.cheaps.splice(index, 1)
         },
         deleteForm (index) {
-            // this.cheap.splice(index, 1)
             this.forms.splice(index, 1)
         },
         /**
-         * 登録済みの価格に変更があったか判別
+         * 最安リスト追加有無のフラグ
          */
-        action(id, price) {
-            this.isActionFlug = true
-            console.log(id);
-            console.log(price);
-
+        actionAddCheap() {
+            this.isActionAddCheapFlug = true
+        },
+        /**
+         * 登録済みの価格の変更有無のフラグ
+         */
+        actionEdit(id, price) {
+            this.isActionEditFlug = true
+            this.editedPrice.push({
+                id: id,
+                price: price,
+            })
+        },
+        /**
+         * 備考欄の変更有無のフラグ
+         */
+        actionAddRemarks() {
+            this.isActionAddRemarksFlug = true
         },
         update(id) {
-            // if (this.isActionFlug === true) {
-            //     this.editPrice(id);
-            // }
-            this.addCheap();
-            this.addRemarks(id);
-            this.editPrice(id);
+            if (this.isActionAddCheapFlug === true) {
+                this.addCheap();
+            }
+            if (this.isActionEditFlug === true) {
+                this.editPrice();
+            }
+            if (this.isActionAddRemarksFlug === true) {
+                this.addRemarks(id);
+            }
+            const res =  axios.get('/cheap/list')
+            // console.log(res.data);
         },
-        editPrice(id) {
-          const res = axios.post(`/cheap/update/${id}`, {
-               editprice: this.editedPrice,
+        /**
+         * 登録済みの価格の変更をphp側へ送信 
+         */
+        editPrice() {
+          const res = axios.post('/cheap/update', {
+               editPrice: this.editedPrice,
             })
+            if (res.status === 200) {
+                this.isToastFlug = true;
+                setTimeout(() => {this.isToastFlug = false},1500)
+            }
         },
         /**
          * Cheapsリストの登録
@@ -98,16 +126,22 @@ export default {
             if (res.status === 200) {
                 this.isToastFlug = true;
                 setTimeout(() => {this.isToastFlug = false},1500)
-                // this.forms = "";
+                this.forms = "";
+                // axios.get('/cheap/list')
             }
+            
         },
         /**
          * 備考欄の登録
          */
-        addRemarks(id) {
-            axios.post(`shop/update/${id}`, {
+        async addRemarks(id) {
+            const res = await axios.post(`shop/update/${id}`, {
                 remarks : this.remarks,
             })
+            if (res.status === 200) {
+                this.isToastFlug = true;
+                setTimeout(() => {this.isToastFlug = false},1500)
+            }
         }
         
     },
