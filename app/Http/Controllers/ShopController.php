@@ -55,6 +55,21 @@ class ShopController extends Controller
             "food" => $food,
             "selectFood" => $select_food,
         ]);
-    } 
+    }
+
+    // public function changeList($id) {
+    //     $select_shop = Shop::find($id);
+    //     $select_cheaps = Food::with(['cheaps'])
+    //         ->wherehas('cheaps', function($query) {
+    //         $query->where('shop_id', $select_shop );
+    //     })->get();
+
+    //     return response()->json([
+    //         "cheaps" => $select_cheaps,
+    //     ]);
+
+    //     // \Log::debug($id);
+
+    // }
 
 }

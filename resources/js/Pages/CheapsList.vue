@@ -59,7 +59,6 @@ export default {
                 shopId: this.shop.id,
                 foodId: "",
             })
-            // console.log(props.selectFood);
         },
         deleteCheap (id, index) {
             const res = axios.post (`/cheap/destroy/${id}`)
@@ -100,15 +99,13 @@ export default {
             if (this.isActionAddRemarksFlug === true) {
                 this.addRemarks(id);
             }
-            const res =  axios.get('/cheap/list')
-            // console.log(res.data);
         },
         /**
          * 登録済みの価格の変更をphp側へ送信 
          */
-        editPrice() {
-          const res = axios.post('/cheap/update', {
-               editPrice: this.editedPrice,
+        async editPrice() {
+            const res = await axios.post('/cheap/update', {
+                editPrice: this.editedPrice,
             })
             if (res.status === 200) {
                 this.isToastFlug = true;
@@ -120,16 +117,15 @@ export default {
          */
         async addCheap() {
             const res = await axios.post('/cheap/store', {
-               forms: this.forms,
-               
+                forms: this.forms,
             })
             if (res.status === 200) {
                 this.isToastFlug = true;
                 setTimeout(() => {this.isToastFlug = false},1500)
                 this.forms = "";
-                // axios.get('/cheap/list')
+                this.addedCheaps = res.data;
+                this.$emit('updateCheaps', this.addedCheaps);
             }
-            
         },
         /**
          * 備考欄の登録
@@ -143,7 +139,7 @@ export default {
                 setTimeout(() => {this.isToastFlug = false},1500)
             }
         }
-        
+
     },
     /**
      * 登録されている備考の取得

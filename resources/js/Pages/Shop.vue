@@ -14,7 +14,13 @@
                 </div>
             </div>
             <div class="col-7">
-                <cheaps class="cheaps-list" :shop="shop" :cheaps="cheaps" :food="food" :selectFood="selectFood"></cheaps>
+                <cheaps class="cheaps-list" 
+                    :shop="shop" 
+                    :cheaps="cheaps" 
+                    :food="food" 
+                    :selectFood="selectFood" 
+                    v-on:updateCheaps="updateCheaps" 
+                ></cheaps>
             </div>
             <div class="col-3 sb">
                 <sidebar class="sidebar"></sidebar>
@@ -77,6 +83,13 @@ export default {
          */
         selectShop(shop) {
             this.shop = shop;
+            // const res = axios.post(`/shop/changeList/${shop.id}`)
+        },
+        /**
+         * CheapsList.vueで新規追加された食材と価格を代入し、再表示
+         */
+        updateCheaps(addedCheaps) {
+            this.cheaps = addedCheaps;
         }
     },
 

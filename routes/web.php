@@ -49,6 +49,7 @@ Route::post('/shop/store', [ShopController::class, 'store']);
 Route::post('/shop/update/{id}', [ShopController::class, 'update']);
 Route::get('/shop/list', [ShopController::class, 'list']);
 Route::get('/shop/remarks', [ShopController::class, 'remarks']);
+Route::post('/shop/changeList/{id}', [ShopController::class, 'changeList']);
 Route::get('/getData', [ShopController::class, 'getData']);
 Route::post('/cheap/store', [CheapController::class, 'store']);
 Route::post('/cheap/update', [CheapController::class, 'update']);
