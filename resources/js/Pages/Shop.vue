@@ -47,6 +47,7 @@ export default {
             shop: "",
             cheaps: [],
             selectFood: [],
+            selectShopData: [],
         }
     },
 
@@ -80,16 +81,25 @@ export default {
 
         /**
          * ショップの情報をdataのshopに代入(CheapsList.vueに渡すため)
+         * 選択したショップのcheapsデータの取得
          */
-        selectShop(shop) {
+        async selectShop(shop) {
             this.shop = shop;
-            // const res = axios.post(`/shop/changeList/${shop.id}`)
+            await axios.post(`/shop/changeList/${shop.id}`)
+            const res = axios.get('/changeList')
+            this.selectShopData = res.data;
+            this.cheaps = this.selectShopData['selectShopCheaps'];
+            // this.cheaps = res.data;
+            console.log(res.data);
+
         },
         /**
          * CheapsList.vueで新規追加された食材と価格を代入し、再表示
          */
         updateCheaps(addedCheaps) {
             this.cheaps = addedCheaps;
+            // console.log(addedCheaps);
+            // console.log(this.cheaps);
         }
     },
 
@@ -107,6 +117,9 @@ export default {
         this.cheaps = this.firstShopData['cheaps'];
         this.food = this.firstShopData['food'];
         this.selectFood = this.firstShopData['selectFood'];
+        // console.log(this.firstShopData);
+        // console.log(this.cheaps);
+
 
     },
     

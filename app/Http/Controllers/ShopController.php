@@ -57,19 +57,23 @@ class ShopController extends Controller
         ]);
     }
 
-    // public function changeList($id) {
-    //     $select_shop = Shop::find($id);
-    //     $select_cheaps = Food::with(['cheaps'])
-    //         ->wherehas('cheaps', function($query) {
-    //         $query->where('shop_id', $select_shop );
-    //     })->get();
+    /**
+     * 各ショップごとのcheapsリストの取得
+     */
+    public function changeList($id) {
+        $select_shop = Shop::find($id);
+        $select_cheaps = Food::with(['cheaps'])
+            ->wherehas('cheaps', function($query) {
+            $query->where('shop_id', 2);
+        })->get();
 
-    //     return response()->json([
-    //         "cheaps" => $select_cheaps,
-    //     ]);
+        return response()->json([
+            "selectShopCheaps" => $select_cheaps,
+        ]);
 
-    //     // \Log::debug($id);
+        // \Log::debug($id);
+        // \Log::debug($select_shop);
 
-    // }
+    }
 
 }

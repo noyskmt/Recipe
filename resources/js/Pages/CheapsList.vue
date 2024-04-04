@@ -40,6 +40,7 @@ export default {
         cheaps: Array,
         food: Array,
         selectFood: Array,
+        selectShopCheaps: Array,
     },
     data () {
         return {
