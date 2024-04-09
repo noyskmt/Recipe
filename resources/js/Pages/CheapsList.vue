@@ -126,6 +126,7 @@ export default {
                 this.forms = "";
                 this.addedCheaps = res.data;
                 this.$emit('updateCheaps', this.addedCheaps);
+
             }
         },
         /**

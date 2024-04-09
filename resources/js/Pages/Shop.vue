@@ -85,12 +85,10 @@ export default {
          */
         async selectShop(shop) {
             this.shop = shop;
-            await axios.post(`/shop/changeList/${shop.id}`)
-            const res = axios.get('/changeList')
-            this.selectShopData = res.data;
-            this.cheaps = this.selectShopData['selectShopCheaps'];
+            const res = await axios.post(`/shop/changeList/${shop.id}`)
+            this.cheaps = res.data;
             // this.cheaps = res.data;
-            console.log(res.data);
+            // console.log(res.data);
 
         },
         /**

@@ -61,16 +61,12 @@ class ShopController extends Controller
      * 各ショップごとのcheapsリストの取得
      */
     public function changeList($id) {
-        $select_shop = Shop::find($id);
-        $select_cheaps = Food::with(['cheaps'])
+        // $shopId = (int)$id;
+        \Log::debug($id);
+        return Food::with(['cheaps'])
             ->wherehas('cheaps', function($query) {
-            $query->where('shop_id', 2);
+            $query->where('shop_id', "id");
         })->get();
-
-        return response()->json([
-            "selectShopCheaps" => $select_cheaps,
-        ]);
-
         // \Log::debug($id);
         // \Log::debug($select_shop);
 
