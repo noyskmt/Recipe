@@ -34,7 +34,8 @@ class ShopController extends Controller
 
     // 登録されている備考の取得
     public function remarks() {
-        return Shop::where('id', '1')->value('remarks');
+        $first_shop = Shop::first();
+        return Shop::where('id', $first_shop->id)->value('remarks');
     }
 
     public function getData() {
@@ -45,8 +46,8 @@ class ShopController extends Controller
 
         // wherehas=リレーション先の値を抽出
         $select_cheaps = Food::with(['cheaps'])
-            ->wherehas('cheaps', function($query) {
-            $query->where('shop_id', 1);
+            ->wherehas('cheaps', function($query) use($first_shop){
+            $query->where('shop_id', $first_shop->id);
         })->get();
 
         return response()->json([
@@ -61,15 +62,18 @@ class ShopController extends Controller
      * 各ショップごとのcheapsリストの取得
      */
     public function changeList($id) {
-        // $shopId = (int)$id;
-        \Log::debug($id);
-        return Food::with(['cheaps'])
-            ->wherehas('cheaps', function($query) {
-            $query->where('shop_id', "id");
+        $change_cheaps = Food::with(['cheaps'])
+            ->wherehas('cheaps', function($query) use($id){
+            $query->where('shop_id', $id);
         })->get();
-        // \Log::debug($id);
-        // \Log::debug($select_shop);
 
+        // $change_remarks = Shop::where('id', $id)->get();
+        $change_remarks = Shop::where('id', $id)->value('remarks');
+
+        return response()->json([
+            "changeCheaps" =>  $change_cheaps,
+            "changeRemarks" => $change_remarks,
+        ]);
     }
 
 }

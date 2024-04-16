@@ -86,9 +86,8 @@ export default {
         async selectShop(shop) {
             this.shop = shop;
             const res = await axios.post(`/shop/changeList/${shop.id}`)
-            this.cheaps = res.data;
-            // this.cheaps = res.data;
-            // console.log(res.data);
+            this.cheaps = res.data['changeCheaps'];
+            this.shop = res.data['changeRemarks'];
 
         },
         /**
@@ -96,8 +95,6 @@ export default {
          */
         updateCheaps(addedCheaps) {
             this.cheaps = addedCheaps;
-            // console.log(addedCheaps);
-            // console.log(this.cheaps);
         }
     },
 
@@ -115,10 +112,6 @@ export default {
         this.cheaps = this.firstShopData['cheaps'];
         this.food = this.firstShopData['food'];
         this.selectFood = this.firstShopData['selectFood'];
-        // console.log(this.firstShopData);
-        // console.log(this.cheaps);
-
-
     },
     
 }

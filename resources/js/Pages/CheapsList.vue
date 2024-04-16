@@ -62,7 +62,7 @@ export default {
             })
         },
         deleteCheap (id, index) {
-            const res = axios.post (`/cheap/destroy/${id}`)
+            axios.post (`/cheap/destroy/${id}`)
             this.cheaps.splice(index, 1)
         },
         deleteForm (index) {

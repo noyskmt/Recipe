@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Cheap;
+use App\Models\Food;
 
 class CheapController extends Controller
 {
@@ -22,7 +23,10 @@ class CheapController extends Controller
             $cheap->food_id = $form["foodId"];
             $cheap->save();
         }
-        return $this->list();
+        return Food::with(['cheaps'])
+            ->wherehas('cheaps', function($query) use($form){
+            $query->where('shop_id', $form["shopId"]);
+        })->get();
     }
 
     public function update(Request $request) 
