@@ -23,8 +23,15 @@ class ShopController extends Controller
         return $this->list();
     }
 
-    public function update(Request $request, $id) {
-        Shop::find($id)->update($request->all());
+    public function update(Request $request) {
+        // Shop::find($id)->update($request->all());
+        \Log::debug($request["addRemarks"]);
+        // foreach ($request["addRemarks"] as $addRemarks)
+        // {
+        //     $shop =  Shop::find($addRemarks["id"]);
+        //     $shop->price = $addRemarks["remarks"];
+        //     $shop->update();
+        // }
         return $this->list();
     }
     
@@ -67,8 +74,7 @@ class ShopController extends Controller
             $query->where('shop_id', $id);
         })->get();
 
-        // $change_remarks = Shop::where('id', $id)->get();
-        $change_remarks = Shop::where('id', $id)->value('remarks');
+        $change_remarks = Shop::find($id);
 
         return response()->json([
             "changeCheaps" =>  $change_cheaps,

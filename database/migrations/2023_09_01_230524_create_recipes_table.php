@@ -16,13 +16,16 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             
-            $table->integer('large_category_id');
-            $table->integer('medium_category_id');
-            $table->integer('small_category_id');
-            //もしくは↓？
-            $table->integer('category_id');
-            $table->integer('parent_category_id');
-            //9月9日時点これでマイグレートしてる再考が必要
+            //料理名
+            $table->string('recipeTitle');
+            //材料の配列
+            $table->string('recipeMaterial');
+            //レシピのURL
+            $table->string('recipeUrl');
+            //料理の画像
+            $table->string('foodImageUrl');
+            //調理時間
+            $table->string('recipeIndication');
         });
     }
 

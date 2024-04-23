@@ -88,14 +88,22 @@ export default {
             const res = await axios.post(`/shop/changeList/${shop.id}`)
             this.cheaps = res.data['changeCheaps'];
             this.shop = res.data['changeRemarks'];
-
+            // console.log(this.shop);
         },
         /**
          * CheapsList.vueで新規追加された食材と価格を代入し、再表示
          */
         updateCheaps(addedCheaps) {
             this.cheaps = addedCheaps;
+        },
+
+        editRemarks(remarks) {
+            // const res = await axios.post('shop/update', {
+            //     addRemarks: this.addedRemarksTest,
+            // })
+            console.log(remarks);
         }
+
     },
 
     async mounted() {

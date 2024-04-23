@@ -27,13 +27,15 @@
         <div class="col-12">
             <div class="remarks">
                 <p class="title">備考</p>
-                <textarea class="textarea" v-model="remarks" @change="actionAddRemarks()" rows="20" cols="110"></textarea>
+                <textarea class="textarea" v-model="shop.remarks" @change="actionEditRemarks(shop.id, shop.remarks)" rows="20" cols="110"></textarea>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { id } from 'date-fns/locale'
+
 export default {
     props: {
         shop: Object,
@@ -46,7 +48,7 @@ export default {
         return {
             forms: [],
             editedPrice: [],
-            remarks: this.shop.remarks,
+            remarks: [],
             isToastFlug: false,
             isActionEditFlug: false,
             isActionAddCheapFlug: false,
@@ -87,10 +89,14 @@ export default {
         /**
          * 備考欄の変更有無のフラグ
          */
-        actionAddRemarks() {
+        actionEditRemarks(id, remarks) {
             this.isActionAddRemarksFlug = true
+            this.remarks.push({
+                id: id,
+                remarks: remarks,
+            })
         },
-        update(id) {
+        update() {
             if (this.isActionAddCheapFlug === true) {
                 this.addCheap();
             }
@@ -98,19 +104,7 @@ export default {
                 this.editPrice();
             }
             if (this.isActionAddRemarksFlug === true) {
-                this.addRemarks(id);
-            }
-        },
-        /**
-         * 登録済みの価格の変更をphp側へ送信 
-         */
-        async editPrice() {
-            const res = await axios.post('/cheap/update', {
-                editPrice: this.editedPrice,
-            })
-            if (res.status === 200) {
-                this.isToastFlug = true;
-                setTimeout(() => {this.isToastFlug = false},1500)
+                this.editRemarks();
             }
         },
         /**
@@ -126,29 +120,50 @@ export default {
                 this.forms = "";
                 this.addedCheaps = res.data;
                 this.$emit('updateCheaps', this.addedCheaps);
-
             }
+        },
+        /**
+         * 登録済みの価格の変更をphp側へ送信 
+         */
+        async editPrice() {
+            const res = await axios.post('/cheap/update', {
+                editPrice: this.editedPrice,
+            })
+            this.isToastFlug(res);
         },
         /**
          * 備考欄の登録
          */
-        async addRemarks(id) {
-            const res = await axios.post(`shop/update/${id}`, {
-                remarks : this.remarks,
-            })
+        async editRemarks() {
+            // const addedRemarksTest = this.addedRemarks;
+            this.$emit("editRemarks", this.remarks);
+            // console.log(this.remarks);
+
+            // CheapsList内で登録していたときのコード
+            // const res = await axios.post(`shop/update/${id}`, {
+            //     remarks : this.shop.remarks,
+            // })
+            // console.log(res.data);
+            // if (res.status === 200) {
+            //     this.isToastFlug = true;
+            //     setTimeout(() => {this.isToastFlug = false},1500)
+            //     // this.addedRemarks = res.data;
+            //     // this.$emit('addRemarks', this.addedRemarks);
+            // }
+        },
+        isToastFlug() {
             if (res.status === 200) {
                 this.isToastFlug = true;
                 setTimeout(() => {this.isToastFlug = false},1500)
             }
         }
-
     },
     /**
      * 登録されている備考の取得
      */
-    async mounted() {
-        const res = await axios.get('shop/remarks')
-        this.remarks = res.data;
-    },
+    // async mounted() {
+    //     const res = await axios.get('shop/remarks')
+    //     this.remarks = res.data;
+    // },
 }
 </script>
