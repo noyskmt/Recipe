@@ -25,13 +25,13 @@ class ShopController extends Controller
 
     public function update(Request $request) {
         // Shop::find($id)->update($request->all());
-        \Log::debug($request["addRemarks"]);
-        // foreach ($request["addRemarks"] as $addRemarks)
-        // {
-        //     $shop =  Shop::find($addRemarks["id"]);
-        //     $shop->price = $addRemarks["remarks"];
-        //     $shop->update();
-        // }
+        \Log::debug($request);
+        foreach ($request["remarks"] as $remarks)
+        {
+            $shop =  Shop::find($remarks["id"]);
+            $shop->remarks = $remarks["remarks"];
+            $shop->update();
+        }
         return $this->list();
     }
     

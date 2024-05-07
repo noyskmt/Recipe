@@ -20,6 +20,7 @@
                     :food="food" 
                     :selectFood="selectFood" 
                     v-on:updateCheaps="updateCheaps" 
+                    v-on:editRemarks="editRemarks" 
                 ></cheaps>
             </div>
             <div class="col-3 sb">
@@ -38,7 +39,6 @@ export default {
         Sidebar,
         Cheaps,
     },
-
     data () {
         return {
             newShop: "",
@@ -50,13 +50,10 @@ export default {
             selectShopData: [],
         }
     },
-
     methods: {
-
         redirectTopPage() {
             location.href = '/top';
         },
-
         /**
          * ショップの登録処理
          */
@@ -70,7 +67,6 @@ export default {
                 this.newShop = "";
             }
         },
-
         /**
          * DBに登録されているショップの取得
          */
@@ -78,7 +74,6 @@ export default {
             const res = await axios.get(url)
             return res.data;
         },
-
         /**
          * ショップの情報をdataのshopに代入(CheapsList.vueに渡すため)
          * 選択したショップのcheapsデータの取得
@@ -88,7 +83,6 @@ export default {
             const res = await axios.post(`/shop/changeList/${shop.id}`)
             this.cheaps = res.data['changeCheaps'];
             this.shop = res.data['changeRemarks'];
-            // console.log(this.shop);
         },
         /**
          * CheapsList.vueで新規追加された食材と価格を代入し、再表示
@@ -96,14 +90,11 @@ export default {
         updateCheaps(addedCheaps) {
             this.cheaps = addedCheaps;
         },
-
-        editRemarks(remarks) {
-            // const res = await axios.post('shop/update', {
-            //     addRemarks: this.addedRemarksTest,
-            // })
-            console.log(remarks);
+        async editRemarks(remarks) {
+            await axios.post('shop/update', {
+                remarks: remarks
+            })
         }
-
     },
 
     async mounted() {
@@ -112,7 +103,6 @@ export default {
          */
         this.shops = await this.getAxios('shop/list');
         this.firstShopData = await this.getAxios('/getData');
-
         /**
          * コントローラーから登録されている店と食材をCheapsListに送るための処理
          */
@@ -121,6 +111,5 @@ export default {
         this.food = this.firstShopData['food'];
         this.selectFood = this.firstShopData['selectFood'];
     },
-    
 }
 </script>

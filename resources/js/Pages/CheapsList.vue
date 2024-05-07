@@ -134,7 +134,7 @@ export default {
         /**
          * 備考欄の登録
          */
-        async editRemarks() {
+        editRemarks() {
             // const addedRemarksTest = this.addedRemarks;
             this.$emit("editRemarks", this.remarks);
             // console.log(this.remarks);

@@ -8,7 +8,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CheapController;
 
 
-// use App\Http\Controllers\BbbController;
+use App\Http\Controllers\BbbController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +60,7 @@ Route::get('/calendar', function () { return Inertia::render('Calendar'); });
 
 
 // テスト用
-// Route::get('/bbb', [BbbController::class, 'index']);
+Route::get('/bbb', [BbbController::class, 'index']);
 // Route::post('/bbb/store', [BbbController::class, 'store']);
 
 
