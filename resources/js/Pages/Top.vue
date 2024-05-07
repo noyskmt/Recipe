@@ -64,6 +64,10 @@
             redirectCalendarPage() {
                 location.href = '/calendar';
             }
+        },
+
+        mounted() {
+            console.log(this.$store.state.currentMenu);
         }
     }
 

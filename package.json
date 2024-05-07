@@ -31,6 +31,7 @@
         "bootstrap-icons": "^1.10.5",
         "bootstrap-vue": "^2.23.1",
         "date-fns": "^2.30.0",
-        "vue3-burger-menu": "^1.1.1"
+        "vue3-burger-menu": "^1.1.1",
+        "vuex": "^4.0.2"
     }
 }
