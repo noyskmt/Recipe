@@ -25,7 +25,7 @@ class ShopController extends Controller
 
     public function update(Request $request) {
         // Shop::find($id)->update($request->all());
-        \Log::debug($request);
+        // \Log::debug($request);
         foreach ($request["remarks"] as $remarks)
         {
             $shop =  Shop::find($remarks["id"]);

@@ -12,8 +12,20 @@ import Vuex from 'vuex';
 
 const store = new Vuex.Store({
     state: {
-        currentMenu: 'hoge',
+        test: [],
     },
+    mutations: {
+        increment (state, test) {
+            state.test = test
+        }
+    },
+    actions: {
+
+    },
+
+    // getters: {
+        
+    // }
 })
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';

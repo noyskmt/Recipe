@@ -67,7 +67,7 @@
         },
 
         mounted() {
-            console.log(this.$store.state.currentMenu);
+            console.log(this.$store.state.test);
         }
     }
 

@@ -48,6 +48,7 @@ export default {
             cheaps: [],
             selectFood: [],
             selectShopData: [],
+            test: ['12, 13, 14. 15'],
         }
     },
     methods: {
@@ -94,8 +95,12 @@ export default {
             await axios.post('shop/update', {
                 remarks: remarks
             })
-        }
+        },
     },
+
+    // computed: {
+    //     $store.commit(this.test);
+    // },
 
     async mounted() {
         /**
@@ -110,6 +115,13 @@ export default {
         this.cheaps = this.firstShopData['cheaps'];
         this.food = this.firstShopData['food'];
         this.selectFood = this.firstShopData['selectFood'];
+        // $store.commit(this.firstShopData['cheaps'])
+
+        store.commit({
+            type: 'increment',
+            test: this.test
+        });
+        console.log(this.test);
     },
 }
 </script>
