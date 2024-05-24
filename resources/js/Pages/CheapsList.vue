@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+    <p>{{ testaaa }}</p>
 </template>
 
 <script>
@@ -135,6 +136,7 @@ export default {
          * 備考欄の登録
          */
         editRemarks() {
+            console.log(this.remarks);
             // const addedRemarksTest = this.addedRemarks;
             this.$emit("editRemarks", this.remarks);
             // console.log(this.remarks);
@@ -165,5 +167,8 @@ export default {
     //     const res = await axios.get('shop/remarks')
     //     this.remarks = res.data;
     // },
+    async mounted() {
+        // this.$store.dispatch =('test', await axios.get('shop/remarks'));
+    }
 }
 </script>

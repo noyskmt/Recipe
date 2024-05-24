@@ -15,17 +15,26 @@ const store = new Vuex.Store({
         test: [],
     },
     mutations: {
-        increment (state, test) {
-            state.test = test
+        testaa (state, payload) {
+            state.test = payload // ➂stateの更新
         }
     },
     actions: {
+        async testaa (context, payload) {
+            await userUpdateApi(payload) // 非同期処理の実行
+            .then(res => {
+                context.commit('testaa', res.data) // ➁非同期処理のレスポンスをコミット
+            })
+            .catch(err => {
+                errHandlerFunc(err)
+            })
+        }
 
     },
-
-    // getters: {
+    getters: {
         
-    // }
+    },
+
 })
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';

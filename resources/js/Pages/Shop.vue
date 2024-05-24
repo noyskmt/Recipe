@@ -92,6 +92,7 @@ export default {
             this.cheaps = addedCheaps;
         },
         async editRemarks(remarks) {
+            console.log(remarks);
             await axios.post('shop/update', {
                 remarks: remarks
             })
@@ -115,13 +116,9 @@ export default {
         this.cheaps = this.firstShopData['cheaps'];
         this.food = this.firstShopData['food'];
         this.selectFood = this.firstShopData['selectFood'];
-        // $store.commit(this.firstShopData['cheaps'])
 
-        store.commit({
-            type: 'increment',
-            test: this.test
-        });
-        console.log(this.test);
+        this.$store.dispatch =('testaa', this.test);
+
     },
 }
 </script>
