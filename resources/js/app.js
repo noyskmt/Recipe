@@ -12,24 +12,30 @@ import Vuex from 'vuex';
 
 const store = new Vuex.Store({
     state: {
-        test: [],
+        remarks: "",
+        isToastFlug: false,
     },
     mutations: {
-        testaa (state, payload) {
-            state.test = payload // ➂stateの更新
-        }
+        async updateRemarks (state, shop) {
+            state.remarks = shop.remarks // ➂stateの更新
+            const res = await axios.post('/shop/update', shop)
+            // console.log(res);
+            this.toastFlug(res)
+            // if (res.status === 200) {
+            //     state.isToastFlug = true;
+            //     setTimeout(() => {this.isToastFlug = false},1500)
+            // }
+        },
+        toastFlug(res) {
+            if (res.status === 200) {
+                state.isToastFlug = true;
+                setTimeout(() => {this.isToastFlug = false},1500)
+            }
+        },
+
     },
     actions: {
-        async testaa (context, payload) {
-            await userUpdateApi(payload) // 非同期処理の実行
-            .then(res => {
-                context.commit('testaa', res.data) // ➁非同期処理のレスポンスをコミット
-            })
-            .catch(err => {
-                errHandlerFunc(err)
-            })
-        }
-
+        
     },
     getters: {
         

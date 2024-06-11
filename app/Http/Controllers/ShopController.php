@@ -23,29 +23,28 @@ class ShopController extends Controller
         return $this->list();
     }
 
-    public function update(Request $request) {
-        // Shop::find($id)->update($request->all());
-        // \Log::debug($request);
-        foreach ($request["remarks"] as $remarks)
-        {
-            $shop =  Shop::find($remarks["id"]);
-            $shop->remarks = $remarks["remarks"];
-            $shop->update();
-        }
+    public function update(Request $request) 
+    {
+        $shop = Shop::find($request["id"]);
+        $shop->remarks = $request["remarks"];
+        $shop->update();
         return $this->list();
     }
     
-    public function list() {
+    public function list() 
+    {
         return Shop::all();
     }
 
     // 登録されている備考の取得
-    public function remarks() {
+    public function remarks() 
+    {
         $first_shop = Shop::first();
         return Shop::where('id', $first_shop->id)->value('remarks');
     }
 
-    public function getData() {
+    public function getData() 
+    {
         $first_shop = Shop::first();
         $cheaps_food_ids = Cheap::pluck('food_id');
         $food = Food::all();
@@ -68,7 +67,8 @@ class ShopController extends Controller
     /**
      * 各ショップごとのcheapsリストの取得
      */
-    public function changeList($id) {
+    public function changeList($id) 
+    {
         $change_cheaps = Food::with(['cheaps'])
             ->wherehas('cheaps', function($query) use($id){
             $query->where('shop_id', $id);

@@ -2,7 +2,7 @@
     <div class="cheaps-list">
         <div class="best-list">
             <p class="title">最安リスト-{{ shop.name }}-</p>
-            <div class="toas" v-show="isToastFlug">更新しました</div>
+            <div class="toas" v-show="this.$store.state.isToastFlug">更新しました</div>
             <button class="bi bi-patch-plus" @click="addForm()"></button>
             <button class="btn btn-light cl" @click="update(shop.id)">更新</button>
         </div>
@@ -31,7 +31,6 @@
             </div>
         </div>
     </div>
-    <p>{{ testaaa }}</p>
 </template>
 
 <script>
@@ -105,7 +104,8 @@ export default {
                 this.editPrice();
             }
             if (this.isActionAddRemarksFlug === true) {
-                this.editRemarks();
+                // 備考欄の登録
+                this.$store.commit('updateRemarks', this.shop);
             }
         },
         /**
@@ -130,45 +130,14 @@ export default {
             const res = await axios.post('/cheap/update', {
                 editPrice: this.editedPrice,
             })
-            this.isToastFlug(res);
+            this.toastFlug(res);
         },
-        /**
-         * 備考欄の登録
-         */
-        editRemarks() {
-            console.log(this.remarks);
-            // const addedRemarksTest = this.addedRemarks;
-            this.$emit("editRemarks", this.remarks);
-            // console.log(this.remarks);
-
-            // CheapsList内で登録していたときのコード
-            // const res = await axios.post(`shop/update/${id}`, {
-            //     remarks : this.shop.remarks,
-            // })
-            // console.log(res.data);
-            // if (res.status === 200) {
-            //     this.isToastFlug = true;
-            //     setTimeout(() => {this.isToastFlug = false},1500)
-            //     // this.addedRemarks = res.data;
-            //     // this.$emit('addRemarks', this.addedRemarks);
-            // }
-        },
-        isToastFlug() {
+        toastFlug(res) {
             if (res.status === 200) {
                 this.isToastFlug = true;
                 setTimeout(() => {this.isToastFlug = false},1500)
             }
         }
     },
-    /**
-     * 登録されている備考の取得
-     */
-    // async mounted() {
-    //     const res = await axios.get('shop/remarks')
-    //     this.remarks = res.data;
-    // },
-    async mounted() {
-        // this.$store.dispatch =('test', await axios.get('shop/remarks'));
-    }
 }
 </script>
