@@ -19,17 +19,12 @@ const store = new Vuex.Store({
         async updateRemarks (state, shop) {
             state.remarks = shop.remarks // ➂stateの更新
             const res = await axios.post('/shop/update', shop)
-            // console.log(res);
-            this.toastFlug(res)
-            // if (res.status === 200) {
-            //     state.isToastFlug = true;
-            //     setTimeout(() => {this.isToastFlug = false},1500)
-            // }
+            this.commit('toastFlug', res)
         },
-        toastFlug(res) {
+        toastFlug(state, res) {
             if (res.status === 200) {
                 state.isToastFlug = true;
-                setTimeout(() => {this.isToastFlug = false},1500)
+                setTimeout(() => {state.isToastFlug = false},1500)
             }
         },
 

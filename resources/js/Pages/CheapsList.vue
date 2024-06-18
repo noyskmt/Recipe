@@ -49,7 +49,6 @@ export default {
             forms: [],
             editedPrice: [],
             remarks: [],
-            isToastFlug: false,
             isActionEditFlug: false,
             isActionAddCheapFlug: false,
             isActionAddRemarksFlug: false,
@@ -116,8 +115,8 @@ export default {
                 forms: this.forms,
             })
             if (res.status === 200) {
-                this.isToastFlug = true;
-                setTimeout(() => {this.isToastFlug = false},1500)
+                this.$store.state.isToastFlug = true;
+                setTimeout(() => {this.$store.state.isToastFlug = false},1500)
                 this.forms = "";
                 this.addedCheaps = res.data;
                 this.$emit('updateCheaps', this.addedCheaps);
@@ -132,12 +131,6 @@ export default {
             })
             this.toastFlug(res);
         },
-        toastFlug(res) {
-            if (res.status === 200) {
-                this.isToastFlug = true;
-                setTimeout(() => {this.isToastFlug = false},1500)
-            }
-        }
     },
 }
 </script>
