@@ -187,4 +187,8 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'rakuten-url' => env('RAKUTEN_URL'),
+    'rakuten-key' => env('RAKUTEN_KEY'),
+    
+
 ];

@@ -6,9 +6,10 @@ use Inertia\Inertia;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CheapController;
+use App\Http\Controllers\ApiController;
 
 
-use App\Http\Controllers\BbbController;
+// use App\Http\Controllers\BbbController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,8 @@ Route::post('/cheap/update', [CheapController::class, 'update']);
 Route::post('/cheap/destroy/{id}', [CheapController::class, 'destroy']);
 Route::get('/cheap/list', [CheapController::class, 'list']);
 Route::get('/calendar', function () { return Inertia::render('Calendar'); });
+
+Route::get('/recipeApi', [ApiController::class, 'index']);
 
 
 // テスト用

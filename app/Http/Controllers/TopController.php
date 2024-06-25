@@ -33,12 +33,5 @@ class TopController extends Controller
         $food = Food::find($id);
         $food->stock = ($food->stock) ? 0 : 1; 
         $food->save();
-
-        // $food->stock = ($food->stock) ? 0 : 1; と同じ↓
-        // if($food->stock) {
-        //     $food->stock = '0';
-        // }else{
-        //     $food->stock = '1';
-        // }
     }
 }
