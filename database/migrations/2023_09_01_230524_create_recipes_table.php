@@ -23,7 +23,7 @@ return new class extends Migration
             //レシピのURL
             $table->string('recipeUrl');
             //料理の画像
-            $table->string('foodImageUrl');
+            $table->string('mediumImageUrl');
             //調理時間
             $table->string('recipeIndication');
         });

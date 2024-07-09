@@ -12,11 +12,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Food::factory(30)->create();
-        \App\Models\Shop::factory(10)->create();
+        /**
+         * fakerを利用した自動生成(苗字と名前を使用)
+         */
+        // \App\Models\Food::factory(30)->create();
+        // \App\Models\Shop::factory(10)->create();
 
-        // $this->call(FoodSeeder::class);
-        // $this->call(ShopSeeder::class);
-
+        $this->call(FoodSeeder::class);
+        $this->call(ShopSeeder::class);
+        $this->call(CeapSeeder::class);
+        $this->call(RecipeListSeeder::class);
     }
 }

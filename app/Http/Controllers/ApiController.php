@@ -12,24 +12,44 @@ class ApiController extends Controller
 {
     public function index()
     {
-        // $response = Http::withHeaders([
-        //     'Content-Type' => 'application/json',
-        // ])->get(config('app.rakuten-url')?categoryId=10-66-50&applicationId=1093932219382914409);
-        // return $response;
+        $rakutenUrl = config('app.rakuten_url');
+        $rakutenKey = config('app.rakuten_key');
 
-        $recipeArray = [];
-        $recipeArray = RecipeList::all();
-        foreach ($recipeArray as $r) {
-            $r->category_id;
-            $response = Http::withHeaders([
-                'Content-Type' => 'application/json',
-            ])->get('https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?categoryId={$r->category_id}&applicationId=1093932219382914409');
-            
-            \Log::debug($response);
+        $waitTime = 1; //リクエスト間隔
+        
+        // $recipeArray = RecipeList::all();
 
-            $recipe = new Recipe();
-            $recipe-> recipeTitle = $response["recipeTitle"];
-        } 
+        RecipeList::chunk(4, function ($recipes) use ($rakutenUrl, $rakutenKey, $waitTime) {
+            foreach ($recipes as $r) {
+                $categoryId = $r->category_id;
+                $response = Http::withHeaders([
+                    'Content-Type' => 'application/json',
+                ])->get("{$rakutenUrl}?categoryId={$categoryId}&applicationId={$rakutenKey}");
+                
+                // \Log::debug($response->body());
+
+                sleep($waitTime);
+
+                // $data = $response->json();
+                // $recipe = new Recipe();
+                // $recipe-> recipeTitle = $response["recipeTitle"];
+                // $recipe-> save();
+
+                $data = $response->json();
+
+                if (isset($data['result'])) {
+                    foreach ($data['result'] as $recipeData) {
+                        $recipe = new Recipe();
+                        $recipe->recipeTitle = $recipeData["recipeTitle"];
+                        $recipe->recipeMaterial = $recipeData["recipeMaterial"];
+                        $recipe->recipeUrl = $recipeData["recipeUrl"];
+                        $recipe->mediumImageUrl = $recipeData["mediumImageUrl"];
+                        $recipe->recipeIndication = $recipeData["recipeIndication"];
+                        $recipe->save();
+                    }
+                }
+            } 
+        });
     }
     
 }

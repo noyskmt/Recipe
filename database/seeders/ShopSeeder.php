@@ -5,7 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+// use Illuminate\Support\Str;
 
 class ShopSeeder extends Seeder
 {
@@ -15,7 +15,22 @@ class ShopSeeder extends Seeder
     public function run(): void
     {
         DB::table('shops')->insert([
-            'name' => Str::random(10),
+            // 'name' => Str::random(10),
+            [
+                'name' => '新鮮市場'
+            ],
+            [
+                'name' => 'マルキョウ'
+            ],
+            [
+                'name' => 'トライアル'
+            ],
+            [
+                'name' => 'トキハインダストリー'
+            ],
+            [
+                'name' => 'イオン'
+            ],
         ]);
     }
 }
