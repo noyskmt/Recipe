@@ -18,8 +18,6 @@ return new class extends Migration
             
             //料理名
             $table->string('recipeTitle');
-            //材料の配列
-            $table->string('recipeMaterial');
             //レシピのURL
             $table->string('recipeUrl');
             //料理の画像

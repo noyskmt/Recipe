@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->integer('recipe_id');
-            $table->integer('recipe_materials_id');
+            $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
+            $table->foreignId('recipe_material_id')->constrained('recipe_materials')->onDelete('cascade');
         });
     }
 
@@ -28,3 +28,4 @@ return new class extends Migration
         Schema::dropIfExists('recipe_recipe_material');
     }
 };
+
