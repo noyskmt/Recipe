@@ -45,19 +45,19 @@ class ApiController extends Controller
                             $kanjihiraRes = Http::withHeaders([
                                 'Content-Type' => 'application/json',
                             ])->get("{$kanjihiraUrl}?text=". urlencode($materialName));
-                            $kanjiHiraData = $kanjihiraRes->json();
+                            $kanjiHiraData = $kanjihiraRes;
                             
                             \Log::debug($kanjiHiraData);
                             
                             //カタカナを平仮名に変換
                             $katakanahiraRes = Http::withHeaders([
                                 'Content-Type' => 'application/json',
-                            ])->get("{$katakanahiraUrl}?text={$kanjiHiraData}");
-                            $katakanaHiraData = $katakanahiraRes->json();
+                            ])->get("{$katakanahiraUrl}?input={$kanjihiraRes}");
+                            $katakanaHiraData = $katakanahiraRes;
 
                             $recipeMaterial = RecipeMaterial::firstOrCreate([
                                 'name' => $materialName,
-                                'name_hiragana' => $katakanahiraRes
+                                'name_hiragana' => $katakanaHiraData
                             ]);
                             $recipe->materials()->attach($recipeMaterial->id);
                             \Log::debug("Material Name: {$materialName}, Hiragana: {$katakanaHiraData}");
