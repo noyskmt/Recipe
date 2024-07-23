@@ -189,6 +189,8 @@ return [
 
     'rakuten_url' => env('RAKUTEN_URL'),
     'rakuten_key' => env('RAKUTEN_KEY'),
-    
+
+    'kanjihira_url' => env('KANJIHIRA_URL'),
+    'katakanahira_url' => env('KATAKANAHIRA_URL'),
 
 ];

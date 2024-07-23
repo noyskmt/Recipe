@@ -14,6 +14,8 @@ class ApiController extends Controller
     {
         $rakutenUrl = config('app.rakuten_url');
         $rakutenKey = config('app.rakuten_key');
+        // $kanjihiraUrl = config('app.kanjihira_url');
+        // $katakanahiraUrl = config('app.katakanahira_url');
 
         $waitTime = 1; //リクエスト間隔
         
@@ -26,7 +28,6 @@ class ApiController extends Controller
                 
                 sleep($waitTime);
                 $data = $response->json();
-
                 if (isset($data['result'])) {
                     foreach ($data['result'] as $recipeData) {
                         $recipe = new Recipe();
@@ -36,15 +37,34 @@ class ApiController extends Controller
                         $recipe->recipeIndication = $recipeData["recipeIndication"];
                         $recipe->save();
 
+                        $kanjihiraUrl = config('app.kanjihira_url');
+                        $katakanahiraUrl = config('app.katakanahira_url');
+
                         foreach ($recipeData["recipeMaterial"] as $materialName) {
-                            // $recipeMaterial = new RecipeMaterial();
-                            $recipeMaterial = RecipeMaterial::firstOrCreate(['name' => $materialName]);
+                            //漢字を平仮名に変換
+                            $kanjihiraRes = Http::withHeaders([
+                                'Content-Type' => 'application/json',
+                            ])->get("{$kanjihiraUrl}?text=". urlencode($materialName));
+                            $kanjiHiraData = $kanjihiraRes->json();
+                            
+                            \Log::debug($kanjiHiraData);
+                            
+                            //カタカナを平仮名に変換
+                            $katakanahiraRes = Http::withHeaders([
+                                'Content-Type' => 'application/json',
+                            ])->get("{$katakanahiraUrl}?text={$kanjiHiraData}");
+                            $katakanaHiraData = $katakanahiraRes->json();
+
+                            $recipeMaterial = RecipeMaterial::firstOrCreate([
+                                'name' => $materialName,
+                                'name_hiragana' => $katakanahiraRes
+                            ]);
                             $recipe->materials()->attach($recipeMaterial->id);
+                            \Log::debug("Material Name: {$materialName}, Hiragana: {$katakanaHiraData}");
                         }
                     }
                 }
             } 
         });
     }
-    
 }
