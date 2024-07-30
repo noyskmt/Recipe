@@ -21,75 +21,106 @@ class FoodSeeder extends Seeder
             // 'stock' => Int::random(10),
             [
                 'name' => '玉ねぎ',
+                'name_hiragana' => 'たまねぎ',
                 'categories' => '0',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => 'ジャガイモ',
+                'name_hiragana' => 'じゃがいも',
                 'categories' => '0',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => 'キャベツ',
+                'name_hiragana' => 'きゃべつ',
                 'categories' => '0',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => '人参',
+                'name_hiragana' => 'にんじん',
                 'categories' => '0',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
-                'name' => '豚こま',
+                'name' => 'ウインナー',
+                'name_hiragana' => 'ういんなー',
                 'categories' => '0',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
-                'name' => '牛肉',
+                'name' => 'チーズ',
+                'name_hiragana' => 'ちーず',
                 'categories' => '0',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
-                'name' => '赤魚',
+                'name' => 'にんにく',
+                'name_hiragana' => 'にんにく',
                 'categories' => '0',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
-                'name' => 'もやし',
+                'name' => '卵',
+                'name_hiragana' => 'たまご',
                 'categories' => '0',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
-                'name' => 'なす',
+                'name' => 'ピーマン',
+                'name_hiragana' => 'ぴーまん',
+                'categories' => '0',
+                'stock' => $faker->numberBetween(0,1),
+            ],
+            [
+                'name' => 'ソーセージ',
+                'name_hiragana' => 'そーせーじ',
                 'categories' => '0',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => '砂糖',
+                'name_hiragana' => 'さとう',
                 'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => '塩',
+                'name_hiragana' => 'しお',
                 'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => '酒',
+                'name_hiragana' => 'さけ',
                 'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
-                'name' => 'みりん',
+                'name' => 'バター',
+                'name_hiragana' => 'ばたー',
                 'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => '醤油',
+                'name_hiragana' => 'しょうゆ',
                 'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
-            
+            [
+                'name' => '鶏がらスープの素',
+                'name_hiragana' => 'とりがらすーぷのもと',
+                'categories' => '1',
+                'stock' => $faker->numberBetween(0,1),
+            ],
+            [
+                'name' => 'こしょう',
+                'name_hiragana' => 'こしょう',
+                'categories' => '1',
+                'stock' => $faker->numberBetween(0,1),
+            ],
         ]);
     }
 }

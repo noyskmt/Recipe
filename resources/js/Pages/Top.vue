@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <div class="menu">
-            <button v-on:click="redirectCalendarPage" class="btn btn-outline-dark">カレンダー</button>
+            <button v-on:click="redirectCalendarPage()" class="btn btn-outline-dark">カレンダー</button>
             <button class="btn btn-outline-dark mode">モード</button>
-            <button class="btn btn-dark">検索</button>
+            <button v-on:click="searchRecipe()" class="btn btn-dark">検索</button>
         </div>
         <div class="main">
             <div class="title">
@@ -63,7 +63,11 @@
         methods: {
             redirectCalendarPage() {
                 location.href = '/calendar';
+            },
+            searchRecipe() {
+                const res =  axios.get('/top/serchRecipe');
             }
+
         },
 
         mounted() {

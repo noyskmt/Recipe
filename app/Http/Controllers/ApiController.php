@@ -14,8 +14,6 @@ class ApiController extends Controller
     {
         $rakutenUrl = config('app.rakuten_url');
         $rakutenKey = config('app.rakuten_key');
-        // $kanjihiraUrl = config('app.kanjihira_url');
-        // $katakanahiraUrl = config('app.katakanahira_url');
 
         $waitTime = 1; //リクエスト間隔
         
@@ -44,23 +42,24 @@ class ApiController extends Controller
                             //漢字を平仮名に変換
                             $kanjihiraRes = Http::withHeaders([
                                 'Content-Type' => 'application/json',
-                            ])->get("{$kanjihiraUrl}?text=". urlencode($materialName));
-                            $kanjiHiraData = $kanjihiraRes;
-                            
-                            \Log::debug($kanjiHiraData);
-                            
+                            ])->get("{$kanjihiraUrl}?text={$materialName}");
                             //カタカナを平仮名に変換
                             $katakanahiraRes = Http::withHeaders([
                                 'Content-Type' => 'application/json',
                             ])->get("{$katakanahiraUrl}?input={$kanjihiraRes}");
-                            $katakanaHiraData = $katakanahiraRes;
 
+                            // if (preg_match("/^[ァ-ヶー]+$/u", $kanjihiraRes)) {
+                            //     $katakanahiraRes = Http::withHeaders([
+                            //         'Content-Type' => 'application/json',
+                            //     ])->get("{$katakanahiraUrl}?input={$kanjihiraRes}");
+                            // }
+
+                            //食材名を重複しないようにデータベースに登録
                             $recipeMaterial = RecipeMaterial::firstOrCreate([
                                 'name' => $materialName,
-                                'name_hiragana' => $katakanaHiraData
+                                'name_hiragana' => $katakanahiraRes,
                             ]);
                             $recipe->materials()->attach($recipeMaterial->id);
-                            \Log::debug("Material Name: {$materialName}, Hiragana: {$katakanaHiraData}");
                         }
                     }
                 }
