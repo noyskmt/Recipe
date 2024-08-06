@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->softDeletes();
-            
             //料理名
             $table->string('recipeTitle');
             //レシピのURL
@@ -24,6 +21,8 @@ return new class extends Migration
             $table->string('mediumImageUrl');
             //調理時間
             $table->string('recipeIndication');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

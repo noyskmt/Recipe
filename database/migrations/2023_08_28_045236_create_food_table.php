@@ -14,12 +14,12 @@ return new class extends Migration
         if(!Schema::hasTable('food')) {
             Schema::create('food', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->timestamps();
-                $table->softDeletes();
                 $table->string('name');
                 $table->string('name_hiragana')->nullable();
                 $table->integer('categories');
                 $table->integer('stock');
+                $table->timestamps();
+                $table->softDeletes();
             });
         }
     }

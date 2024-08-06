@@ -65,7 +65,7 @@
                 location.href = '/calendar';
             },
             searchRecipe() {
-                const res =  axios.get('/top/serchRecipe');
+                axios.get('/top/serchRecipe');
             }
 
         },

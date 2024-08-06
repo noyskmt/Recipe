@@ -44,26 +44,29 @@ class ApiController extends Controller
                                 'Content-Type' => 'application/json',
                             ])->get("{$kanjihiraUrl}?text={$materialName}");
                             //カタカナを平仮名に変換
-                            $katakanahiraRes = Http::withHeaders([
-                                'Content-Type' => 'application/json',
-                            ])->get("{$katakanahiraUrl}?input={$kanjihiraRes}");
-
-                            // if (preg_match("/^[ァ-ヶー]+$/u", $kanjihiraRes)) {
-                            //     $katakanahiraRes = Http::withHeaders([
-                            //         'Content-Type' => 'application/json',
-                            //     ])->get("{$katakanahiraUrl}?input={$kanjihiraRes}");
-                            // }
-
+                            if (preg_match("/^[ァ-ヶー]+$/u", $kanjihiraRes)) {
+                                $katakanahiraRes = Http::withHeaders([
+                                    'Content-Type' => 'application/json',
+                                ])->get("{$katakanahiraUrl}?input={$kanjihiraRes}");
+                                //カタカナを含む時のデータベース登録
+                                $recipeMaterial = $this->recordName($materialName, $katakanahiraRes); 
+                            } else {
+                                //カタカナを含まない時のデータベース登録
+                                $recipeMaterial = $this->recordName($materialName, $kanjihiraRes);
+                            }
                             //食材名を重複しないようにデータベースに登録
-                            $recipeMaterial = RecipeMaterial::firstOrCreate([
-                                'name' => $materialName,
-                                'name_hiragana' => $katakanahiraRes,
-                            ]);
                             $recipe->materials()->attach($recipeMaterial->id);
                         }
                     }
                 }
             } 
         });
+    }
+
+    public function recordName($material, $hiragana) {
+        return RecipeMaterial::firstOrCreate([
+            'name' => $material,
+            'name_hiragana' => $hiragana,
+        ]);
     }
 }

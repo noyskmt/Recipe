@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('recipe_list', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->softDeletes();
             $table->string('category_name');
             $table->string('category_id');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

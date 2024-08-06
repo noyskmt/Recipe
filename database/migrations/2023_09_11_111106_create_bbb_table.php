@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('bbb', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->softDeletes();
             $table->string('name')->nullable();
             $table->integer('price')->nullable();
             $table->text('remarks')->nullable();
             $table->string('shop_id')->nullable();
             $table->string('food_id')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -14,10 +14,10 @@ return new class extends Migration
         if(!Schema::hasTable('shops')){
             Schema::create('shops', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->timestamps();
-                $table->softDeletes();
                 $table->string('name');
                 $table->text('remarks')->nullable();
+                $table->timestamps();
+                $table->softDeletes();
             });
         }
     }

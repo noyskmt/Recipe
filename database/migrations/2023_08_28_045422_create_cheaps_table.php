@@ -14,13 +14,13 @@ return new class extends Migration
         if(!Schema::hasTable('cheaps')) {
             Schema::create('cheaps', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->timestamps();
-                $table->softDeletes();
                 $table->integer('price')->nullable();
                 $table->unsignedBigInteger('shop_id')->nullable();;
                 $table->unsignedBigInteger('food_id')->nullable();;
                 $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
                 $table->foreign('food_id')->references('id')->on('food')->onDelete('cascade');
+                $table->timestamps();
+                $table->softDeletes();
             });
         }
     }

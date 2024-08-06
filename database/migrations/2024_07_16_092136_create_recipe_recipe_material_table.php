@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('recipe_recipe_material', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->softDeletes();
             $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
             $table->foreignId('recipe_material_id')->constrained('recipe_materials')->onDelete('cascade');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
