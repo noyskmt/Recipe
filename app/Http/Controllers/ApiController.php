@@ -35,19 +35,19 @@ class ApiController extends Controller
                         $recipe->recipeIndication = $recipeData["recipeIndication"];
                         $recipe->save();
 
-                        $kanjihiraUrl = config('app.kanjihira_url');
-                        $katakanahiraUrl = config('app.katakanahira_url');
+                        $kanjihira_url = config('app.kanjihira_url');
+                        $katakanahira_url = config('app.katakanahira_url');
 
                         foreach ($recipeData["recipeMaterial"] as $materialName) {
                             //漢字を平仮名に変換
                             $kanjihiraRes = Http::withHeaders([
                                 'Content-Type' => 'application/json',
-                            ])->get("{$kanjihiraUrl}?text={$materialName}");
+                            ])->get("{$kanjihira_url}?text={$materialName}");
                             //カタカナを平仮名に変換
                             if (preg_match("/^[ァ-ヶー]+$/u", $kanjihiraRes)) {
                                 $katakanahiraRes = Http::withHeaders([
                                     'Content-Type' => 'application/json',
-                                ])->get("{$katakanahiraUrl}?input={$kanjihiraRes}");
+                                ])->get("{$katakanahira_url }?input={$kanjihiraRes}");
                                 //カタカナを含む時のデータベース登録
                                 $recipeMaterial = $this->recordName($materialName, $katakanahiraRes); 
                             } else {

@@ -11,6 +11,9 @@
             </div>
             <div class="favoriteRecipe">
                 <!-- ループ処理 -->
+                <div>
+                    <li v-for="searchRecipe in "></li>
+                </div>
                 <div class="recipe">
                     <p>お気に入りしたレシピ</p>
                     <i class="bi bi-star-fill"></i>
@@ -59,20 +62,28 @@
             Sidebar,
             Slide,
         },
+        data() {
+            return {
+                recipes: [],
+            }
+        },
 
         methods: {
             redirectCalendarPage() {
                 location.href = '/calendar';
             },
-            searchRecipe() {
-                axios.get('/top/serchRecipe');
-            }
-
+            async searchRecipe() {
+                const res = await axios.get('/top/serch/recipe')
+                console.log(this.recipes);
+                if (res.status === 200) {
+                    this.recipes = res.data;
+                }
+            },
         },
 
-        mounted() {
-            console.log(this.$store.state.test);
-        }
+        // mounted() {
+        //     console.log(this.$store.state.test);
+        // }
     }
 
 </script>
