@@ -78,32 +78,20 @@ class TopController extends Controller
                     $match_count++;
                 };
             }
-            // foreach ($stock_food_names as $food_name) {
-            //     if (in_array($food_name, $recipe_materials)) {
-            //         $match_count++;
-            //     }
-            // }
-
-            
             $recipe_count = count($recipe_materials);
             $match_percentage = $match_count/$recipe_count * 100;
             $count_percent = 65;
             if($match_percentage >= $count_percent) {
                 array_push($matching_recipes, $recipe);
             }
-            // if($match_count === 0) {
-            //     $alert = "<script type='text/javascript'>alert('こちらは侍エンジニアです。');</script>";
-            //     return $alert;
-            // } else {
-            //     $recipe_count = count($recipe_materials);
-            //     $match_percentage = $match_count/$recipe_count * 100;
-            //     $count_percent = 65;
-            //     if($match_percentage >= $count_percent) {
-            //         array_push($matching_recipes, $recipe);
-            //     }
-            // }
         }
-        // \Log::debug($match_percentage);
-        return $matching_recipes;
+        \Log::debug($match_count);
+        if($matching_recipes) {
+            return $matching_recipes;
+        } else {
+            // $alert = "<script type='text/javascript'>alert('レシピが見つかりませんでした。');</script>";
+            // return $alert;
+            return "レシピが見つかりませんでした" ;
+        }
     }
 }
