@@ -11,8 +11,14 @@
             </div>
             <div class="favoriteRecipe">
                 <!-- ループ処理 -->
-                <div>
-                    <li v-for="searchRecipe in "></li>
+                <div class="recipe-list">
+                    <li v-for="recipe in recipes" class="recipe-item">
+                        <img :src="recipe.mediumImageUrl" alt="recipe image" class="recipe-image">
+                        <div class="recipe-details">
+                            <h3 class="recipe-title">{{ recipe.recipeTitle }}</h3>
+                            <p class="recipe-indication">調理時間: {{ recipe.recipeIndication }}</p>
+                        </div>
+                    </li>
                 </div>
                 <div class="recipe">
                     <p>お気に入りしたレシピ</p>
@@ -74,16 +80,13 @@
             },
             async searchRecipe() {
                 const res = await axios.get('/top/serch/recipe')
-                console.log(this.recipes);
                 if (res.status === 200) {
                     this.recipes = res.data;
                 }
+                console.log(this.recipes);
+                // console.log(recipe.mediumImageUrl);
             },
         },
-
-        // mounted() {
-        //     console.log(this.$store.state.test);
-        // }
     }
 
 </script>
