@@ -12,18 +12,17 @@
             <div class="favoriteRecipe">
                 <!-- ループ処理 -->
                 <div class="recipe-list">
-                    <li v-for="recipe in recipes" class="recipe-items">
-                        <a :href="recipe.recipeUrl" target="_blank" class="recipe-item">
-                            <div class="recipe-img">
-                                <img :src="recipe.mediumImageUrl" alt="recipe image" class="recipe-image"></div>
-                            <div class="recipe-details">
-                                <h3 class="recipe-title">{{ recipe.recipeTitle }}</h3>
-                                <p class="recipe-indication">調理時間: {{ recipe.recipeIndication }}</p>
-                            </div>
-                        </a>
+                    <li v-for="recipe in recipes" class="recipe-item" @click="goToRecipe(recipe.recipeUrl)">
+                        <div class="recipe-img">
+                            <img :src="recipe.mediumImageUrl" alt="recipe image" class="recipe-image">
+                        </div>
+                        <div class="recipe-details">
+                            <p class="recipe-title">{{ recipe.recipeTitle }}</p>
+                            <p class="recipe-indication">調理時間: {{ recipe.recipeIndication }}</p>
+                        </div>
                         <div class="recipe-actions">
-                            <button class="btn btn-outline-primary" @click="addFavorite(recipe.id)">お気に入り</button>
-                            <button class="btn btn-outline-secondary" @click="markAsMade(recipe.id)">前に作った</button>
+                            <button class="bi bi-flag" @click.stop="markAsMade(recipe.id)"></button>
+                            <button class="bi bi-star" @click.stop="addFavorite(recipe.id)"></button>
                         </div>
                     </li>
                 </div>
@@ -80,6 +79,9 @@
                     this.recipes = res.data;
                 }
                 console.log(this.recipes);
+            },
+            goToRecipe(url) {
+                window.open(url, '_blank');
             },
             addFavorite(recipeId) {
                 console.log(`お気に入りに追加: ${recipeId}`);
