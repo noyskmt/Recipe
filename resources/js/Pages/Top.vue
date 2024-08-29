@@ -66,6 +66,7 @@
         data() {
             return {
                 recipes: [],
+                favorite: [],
             }
         },
 
