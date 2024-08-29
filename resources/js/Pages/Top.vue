@@ -12,11 +12,18 @@
             <div class="favoriteRecipe">
                 <!-- ループ処理 -->
                 <div class="recipe-list">
-                    <li v-for="recipe in recipes" class="recipe-item">
-                        <img :src="recipe.mediumImageUrl" alt="recipe image" class="recipe-image">
-                        <div class="recipe-details">
-                            <h3 class="recipe-title">{{ recipe.recipeTitle }}</h3>
-                            <p class="recipe-indication">調理時間: {{ recipe.recipeIndication }}</p>
+                    <li v-for="recipe in recipes" class="recipe-items">
+                        <a :href="recipe.recipeUrl" target="_blank" class="recipe-item">
+                            <div class="recipe-img">
+                                <img :src="recipe.mediumImageUrl" alt="recipe image" class="recipe-image"></div>
+                            <div class="recipe-details">
+                                <h3 class="recipe-title">{{ recipe.recipeTitle }}</h3>
+                                <p class="recipe-indication">調理時間: {{ recipe.recipeIndication }}</p>
+                            </div>
+                        </a>
+                        <div class="recipe-actions">
+                            <button class="btn btn-outline-primary" @click="addFavorite(recipe.id)">お気に入り</button>
+                            <button class="btn btn-outline-secondary" @click="markAsMade(recipe.id)">前に作った</button>
                         </div>
                     </li>
                 </div>
@@ -35,18 +42,6 @@
                 <div class="recipe">
                     <p>お気に入りしたレシピ</p>
                     <i class="bi bi-star-fill"></i>
-                </div> 
-                <div class="recipe">
-                    <p>お気に入りしたレシピ</p>
-                    <i class="bi bi-star"></i>
-                </div> 
-                <div class="recipe">
-                    <p>お気に入りしたレシピ</p>
-                    <i class="bi bi-star"></i>
-                </div> 
-                <div class="recipe">
-                    <p>お気に入りしたレシピ</p>
-                    <i class="bi bi-star"></i>
                 </div> 
             </div>
         </div>
@@ -84,8 +79,15 @@
                     this.recipes = res.data;
                 }
                 console.log(this.recipes);
-                // console.log(recipe.mediumImageUrl);
             },
+            addFavorite(recipeId) {
+                console.log(`お気に入りに追加: ${recipeId}`);
+                // お気に入り追加処理
+            },
+            markAsMade(recipeId) {
+                console.log(`過去に作ったことがある: ${recipeId}`);
+                // 作成済みマーク処理
+            }
         },
     }
 
