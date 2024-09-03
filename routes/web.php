@@ -36,9 +36,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/top', function () {
+        return Inertia::render('Top');
+    })->name('top');
 });
 
 Route::get('/top', [TopController::class, 'index']);
