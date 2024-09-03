@@ -15,8 +15,8 @@ return new class extends Migration
             Schema::create('cheaps', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->integer('price')->nullable();
-                $table->unsignedBigInteger('shop_id')->nullable();;
-                $table->unsignedBigInteger('food_id')->nullable();;
+                $table->unsignedBigInteger('shop_id')->nullable();
+                $table->unsignedBigInteger('food_id')->nullable();
                 $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
                 $table->foreign('food_id')->references('id')->on('food')->onDelete('cascade');
                 $table->timestamps();
