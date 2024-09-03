@@ -1,17 +1,23 @@
 <template>
     <div class="container">
         <div class="menu">
-            <button v-on:click="redirectCalendarPage()" class="btn btn-outline-dark">カレンダー</button>
-            <button class="btn btn-outline-dark mode">モード</button>
-            <button v-on:click="searchRecipe()" class="btn btn-dark">検索</button>
+            <button class="btn btn-outline-dark" @click="redirectCalendarPage()">カレンダー</button>
+            <button class="btn btn-outline-dark mode" @click="favoriteRecipe()">お気に入り</button>
+            <button class="btn btn-dark" @click="searchRecipe()">検索</button>
         </div>
         <div class="main">
             <div class="title">
                 <h1>レシピサーチ</h1>
             </div>
-            <div class="favoriteRecipe">
-                <!-- ループ処理 -->
-                <div class="recipe-list">
+            <div class="recipe">
+                <!-- お気に入りリスト -->
+                <div v-if="showFavorites" class="favorite-list">
+                    <div v-for="fav in favorites">
+                        <p>{{ fav }}</p>
+                    </div>
+                </div>
+                <!-- 検索結果 -->
+                <div v-else class="recipe-list">
                     <li v-for="recipe in recipes" class="recipe-item" @click="goToRecipe(recipe.recipeUrl)">
                         <div class="recipe-img">
                             <img :src="recipe.mediumImageUrl" alt="recipe image" class="recipe-image">
@@ -26,7 +32,7 @@
                         </div>
                     </li>
                 </div>
-                <div class="recipe">
+                <!-- <div class="recipe">
                     <p>お気に入りしたレシピ</p>
                     <i class="bi bi-star-fill"></i>
                 </div>
@@ -41,7 +47,7 @@
                 <div class="recipe">
                     <p>お気に入りしたレシピ</p>
                     <i class="bi bi-star-fill"></i>
-                </div> 
+                </div>  -->
             </div>
         </div>
         <div class="slide">
@@ -65,7 +71,8 @@
         data() {
             return {
                 recipes: [],
-                favorite: [],
+                favorites: ["aaa", "bbb", "ccc"],
+                showFavorites: true,
             }
         },
 
@@ -73,12 +80,15 @@
             redirectCalendarPage() {
                 location.href = '/calendar';
             },
+            favoriteRecipe() {
+                this.showFavorites = true;
+            },
             async searchRecipe() {
                 const res = await axios.get('/top/serch/recipe')
                 if (res.status === 200) {
                     this.recipes = res.data;
                 }
-                console.log(this.recipes);
+                this.showFavorites = false;
             },
             goToRecipe(url) {
                 window.open(url, '_blank');
