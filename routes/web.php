@@ -46,6 +46,7 @@ Route::post('/top/food', [TopController::class, 'food']);
 Route::get('/top/list', [TopController::class, 'list']);
 Route::get('/top/stock_tab/{id}', [TopController::class, 'stock_tab']);
 Route::get('/top/serch/recipe', [TopController::class, 'serch_recipe']);
+Route::get('/top/favorite/recipe/{id}', [TopController::class, 'add_favorire_recipe']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::post('/shop/store', [ShopController::class, 'store']);
 Route::post('/shop/update', [ShopController::class, 'update']);

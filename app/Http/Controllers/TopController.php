@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Food;
 use App\Models\Recipe;
+use App\Models\Favorite;
+// use App\Models\User;
+
+
+
 
 
 class TopController extends Controller
@@ -85,13 +90,31 @@ class TopController extends Controller
                 array_push($matching_recipes, $recipe);
             }
         }
-        \Log::debug($match_count);
+        // \Log::debug($match_count);
         if($matching_recipes) {
             return $matching_recipes;
         } else {
-            // $alert = "<script type='text/javascript'>alert('レシピが見つかりませんでした。');</script>";
-            // return $alert;
-            return "レシピが見つかりませんでした" ;
+            return response()->json(['message' => 'レシピが見つかりませんでした'], 404);
         }
+    }
+
+    //ユーザーごとのお気に入りレシピを登録
+    public function add_favorire_recipe($id) {
+        $user = auth()->user();
+        $favorite = Favorite::where('user_id', $user->id)->where('recipe_id', $id)->first();
+        if ($favorite) {
+            // 既にお気に入りの場合は削除
+            $favorite->delete();
+            return response();
+        } else {
+            // お気に入りに追加
+            $newFavorite = new Favorite();
+            $newFavorite->user_id = $user->id;
+            $newFavorite->recipe_id = $id;
+            $newFavorite->save();
+            return response();
+        }
+        $favorite->save();
+        
     }
 }

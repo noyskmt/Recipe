@@ -28,7 +28,7 @@
                         </div>
                         <div class="recipe-actions">
                             <button class="bi bi-flag" @click.stop="markAsMade(recipe.id)"></button>
-                            <button class="bi bi-star" @click.stop="addFavorite(recipe.id)"></button>
+                            <button :class="isFavorite(recipe.id) ? 'bi bi-star-fill' : 'bi bi-star'" @click.stop="toggleFavorite(recipe.id)"></button>
                         </div>
                     </li>
                 </div>
@@ -55,7 +55,7 @@
         data() {
             return {
                 recipes: [],
-                favorites: ["aaa", "bbb", "ccc"],
+                favorites: [],
                 showFavorites: true,
             }
         },
@@ -77,15 +77,37 @@
             goToRecipe(url) {
                 window.open(url, '_blank');
             },
-            addFavorite(recipeId) {
-                console.log(`お気に入りに追加: ${recipeId}`);
-                // お気に入り追加処理
+            // お気に入り追加処理
+            async toggleFavorite(recipeId) {
+                if (this.isFavorite(recipeId)) {
+                    // 解除
+                    await axios.delete(`/top/favorite/recipe/${recipeId}`);
+                    this.favorites = this.favorites.filter(id => id !== recipeId);
+                } else {
+                    // 登録
+                    await axios.post(`/top/favorite/recipe/${recipeId}`);
+                    this.favorites.push(recipeId);
+                }
             },
+            isFavorite(recipeId) {
+                return this.favorites.includes(recipeId);
+            },
+            // 作成済み登録
             markAsMade(recipeId) {
                 console.log(`過去に作ったことがある: ${recipeId}`);
-                // 作成済みマーク処理
-            }
+                // const res = axios.get(`/top/favorite/recipe/${recipeId}`)
+            },
+            async getFavorites() {
+                const res = await axios.get('/top/favorites');
+                if (res.status === 200) {
+                    this.favorites = res.data;
+                }
+            },
         },
+
+        mounted() {
+            this.getFavorites();
+        }
     }
 
 </script>
