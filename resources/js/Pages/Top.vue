@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <!-- 検索結果 -->
-                <div v-else class="recipe-list">
+                <div v-else class="result-recipe-list">
                     <li v-for="recipe in recipes" class="recipe-item" @click="goToRecipe(recipe.recipeUrl)">
                         <div class="recipe-img">
                             <img :src="recipe.mediumImageUrl" alt="recipe image" class="recipe-image">
@@ -32,22 +32,6 @@
                         </div>
                     </li>
                 </div>
-                <!-- <div class="recipe">
-                    <p>お気に入りしたレシピ</p>
-                    <i class="bi bi-star-fill"></i>
-                </div>
-                <div class="recipe">
-                    <p>お気に入りしたレシピ</p>
-                    <i class="bi bi-star-fill"></i>
-                </div> 
-                <div class="recipe">
-                    <p>お気に入りしたレシピ</p>
-                    <i class="bi bi-star"></i>
-                </div> 
-                <div class="recipe">
-                    <p>お気に入りしたレシピ</p>
-                    <i class="bi bi-star-fill"></i>
-                </div>  -->
             </div>
         </div>
         <div class="slide">
