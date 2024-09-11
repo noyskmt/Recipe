@@ -22,4 +22,9 @@ class Recipe extends Model
     {
         return $this->belongsToMany(RecipeMaterial::class, 'recipe_recipe_material', 'recipe_id', 'recipe_material_id');
     }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
 }

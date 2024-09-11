@@ -21,7 +21,14 @@ class Favorite extends Model
         'deleted_at',
     ];
 
-    public function cheap(): HasOne {
-        return $this->hasOne('App\Models\User');
+    // public function cheap(): HasOne {
+    //     return $this->hasOne('App\Models\User');
+    // }
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function recipe() {
+        return $this->belongsTo(Recipe::class);
     }
 }

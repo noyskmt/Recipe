@@ -31,6 +31,14 @@ Route::get('/', function () {
     ]);
 });
 
+// Route::get('/check-auth', function() {
+//     if (auth()->check()) {
+//         return response()->json(['user' => auth()->user()]);
+//     } else {
+//         return response()->json(['error' => 'User not authenticated'], 401);
+//     }
+// });
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -41,12 +49,19 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/top', [TopController::class, 'index']);
+    Route::get('/top/favorite', [TopController::class, 'get_favorite_recipe']);
+    Route::get('/top/favorite/recipe/{id}', [TopController::class, 'add_favorire_recipe']);
+});
+
 Route::get('/top', [TopController::class, 'index']);
 Route::post('/top/food', [TopController::class, 'food']);
 Route::get('/top/list', [TopController::class, 'list']);
 Route::get('/top/stock_tab/{id}', [TopController::class, 'stock_tab']);
 Route::get('/top/serch/recipe', [TopController::class, 'serch_recipe']);
-Route::get('/top/favorite/recipe/{id}', [TopController::class, 'add_favorire_recipe']);
+Route::get('/top/favorite', [TopController::class, 'get_favorite_recipe']);
+Route::post('/top/favorite/recipe/{id}', [TopController::class, 'add_favorite_recipe']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::post('/shop/store', [ShopController::class, 'store']);
 Route::post('/shop/update', [ShopController::class, 'update']);

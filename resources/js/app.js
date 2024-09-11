@@ -1,6 +1,6 @@
 import './bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css'
-// import '../css/app.css';
+import '../css/app.css';
 import '../sass/app.scss';
 
 import { createApp, h } from 'vue';
@@ -27,7 +27,6 @@ const store = new Vuex.Store({
                 setTimeout(() => {state.isToastFlug = false},1500)
             }
         },
-
     },
     actions: {
         

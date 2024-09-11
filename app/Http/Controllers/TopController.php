@@ -8,11 +8,7 @@ use Inertia\Inertia;
 use App\Models\Food;
 use App\Models\Recipe;
 use App\Models\Favorite;
-// use App\Models\User;
-
-
-
-
+use App\Models\User;
 
 class TopController extends Controller
 {
@@ -89,6 +85,7 @@ class TopController extends Controller
             if($match_percentage >= $count_percent) {
                 array_push($matching_recipes, $recipe);
             }
+            
         }
         // \Log::debug($match_count);
         if($matching_recipes) {
@@ -99,22 +96,33 @@ class TopController extends Controller
     }
 
     //ユーザーごとのお気に入りレシピを登録
-    public function add_favorire_recipe($id) {
+    public function add_favorite_recipe($id) {
         $user = auth()->user();
         $favorite = Favorite::where('user_id', $user->id)->where('recipe_id', $id)->first();
         if ($favorite) {
             // 既にお気に入りの場合は削除
             $favorite->delete();
-            return response();
         } else {
             // お気に入りに追加
             $newFavorite = new Favorite();
             $newFavorite->user_id = $user->id;
             $newFavorite->recipe_id = $id;
             $newFavorite->save();
-            return response();
         }
-        $favorite->save();
-        
+        return Recipe::with(['favorites'])
+        ->wherehas('favorites', function($query) use($id){
+            $query->where('recipe_id',$id);
+        })->get();
+
+        // $recipes = Recipe::with('favorites')->get();
+        // return response()->json([
+        //     "favoriteRecipes" =>  $user->favorites()->pluck('recipe_id'),
+        // ]);
+    }
+
+    public function get_favorite_recipe() {
+        $user = auth()->user();
+        $favoriteRecipes = Recipe::whereIn('id', $user->favorites()->pluck('recipe_id'))->get();
+        return response()->json($favoriteRecipes);
     }
 }

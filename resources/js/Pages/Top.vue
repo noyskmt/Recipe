@@ -12,8 +12,18 @@
             <div class="recipe">
                 <!-- お気に入りリスト -->
                 <div v-if="showFavorites" class="favorite-list">
-                    <div v-for="fav in favorites">
-                        <p>{{ fav }}</p>
+                    <div v-for="fav in favorites" class="favorite-item">
+                        <div class="recipe-img">
+                            <img :src="fav.mediumImageUrl" alt="favorite recipe image" class="recipe-image">
+                        </div>
+                        <div class="recipe-details">
+                            <p class="recipe-title">{{ fav.recipeTitle }}</p>
+                            <p class="recipe-indication">調理時間: {{ fav.recipeIndication }}</p>
+                        </div>
+                        <!-- <div class="recipe-actions">
+                            <button class="bi bi-flag" @click.stop="markAsMade(fav.id)"></button>
+                            <button :class="isFavorite(fav.id) ? 'bi bi-star-fill' : 'bi bi-star'" @click.stop="toggleFavorite(fav.id)"></button>
+                        </div> -->
                     </div>
                 </div>
                 <!-- 検索結果 -->
@@ -79,6 +89,7 @@
             },
             // お気に入り追加処理
             async toggleFavorite(recipeId) {
+                console.log(recipeId);
                 if (this.isFavorite(recipeId)) {
                     // 解除
                     await axios.delete(`/top/favorite/recipe/${recipeId}`);
@@ -98,10 +109,11 @@
                 // const res = axios.get(`/top/favorite/recipe/${recipeId}`)
             },
             async getFavorites() {
-                const res = await axios.get('/top/favorites');
+                const res = await axios.get('/top/favorite');
                 if (res.status === 200) {
                     this.favorites = res.data;
                 }
+                console.log(res.data);
             },
         },
 
