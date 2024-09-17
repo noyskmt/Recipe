@@ -21,6 +21,11 @@ class Favorite extends Model
         'deleted_at',
     ];
 
+    protected $fillable = [
+        'user_id',
+        'recipe_id',
+    ];
+
     // public function cheap(): HasOne {
     //     return $this->hasOne('App\Models\User');
     // }

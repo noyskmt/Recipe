@@ -20,10 +20,10 @@
                             <p class="recipe-title">{{ fav.recipeTitle }}</p>
                             <p class="recipe-indication">調理時間: {{ fav.recipeIndication }}</p>
                         </div>
-                        <!-- <div class="recipe-actions">
+                        <div class="recipe-actions">
                             <button class="bi bi-flag" @click.stop="markAsMade(fav.id)"></button>
-                            <button :class="isFavorite(fav.id) ? 'bi bi-star-fill' : 'bi bi-star'" @click.stop="toggleFavorite(fav.id)"></button>
-                        </div> -->
+                            <button :class="isFavorite(fav.id) ? 'bi bi-star-fill' : 'bi bi-star'" @click.stop="toggleFavorite(fav)"></button>
+                        </div>
                     </div>
                 </div>
                 <!-- 検索結果 -->
@@ -38,7 +38,7 @@
                         </div>
                         <div class="recipe-actions">
                             <button class="bi bi-flag" @click.stop="markAsMade(recipe.id)"></button>
-                            <button :class="isFavorite(recipe.id) ? 'bi bi-star-fill' : 'bi bi-star'" @click.stop="toggleFavorite(recipe.id)"></button>
+                            <button :class="isFavorite(recipe.id) ? 'bi bi-star-fill' : 'bi bi-star'" @click.stop="toggleFavorite(recipe)"></button>
                         </div>
                     </li>
                 </div>
@@ -76,6 +76,8 @@
             },
             favoriteRecipe() {
                 this.showFavorites = true;
+                // this.getFavorites();
+
             },
             async searchRecipe() {
                 const res = await axios.get('/top/serch/recipe')
@@ -88,20 +90,13 @@
                 window.open(url, '_blank');
             },
             // お気に入り追加処理
-            async toggleFavorite(recipeId) {
-                console.log(recipeId);
-                if (this.isFavorite(recipeId)) {
-                    // 解除
-                    await axios.delete(`/top/favorite/recipe/${recipeId}`);
-                    this.favorites = this.favorites.filter(id => id !== recipeId);
-                } else {
-                    // 登録
-                    await axios.post(`/top/favorite/recipe/${recipeId}`);
-                    this.favorites.push(recipeId);
-                }
+            async toggleFavorite(recipe) {
+                await axios.post(`/top/favorite/recipe/${recipe.id}`);
+                // お気に入りの状態を最新に更新
+                await this.getFavorites();
             },
             isFavorite(recipeId) {
-                return this.favorites.includes(recipeId);
+                return this.favorites.some(fav => fav.id === recipeId);
             },
             // 作成済み登録
             markAsMade(recipeId) {
@@ -113,7 +108,6 @@
                 if (res.status === 200) {
                     this.favorites = res.data;
                 }
-                console.log(res.data);
             },
         },
 
@@ -121,5 +115,4 @@
             this.getFavorites();
         }
     }
-
 </script>

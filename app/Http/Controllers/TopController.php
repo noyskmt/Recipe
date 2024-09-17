@@ -109,15 +109,6 @@ class TopController extends Controller
             $newFavorite->recipe_id = $id;
             $newFavorite->save();
         }
-        return Recipe::with(['favorites'])
-        ->wherehas('favorites', function($query) use($id){
-            $query->where('recipe_id',$id);
-        })->get();
-
-        // $recipes = Recipe::with('favorites')->get();
-        // return response()->json([
-        //     "favoriteRecipes" =>  $user->favorites()->pluck('recipe_id'),
-        // ]);
     }
 
     public function get_favorite_recipe() {

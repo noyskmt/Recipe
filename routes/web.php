@@ -60,7 +60,7 @@ Route::post('/top/food', [TopController::class, 'food']);
 Route::get('/top/list', [TopController::class, 'list']);
 Route::get('/top/stock_tab/{id}', [TopController::class, 'stock_tab']);
 Route::get('/top/serch/recipe', [TopController::class, 'serch_recipe']);
-Route::get('/top/favorite', [TopController::class, 'get_favorite_recipe']);
+// Route::get('/top/favorite', [TopController::class, 'get_favorite_recipe']);
 Route::post('/top/favorite/recipe/{id}', [TopController::class, 'add_favorite_recipe']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::post('/shop/store', [ShopController::class, 'store']);

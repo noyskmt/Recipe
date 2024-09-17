@@ -60,6 +60,30 @@
                         text-align: left;
                     }
                 }
+
+                .recipe-actions {
+                    margin-left: auto;
+                    display: flex;
+                    gap: 10px;
+
+                    .bi {
+                        background-color: transparent;
+                        font-size: 25px;
+                        border: 0;
+                        padding: 0;
+                        display: flex;
+                    }
+                }
+            }
+            .bi.bi-star {
+                font-size: 20px;
+                float: right;
+            }
+
+            .bi.bi-star-fill {
+                font-size: 20px;
+                float: right;
+                color: #edde0c;
             }
         }
 
