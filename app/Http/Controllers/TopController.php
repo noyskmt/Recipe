@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use App\Models\Food;
 use App\Models\Recipe;
 use App\Models\Favorite;
+use App\Models\History;
 use App\Models\User;
 
 class TopController extends Controller
@@ -115,5 +116,20 @@ class TopController extends Controller
         $user = auth()->user();
         $favoriteRecipes = Recipe::whereIn('id', $user->favorites()->pluck('recipe_id'))->get();
         return response()->json($favoriteRecipes);
+    }
+
+    public function add_history_recipe($id) {
+        $user = auth()->user();
+        $history = History::where('user_id', $user->id)->where('recipe_id', $id)->first();
+        if ($history) {
+            // 既にお気に入りの場合は削除
+            $history->delete();
+        } else {
+            // お気に入りに追加
+            $newHistory = new History();
+            $newHistory->user_id = $user->id;
+            $newHistory->recipe_id = $id;
+            $newHistory->save();
+        }
     }
 }

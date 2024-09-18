@@ -75,6 +75,8 @@ Route::post('/cheap/update', [CheapController::class, 'update']);
 Route::post('/cheap/destroy/{id}', [CheapController::class, 'destroy']);
 Route::get('/cheap/list', [CheapController::class, 'list']);
 Route::get('/calendar', function () { return Inertia::render('Calendar'); });
+Route::post('/top/history/recipe/{id}', [TopController::class, 'add_history_recipe']);
+
 
 Route::get('/recipeApi', [ApiController::class, 'index']);
 

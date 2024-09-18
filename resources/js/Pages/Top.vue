@@ -21,7 +21,7 @@
                             <p class="recipe-indication">調理時間: {{ fav.recipeIndication }}</p>
                         </div>
                         <div class="recipe-actions">
-                            <button class="bi bi-flag" @click.stop="markAsMade(fav.id)"></button>
+                            <button :class="isHistory(fav.id) ? 'bi bi-flag-fill' : 'bi bi-flag'" @click.stop="toggleHistory(fav.id)"></button>
                             <button :class="isFavorite(fav.id) ? 'bi bi-star-fill' : 'bi bi-star'" @click.stop="toggleFavorite(fav)"></button>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             <p class="recipe-indication">調理時間: {{ recipe.recipeIndication }}</p>
                         </div>
                         <div class="recipe-actions">
-                            <button class="bi bi-flag" @click.stop="markAsMade(recipe.id)"></button>
+                            <button :class="isHistory(recipe.id) ? 'bi bi-flag-fill' : 'bi bi-flag'bi bi-flag" @click.stop="toggleHistory(recipe.id)"></button>
                             <button :class="isFavorite(recipe.id) ? 'bi bi-star-fill' : 'bi bi-star'" @click.stop="toggleFavorite(recipe)"></button>
                         </div>
                     </li>
@@ -99,10 +99,16 @@
                 return this.favorites.some(fav => fav.id === recipeId);
             },
             // 作成済み登録
-            markAsMade(recipeId) {
-                console.log(`過去に作ったことがある: ${recipeId}`);
-                // const res = axios.get(`/top/favorite/recipe/${recipeId}`)
+            async toggleHistory(recipe) {
+                await axios.post(`/top/history/recipe/${recipe.id}`);
             },
+            isHistory(recipeId) {
+                return this.favorites.some(fav => fav.id === recipeId);//historyカラムをv-for?
+            },
+            // markAsMade(recipeId) {
+            //     console.log(`過去に作ったことがある: ${recipeId}`);
+            //     // const res = axios.get(`/top/favorite/recipe/${recipeId}`)
+            // },
             async getFavorites() {
                 const res = await axios.get('/top/favorite');
                 if (res.status === 200) {
