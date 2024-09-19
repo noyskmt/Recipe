@@ -21,7 +21,7 @@
                             <p class="recipe-indication">調理時間: {{ fav.recipeIndication }}</p>
                         </div>
                         <div class="recipe-actions">
-                            <button :class="isHistory(fav.id) ? 'bi bi-flag-fill' : 'bi bi-flag'" @click.stop="toggleHistory(fav.id)"></button>
+                            <button :class="isHistory(fav.id) ? 'bi bi-flag-fill' : 'bi bi-flag'" @click.stop="toggleHistory(fav)"></button>
                             <button :class="isFavorite(fav.id) ? 'bi bi-star-fill' : 'bi bi-star'" @click.stop="toggleFavorite(fav)"></button>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             <p class="recipe-indication">調理時間: {{ recipe.recipeIndication }}</p>
                         </div>
                         <div class="recipe-actions">
-                            <button :class="isHistory(recipe.id) ? 'bi bi-flag-fill' : 'bi bi-flag'" @click.stop="toggleHistory(recipe.id)"></button>
+                            <button :class="isHistory(recipe.id) ? 'bi bi-flag-fill' : 'bi bi-flag'" @click.stop="toggleHistory(recipe)"></button>
                             <button :class="isFavorite(recipe.id) ? 'bi bi-star-fill' : 'bi bi-star'" @click.stop="toggleFavorite(recipe)"></button>
                         </div>
                     </li>
