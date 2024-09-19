@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->date('date');
+            $table->integer('user_id')->constrained()->onDelete('cascade');
+            $table->integer('recipe_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
