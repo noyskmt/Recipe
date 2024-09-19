@@ -67,7 +67,6 @@ class TopController extends Controller
 
     public function serch_recipe() {
         $stock_food_names = Food::where('stock', 1)->pluck('name_hiragana');
-        // $recipe_material =["ういんなー","じゃがいも","たまねぎ","しお","こしょう","ちーず"];
         $recipes = Recipe::all();
         $matching_recipes = [];
 
@@ -131,5 +130,11 @@ class TopController extends Controller
             $newHistory->recipe_id = $id;
             $newHistory->save();
         }
+    }
+
+    public function get_history_recipe() {
+        $user = auth()->user();
+        $historyRecipes = Recipe::whereIn('id', $user->histories()->pluck('recipe_id'))->get();
+        return response()->json($historyRecipes);
     }
 }

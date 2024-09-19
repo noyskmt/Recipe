@@ -37,7 +37,7 @@
                             <p class="recipe-indication">調理時間: {{ recipe.recipeIndication }}</p>
                         </div>
                         <div class="recipe-actions">
-                            <button :class="isHistory(recipe.id) ? 'bi bi-flag-fill' : 'bi bi-flag'bi bi-flag" @click.stop="toggleHistory(recipe.id)"></button>
+                            <button :class="isHistory(recipe.id) ? 'bi bi-flag-fill' : 'bi bi-flag'" @click.stop="toggleHistory(recipe.id)"></button>
                             <button :class="isFavorite(recipe.id) ? 'bi bi-star-fill' : 'bi bi-star'" @click.stop="toggleFavorite(recipe)"></button>
                         </div>
                     </li>
@@ -66,6 +66,7 @@
             return {
                 recipes: [],
                 favorites: [],
+                histories: [],
                 showFavorites: true,
             }
         },
@@ -76,8 +77,6 @@
             },
             favoriteRecipe() {
                 this.showFavorites = true;
-                // this.getFavorites();
-
             },
             async searchRecipe() {
                 const res = await axios.get('/top/serch/recipe')
@@ -101,24 +100,28 @@
             // 作成済み登録
             async toggleHistory(recipe) {
                 await axios.post(`/top/history/recipe/${recipe.id}`);
+                console.log(this.histories)
             },
             isHistory(recipeId) {
-                return this.favorites.some(fav => fav.id === recipeId);//historyカラムをv-for?
+                return this.histories.some(history => history.id === recipeId);//historyカラムをv-for?
             },
-            // markAsMade(recipeId) {
-            //     console.log(`過去に作ったことがある: ${recipeId}`);
-            //     // const res = axios.get(`/top/favorite/recipe/${recipeId}`)
-            // },
             async getFavorites() {
                 const res = await axios.get('/top/favorite');
                 if (res.status === 200) {
                     this.favorites = res.data;
                 }
             },
+            async getHistories() {
+                const res = await axios.get('/top/history')
+                if (res.status === 200) {
+                    this.histories = res.data;
+                }
+            }
         },
 
         mounted() {
             this.getFavorites();
+            this.getHistories();
         }
     }
 </script>
