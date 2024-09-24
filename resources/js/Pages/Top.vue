@@ -70,6 +70,7 @@
                 recipes: [],
                 favorites: [],
                 histories: [],
+                date: "",
                 showFavorites: true,
             }
         },
@@ -102,7 +103,9 @@
             },
             // 作成済み登録
             async toggleHistory(recipe) {
-                await axios.post(`/top/history/recipe/${recipe.id}`);
+                await axios.post(`/top/history/recipe/${recipe.id}`, {
+                    created_at : this.date,
+                });
                 await this.getHistories();
             },
             isHistory(recipeId) {
