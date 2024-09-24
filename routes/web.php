@@ -51,8 +51,8 @@ Route::middleware([
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/top', [TopController::class, 'index']);
-    Route::get('/top/favorite', [TopController::class, 'get_favorite_recipe']);
-    Route::get('/top/favorite/recipe/{id}', [TopController::class, 'add_favorire_recipe']);
+    Route::post('/top/favorite', [TopController::class, 'get_favorite_recipe']);
+    Route::post('/top/favorite/recipe/{id}', [TopController::class, 'add_favorite_recipe']);
 });
 
 Route::get('/top', [TopController::class, 'index']);
@@ -61,7 +61,7 @@ Route::get('/top/list', [TopController::class, 'list']);
 Route::get('/top/stock_tab/{id}', [TopController::class, 'stock_tab']);
 Route::get('/top/serch/recipe', [TopController::class, 'serch_recipe']);
 // Route::get('/top/favorite', [TopController::class, 'get_favorite_recipe']);
-Route::post('/top/favorite/recipe/{id}', [TopController::class, 'add_favorite_recipe']);
+// Route::post('/top/favorite/recipe/{id}', [TopController::class, 'add_favorite_recipe']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::post('/shop/store', [ShopController::class, 'store']);
 Route::post('/shop/update', [ShopController::class, 'update']);

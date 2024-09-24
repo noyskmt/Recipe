@@ -100,19 +100,19 @@
             // 作成済み登録
             async toggleHistory(recipe) {
                 await axios.post(`/top/history/recipe/${recipe.id}`);
-                console.log(this.histories)
+                await this.getHistories();
             },
             isHistory(recipeId) {
-                return this.histories.some(history => history.id === recipeId);//historyカラムをv-for?
+                return this.histories.some(his => his.id === recipeId);
             },
             async getFavorites() {
-                const res = await axios.get('/top/favorite');
+                const res = await axios.post('/top/favorite');
                 if (res.status === 200) {
                     this.favorites = res.data;
                 }
             },
             async getHistories() {
-                const res = await axios.get('/top/history')
+                const res = await axios.post('/top/history')
                 if (res.status === 200) {
                     this.histories = res.data;
                 }
