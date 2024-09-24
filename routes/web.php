@@ -31,14 +31,6 @@ Route::get('/', function () {
     ]);
 });
 
-// Route::get('/check-auth', function() {
-//     if (auth()->check()) {
-//         return response()->json(['user' => auth()->user()]);
-//     } else {
-//         return response()->json(['error' => 'User not authenticated'], 401);
-//     }
-// });
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -51,34 +43,28 @@ Route::middleware([
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/top', [TopController::class, 'index']);
+    Route::post('/top/food', [TopController::class, 'food']);
+    Route::get('/top/list', [TopController::class, 'list']);
+    Route::get('/top/stock_tab/{id}', [TopController::class, 'stock_tab']);
+    Route::get('/top/serch/recipe', [TopController::class, 'serch_recipe']);
     Route::post('/top/favorite', [TopController::class, 'get_favorite_recipe']);
     Route::post('/top/favorite/recipe/{id}', [TopController::class, 'add_favorite_recipe']);
+    Route::post('/top/history', [TopController::class, 'get_history_recipe']);
+    Route::post('/top/history/recipe/{id}', [TopController::class, 'add_history_recipe']);
+    Route::get('/shop', [ShopController::class, 'index']);
+    Route::post('/shop/store', [ShopController::class, 'store']);
+    Route::post('/shop/update', [ShopController::class, 'update']);
+    Route::get('/shop/list', [ShopController::class, 'list']);
+    Route::get('/shop/remarks', [ShopController::class, 'remarks']);
+    Route::get('/getData', [ShopController::class, 'getData']);
+    Route::post('/shop/changeList/{id}', [ShopController::class, 'changeList']);
+    Route::get('/changeList', [ShopController::class, 'changeList']);
+    Route::post('/cheap/store', [CheapController::class, 'store']);
+    Route::post('/cheap/update', [CheapController::class, 'update']);
+    Route::post('/cheap/destroy/{id}', [CheapController::class, 'destroy']);
+    Route::get('/cheap/list', [CheapController::class, 'list']);
+    Route::get('/calendar', function () { return Inertia::render('Calendar'); });
 });
-
-Route::get('/top', [TopController::class, 'index']);
-Route::post('/top/food', [TopController::class, 'food']);
-Route::get('/top/list', [TopController::class, 'list']);
-Route::get('/top/stock_tab/{id}', [TopController::class, 'stock_tab']);
-Route::get('/top/serch/recipe', [TopController::class, 'serch_recipe']);
-// Route::get('/top/favorite', [TopController::class, 'get_favorite_recipe']);
-// Route::post('/top/favorite/recipe/{id}', [TopController::class, 'add_favorite_recipe']);
-Route::get('/shop', [ShopController::class, 'index']);
-Route::post('/shop/store', [ShopController::class, 'store']);
-Route::post('/shop/update', [ShopController::class, 'update']);
-Route::get('/shop/list', [ShopController::class, 'list']);
-Route::get('/shop/remarks', [ShopController::class, 'remarks']);
-Route::get('/getData', [ShopController::class, 'getData']);
-Route::post('/shop/changeList/{id}', [ShopController::class, 'changeList']);
-Route::get('/changeList', [ShopController::class, 'changeList']);
-Route::post('/cheap/store', [CheapController::class, 'store']);
-Route::post('/cheap/update', [CheapController::class, 'update']);
-Route::post('/cheap/destroy/{id}', [CheapController::class, 'destroy']);
-Route::get('/cheap/list', [CheapController::class, 'list']);
-Route::get('/calendar', function () { return Inertia::render('Calendar'); });
-Route::post('/top/history/recipe/{id}', [TopController::class, 'add_history_recipe']);
-Route::post('/top/history', [TopController::class, 'get_history_recipe']);
-
-
 
 Route::get('/recipeApi', [ApiController::class, 'index']);
 
