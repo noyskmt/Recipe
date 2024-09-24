@@ -9,6 +9,9 @@
             <div class="title">
                 <h1>レシピサーチ</h1>
             </div>
+            <div class="dete">
+                <input name="date" type="date" class="date-form">
+            </div>
             <div class="recipe">
                 <!-- お気に入りリスト -->
                 <div v-if="showFavorites" class="favorite-list">

@@ -11,10 +11,20 @@
     .main {
         margin: 5% 0;
         text-align: center;
+        // display: flex;
+        // justify-content: center;
+        // position: relative;
         
         .title {
             margin-bottom: 5%;
         }
+
+        // .date {
+        //     margin: 0;
+        //     position: absolute;
+        //     right: 0;
+        //     top: 0;
+        // }
 
         .favorite-list {
             list-style-type: none;
