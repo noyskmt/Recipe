@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="menu">
-            <button class="btn btn-outline-dark" @click="redirectCalendarPage()">カレンダー</button>
+            <button class="btn btn-outline-dark" @click="redirectCalendarPage()">履歴カレンダー</button>
             <button class="btn btn-outline-dark mode" @click="favoriteRecipe()">お気に入り</button>
             <button class="btn btn-dark" @click="searchRecipe()">検索</button>
         </div>
@@ -9,7 +9,11 @@
             <div class="title">
                 <h1>レシピサーチ</h1>
             </div>
-            <div class="dete">
+            <div class="date">
+                <div class="date-explanation">
+                    <span class="bi bi-flag-fill"></span>
+                    <p class="explanation">カレンダーに追加する日付を選択</p>
+                </div>
                 <input name="date" type="date" class="date-form">
             </div>
             <div class="recipe">
