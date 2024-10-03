@@ -15,7 +15,7 @@ import DayModal from './DayModal.vue';
 
 export default {
     components: {
-        FullCalendar, // make the <FullCalendar> tag available,
+        FullCalendar,
         DayModal,
     },
     

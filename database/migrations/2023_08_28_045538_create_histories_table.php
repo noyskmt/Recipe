@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->constrained()->onDelete('cascade');
-            $table->integer('recipe_id')->constrained()->onDelete('cascade');
+            $table->integer('recipe_id')->constrained()->onDelete('cascade')->nullable();
             $table->string('recipe_title')->constrained()->onDelete('cascade');
             $table->datetime('created_at')->constrained()->onDelete('cascade');
             $table->datetime('updated_at')->constrained()->onDelete('cascade');

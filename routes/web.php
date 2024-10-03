@@ -7,6 +7,7 @@ use App\Http\Controllers\TopController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CheapController;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\CalendarController;
 
 
 // use App\Http\Controllers\BbbController;
@@ -50,7 +51,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/top/favorite', [TopController::class, 'get_favorite_recipe']);
     Route::post('/top/favorite/recipe/{id}', [TopController::class, 'add_favorite_recipe']);
     Route::post('/top/history', [TopController::class, 'get_history_recipe']);
-    // Route::post('/top/history/recipe/{id}', [TopController::class, 'add_history_recipe']);
     Route::post('/top/history/recipe', [TopController::class, 'add_history_recipe']);
     Route::get('/shop', [ShopController::class, 'index']);
     Route::post('/shop/store', [ShopController::class, 'store']);
@@ -65,6 +65,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cheap/destroy/{id}', [CheapController::class, 'destroy']);
     Route::get('/cheap/list', [CheapController::class, 'list']);
     Route::get('/calendar', function () { return Inertia::render('Calendar'); });
+    Route::post('/calendar/history', [CalendarController::class, 'add_history_recipe']);
+    
 });
 
 Route::get('/recipeApi', [ApiController::class, 'index']);

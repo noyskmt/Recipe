@@ -8,20 +8,35 @@
                     </div>
                     <div class="dish">
                         <label>料理名</label><br>
-                        <input class="dish-name">
-                        <button class="btn btn-dark cal">追加</button>
+                        <input v-model="recipeTitle" class="dish-title">
+                        <button @click="addHistory()" class="btn btn-dark cal">追加</button>
                     </div>
-                   
                 </div>
             </div>
         </div>
-  </transition>
+    </transition>
 </template>
 
 <script>
 export default {
     props: {
         date: String
+    },
+
+    data() {
+        return {
+            recipeTitle: "",
+        }
+    },
+
+    methods: {
+        async addHistory() {
+            await axios.post('/calendar/history', {
+                recipe_title : this.recipeTitle,
+            });
+        }
+
     }
+
 }
 </script>

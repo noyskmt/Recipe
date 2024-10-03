@@ -118,7 +118,6 @@ class TopController extends Controller
     }
 
     public function add_history_recipe(Request $request) {
-        \Log::debug($request);
         $user = auth()->user();
         $history = History::where('user_id', $user->id)->where('recipe_id', $request['id'])->first();
         if ($history) {
