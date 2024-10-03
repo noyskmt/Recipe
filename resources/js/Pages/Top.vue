@@ -14,7 +14,7 @@
                     <span class="bi bi-flag-fill"></span>
                     <p class="explanation">カレンダーに追加する日付を選択</p>
                 </div>
-                <input name="date" type="date" class="date-form">
+                <vue-date-picker  v-model="date" format="yyyy/MM/dd" auto-apply class="date-form" />
             </div>
             <div class="recipe">
                 <!-- お気に入りリスト -->
@@ -60,14 +60,16 @@
 </template>
 
 <script>
-    // import { Link } from '@inertiajs/vue3';
     import Sidebar from './Sidebar.vue';
     import { Slide } from 'vue3-burger-menu';
+    import { default as VueDatePicker } from '@vuepic/vue-datepicker';
+    import '@vuepic/vue-datepicker/dist/main.css';
 
     export default {
         components: {
             Sidebar,
             Slide,
+            VueDatePicker,
         },
         data() {
             return {
@@ -126,12 +128,13 @@
                 if (res.status === 200) {
                     this.histories = res.data;
                 }
-            }
+            },
         },
 
         mounted() {
             this.getFavorites();
             this.getHistories();
+            this.date = new Date();
         }
     }
 </script>

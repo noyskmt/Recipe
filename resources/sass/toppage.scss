@@ -25,18 +25,23 @@
             .date-explanation {
                 display: flex;
                 
-                //margin-bottom: 1remが削除できない
-                .p {
-                    margin-bottom: 0!important;
-                    .explanation {
-                        margin-top: 0;
-                        margin-bottom: 0!important;
-                    }
+                .explanation {
+                    font-size: 0.8rem;
+                    margin-top: 0;
+                    margin-bottom: 0;
                 }
             }
 
             .bi {
-                font-size: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .bi::before {
+                line-height: 1.5;
+            }
+
+            .date-form {
+                width: 20%;
             }
         }
 
