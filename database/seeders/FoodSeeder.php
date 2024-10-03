@@ -16,67 +16,64 @@ class FoodSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
         DB::table('food')->insert([
-            // 'name' => Str::random(10),
-            // 'categories' => Int::random(10),
-            // 'stock' => Int::random(10),
             [
                 'name' => '玉ねぎ',
                 'name_hiragana' => 'たまねぎ',
-                'categories' => '0',
+                'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => 'ジャガイモ',
                 'name_hiragana' => 'じゃがいも',
-                'categories' => '0',
+                'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => 'キャベツ',
                 'name_hiragana' => 'きゃべつ',
-                'categories' => '0',
+                'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => '人参',
                 'name_hiragana' => 'にんじん',
-                'categories' => '0',
+                'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => 'ウインナー',
                 'name_hiragana' => 'ういんなー',
-                'categories' => '0',
+                'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => 'チーズ',
                 'name_hiragana' => 'ちーず',
-                'categories' => '0',
+                'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => 'にんにく',
                 'name_hiragana' => 'にんにく',
-                'categories' => '0',
+                'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => '卵',
                 'name_hiragana' => 'たまご',
-                'categories' => '0',
+                'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => 'ピーマン',
                 'name_hiragana' => 'ぴーまん',
-                'categories' => '0',
+                'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
                 'name' => 'ソーセージ',
                 'name_hiragana' => 'そーせーじ',
-                'categories' => '0',
+                'categories' => '1',
                 'stock' => $faker->numberBetween(0,1),
             ],
             [
