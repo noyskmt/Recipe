@@ -50,7 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/top/favorite', [TopController::class, 'get_favorite_recipe']);
     Route::post('/top/favorite/recipe/{id}', [TopController::class, 'add_favorite_recipe']);
     Route::post('/top/history', [TopController::class, 'get_history_recipe']);
-    Route::post('/top/history/recipe/{id}', [TopController::class, 'add_history_recipe']);
+    // Route::post('/top/history/recipe/{id}', [TopController::class, 'add_history_recipe']);
+    Route::post('/top/history/recipe', [TopController::class, 'add_history_recipe']);
     Route::get('/shop', [ShopController::class, 'index']);
     Route::post('/shop/store', [ShopController::class, 'store']);
     Route::post('/shop/update', [ShopController::class, 'update']);

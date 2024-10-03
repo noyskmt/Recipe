@@ -117,9 +117,10 @@ class TopController extends Controller
         return response()->json($favoriteRecipes);
     }
 
-    public function add_history_recipe($id) {
+    public function add_history_recipe(Request $request) {
+        \Log::debug($request);
         $user = auth()->user();
-        $history = History::where('user_id', $user->id)->where('recipe_id', $id)->first();
+        $history = History::where('user_id', $user->id)->where('recipe_id', $request['id'])->first();
         if ($history) {
             // 既にお気に入りの場合は削除
             $history->delete();
@@ -127,7 +128,9 @@ class TopController extends Controller
             // お気に入りに追加
             $newHistory = new History();
             $newHistory->user_id = $user->id;
-            $newHistory->recipe_id = $id;
+            $newHistory->recipe_id = $request['id'];
+            $newHistory->recipe_title = $request['recipe_title'];
+            $newHistory->created_at = $request['created_at'];
             $newHistory->save();
         }
     }
