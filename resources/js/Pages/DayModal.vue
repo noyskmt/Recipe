@@ -33,6 +33,7 @@ export default {
         async addHistory() {
             await axios.post('/calendar/history/recipe', {
                 recipe_title : this.recipeTitle,
+                created_at : this.date,
             });
         }
 

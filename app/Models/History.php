@@ -14,7 +14,6 @@ class History extends Model
     protected $guarded = ['id'];
 
     protected $hidden = [
-        'created_at',
         "updated_at",
         'deleted_at',
     ];
@@ -22,6 +21,8 @@ class History extends Model
     protected $fillable = [
         'user_id',
         'recipe_id',
+        'recipe_title',
+        'created_at',
     ];
 
     public function user() {

@@ -70,15 +70,13 @@ export default {
 
         async getHistories() {
             const res = await axios.post('/calendar/history')
-            console.log(res.data);
             if (res.status === 200) {
                 this.calendarOptions.events = res.data.map(item => ({
-                    title: item.recipeTitle,
+                    title: item.recipe_title,
                     date: item.created_at.split('T')[0]
                 }));
             }
         }
-
     },
 
     mounted() {
