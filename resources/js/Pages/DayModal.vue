@@ -35,6 +35,10 @@ export default {
                 recipe_title : this.recipeTitle,
                 created_at : this.date,
             });
+            //追加ボタン押したらモーダルを閉じるのと画面を更新する(vuex?)
+            // if (res.status === 200) {
+                
+            // }
         }
 
     }
