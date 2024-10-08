@@ -65,8 +65,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cheap/destroy/{id}', [CheapController::class, 'destroy']);
     Route::get('/cheap/list', [CheapController::class, 'list']);
     Route::get('/calendar', function () { return Inertia::render('Calendar'); });
-    Route::post('/calendar/history', [CalendarController::class, 'add_history_recipe']);
-    
+    Route::post('/calendar/history', [CalendarController::class, 'get_history_recipe']);
+    Route::post('/calendar/history/recipe', [CalendarController::class, 'add_history_recipe']);
 });
 
 Route::get('/recipeApi', [ApiController::class, 'index']);

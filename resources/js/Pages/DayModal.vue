@@ -31,7 +31,7 @@ export default {
 
     methods: {
         async addHistory() {
-            await axios.post('/calendar/history', {
+            await axios.post('/calendar/history/recipe', {
                 recipe_title : this.recipeTitle,
             });
         }

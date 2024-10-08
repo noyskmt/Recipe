@@ -24,7 +24,12 @@ export default {
             calendarOptions: {
                 plugins: [ dayGridPlugin, interactionPlugin],
                 initialView: 'dayGridMonth',
-                events: [],
+                events: [
+                    {
+                        title: '',
+                        date: ''
+                    }
+                ],
                 // locale: jaLocale, 日本語化
                 headerToolbar: {
                     left: "myCustomButton",
@@ -63,7 +68,22 @@ export default {
             this.modal = false
         },
 
+        async getHistories() {
+            const res = await axios.post('/calendar/history')
+            console.log(res.data);
+            if (res.status === 200) {
+                this.calendarOptions.events = res.data.map(item => ({
+                    title: item.recipeTitle,
+                    date: item.created_at.split('T')[0]
+                }));
+            }
+        }
+
     },
+
+    mounted() {
+        this.getHistories();
+    }
 
 }
 </script>
