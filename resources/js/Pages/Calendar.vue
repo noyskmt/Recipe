@@ -2,7 +2,7 @@
     <FullCalendar 
         :options='calendarOptions'
     />
-    <DayModal @close="closeModal" @update="getHistories" v-if="modal" :date ="date" ></DayModal>
+    <DayModal @close="closeModal()" @update="getHistories()" v-if="modal" :date ="date" ></DayModal>
 </template>
 
 <script>
@@ -36,7 +36,7 @@ export default {
                     center: "title",
                     right: "prev,next today"
                 },
-                dateClick: this.handleDateClick, // 必要
+                dateClick: this.handleDateClick,
                 default: true,
                 height: '100vh',
                 customButtons: {
