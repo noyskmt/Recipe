@@ -2,7 +2,7 @@
     <FullCalendar 
         :options='calendarOptions'
     />
-    <DayModal @close="closeModal" v-if="modal" :date ="date" ></DayModal>
+    <DayModal @close="closeModal" @update="getHistories" v-if="modal" :date ="date" ></DayModal>
 </template>
 
 <script>
@@ -50,7 +50,6 @@ export default {
             },
             modal: false,
             date: '',
-
         }            
     },
 
@@ -66,6 +65,7 @@ export default {
 
         closeModal() {
             this.modal = false
+        
         },
 
         async getHistories() {
