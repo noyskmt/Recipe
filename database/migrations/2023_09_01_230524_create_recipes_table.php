@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             //料理名
-            $table->string('recipeTitle');
+            $table->string('recipe_title');
             //レシピのURL
-            $table->string('recipeUrl');
+            $table->string('recipe_url');
             //料理の画像
-            $table->string('mediumImageUrl');
+            $table->string('medium_image_url');
             //調理時間
-            $table->string('recipeIndication');
+            $table->string('recipe_indication');
             $table->timestamps();
             $table->softDeletes();
         });

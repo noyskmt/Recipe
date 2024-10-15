@@ -12,10 +12,10 @@ class Recipe extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'recipeTitle',
-        'recipeUrl',
-        'mediumImageUrl',
-        'recipeIndication',
+        'recipe_title',
+        'recipe_url',
+        'medium_image_url',
+        'recipe_indication',
     ];
 
     public function materials()

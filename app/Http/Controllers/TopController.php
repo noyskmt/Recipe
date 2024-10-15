@@ -9,7 +9,6 @@ use App\Models\Food;
 use App\Models\Recipe;
 use App\Models\Favorite;
 use App\Models\History;
-use App\Models\User;
 
 class TopController extends Controller
 {
@@ -113,8 +112,8 @@ class TopController extends Controller
 
     public function get_favorite_recipe() {
         $user = auth()->user();
-        $favoriteRecipes = Recipe::whereIn('id', $user->favorites()->pluck('recipe_id'))->get();
-        return response()->json($favoriteRecipes);
+        $favorite_recipes = Recipe::whereIn('id', $user->favorites()->pluck('recipe_id'))->get();
+        return response()->json($favorite_recipes);
     }
 
     public function add_history_recipe(Request $request) {

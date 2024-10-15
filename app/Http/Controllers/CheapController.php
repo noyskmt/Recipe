@@ -31,10 +31,10 @@ class CheapController extends Controller
 
     public function update(Request $request) 
     {
-        foreach ($request["editPrice"] as $editedPrice)
+        foreach ($request["editPrice"] as $edited_price)
         {
-            $cheap =  Cheap::find($editedPrice["id"]);
-            $cheap->price = $editedPrice["price"];
+            $cheap =  Cheap::find($edited_price["id"]);
+            $cheap->price = $edited_price["price"];
             $cheap->update();
         }
         return $this->list();

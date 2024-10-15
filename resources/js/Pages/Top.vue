@@ -21,11 +21,11 @@
                 <div v-if="showFavorites" class="favorite-list">
                     <div v-for="fav in favorites" class="favorite-item">
                         <div class="recipe-img">
-                            <img :src="fav.mediumImageUrl" alt="favorite recipe image" class="recipe-image">
+                            <img :src="fav.medium_image_url" alt="favorite recipe image" class="recipe-image">
                         </div>
                         <div class="recipe-details">
-                            <p class="recipe-title">{{ fav.recipeTitle }}</p>
-                            <p class="recipe-indication">調理時間: {{ fav.recipeIndication }}</p>
+                            <p class="recipe-title">{{ fav.recipe_title }}</p>
+                            <p class="recipe-indication">調理時間: {{ fav.recipe_indication }}</p>
                         </div>
                         <div class="recipe-actions">
                             <button :class="isHistory(fav.id) ? 'bi bi-flag-fill' : 'bi bi-flag'" @click.stop="toggleHistory(fav)"></button>
@@ -35,13 +35,13 @@
                 </div>
                 <!-- 検索結果 -->
                 <div v-else class="result-recipe-list">
-                    <li v-for="recipe in recipes" class="recipe-item" @click="goToRecipe(recipe.recipeUrl)">
+                    <li v-for="recipe in recipes" class="recipe-item" @click="goToRecipe(recipe.recipe_url)">
                         <div class="recipe-img">
-                            <img :src="recipe.mediumImageUrl" alt="recipe image" class="recipe-image">
+                            <img :src="recipe.medium_image_url" alt="recipe image" class="recipe-image">
                         </div>
                         <div class="recipe-details">
-                            <p class="recipe-title">{{ recipe.recipeTitle }}</p>
-                            <p class="recipe-indication">調理時間: {{ recipe.recipeIndication }}</p>
+                            <p class="recipe-title">{{ recipe.recipe_title }}</p>
+                            <p class="recipe-indication">調理時間: {{ recipe.recipe_indication }}</p>
                         </div>
                         <div class="recipe-actions">
                             <button :class="isHistory(recipe.id) ? 'bi bi-flag-fill' : 'bi bi-flag'" @click.stop="toggleHistory(recipe)"></button>
@@ -112,8 +112,8 @@
                 console.log(recipe.recipeUrl);
                 await axios.post('/top/history/recipe', {
                     id : recipe.id,
-                    recipe_title : recipe.recipeTitle,
-                    recipe_url : recipe.recipeUrl,
+                    recipe_title : recipe.recipe_title,
+                    recipe_url : recipe.recipe_url,
                     created_at : this.date,
                 });
                 await this.getHistories();

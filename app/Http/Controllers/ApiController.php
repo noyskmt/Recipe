@@ -12,50 +12,50 @@ class ApiController extends Controller
 {
     public function index()
     {
-        $rakutenUrl = config('app.rakuten_url');
-        $rakutenKey = config('app.rakuten_key');
+        $rakuten_url = config('app.rakuten_url');
+        $rakuten_key = config('app.rakuten_key');
 
-        $waitTime = 1; //リクエスト間隔
+        $wait_time = 1; //リクエスト間隔
         
-        RecipeList::chunk(4, function ($recipes) use ($rakutenUrl, $rakutenKey, $waitTime) {
+        RecipeList::chunk(4, function ($recipes) use ($rakuten_url, $rakuten_key, $wait_time) {
             foreach ($recipes as $r) {
-                $categoryId = $r->category_id;
+                $category_id = $r->category_id;
                 $response = Http::withHeaders([
                     'Content-Type' => 'application/json',
-                ])->get("{$rakutenUrl}?categoryId={$categoryId}&applicationId={$rakutenKey}");
+                ])->get("{$rakuten_url}?categoryId={$category_id}&applicationId={$rakuten_key}");
                 
-                sleep($waitTime);
+                sleep($wait_time);
                 $data = $response->json();
                 if (isset($data['result'])) {
-                    foreach ($data['result'] as $recipeData) {
+                    foreach ($data['result'] as $recipe_data) {
                         $recipe = new Recipe();
-                        $recipe->recipeTitle = $recipeData["recipeTitle"];
-                        $recipe->recipeUrl = $recipeData["recipeUrl"];
-                        $recipe->mediumImageUrl = $recipeData["mediumImageUrl"];
-                        $recipe->recipeIndication = $recipeData["recipeIndication"];
+                        $recipe->recipe_title = $recipe_data["recipeTitle"];
+                        $recipe->recipe_url = $recipe_data["recipeUrl"];
+                        $recipe->medium_image_url = $recipe_data["mediumImageUrl"];
+                        $recipe->recipe_indication = $recipe_data["recipeIndication"];
                         $recipe->save();
 
                         $kanjihira_url = config('app.kanjihira_url');
                         $katakanahira_url = config('app.katakanahira_url');
 
-                        foreach ($recipeData["recipeMaterial"] as $materialName) {
+                        foreach ($recipe_data["recipeMaterial"] as $material_name) {
                             //漢字を平仮名に変換
-                            $kanjihiraRes = Http::withHeaders([
+                            $kanji_hira_res = Http::withHeaders([
                                 'Content-Type' => 'application/json',
-                            ])->get("{$kanjihira_url}?text={$materialName}");
+                            ])->get("{$kanjihira_url}?text={$material_name}");
                             //カタカナを平仮名に変換
-                            if (preg_match("/^[ァ-ヶー]+$/u", $kanjihiraRes)) {
-                                $katakanahiraRes = Http::withHeaders([
+                            if (preg_match("/^[ァ-ヶー]+$/u", $kanji_hira_res)) {
+                                $katakana_hira_res = Http::withHeaders([
                                     'Content-Type' => 'application/json',
-                                ])->get("{$katakanahira_url }?input={$kanjihiraRes}");
+                                ])->get("{$katakanahira_url }?input={$kanji_hira_res}");
                                 //カタカナを含む時のデータベース登録
-                                $recipeMaterial = $this->recordName($materialName, $katakanahiraRes); 
+                                $recipe_material = $this->recordName($material_name, $katakana_hira_res); 
                             } else {
                                 //カタカナを含まない時のデータベース登録
-                                $recipeMaterial = $this->recordName($materialName, $kanjihiraRes);
+                                $recipe_material = $this->recordName($material_name, $kanji_hira_res);
                             }
                             //食材名を重複しないようにデータベースに登録
-                            $recipe->materials()->attach($recipeMaterial->id);
+                            $recipe->materials()->attach($recipe_material->id);
                         }
                     }
                 }
