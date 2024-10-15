@@ -27,7 +27,8 @@ export default {
                 events: [
                     {
                         title: '',
-                        date: ''
+                        date: '',
+                        url: ''
                     }
                 ],
                 // locale: jaLocale, 日本語化
@@ -73,7 +74,8 @@ export default {
             if (res.status === 200) {
                 this.calendarOptions.events = res.data.map(item => ({
                     title: item.recipe_title,
-                    date: item.created_at.split('T')[0]
+                    date: item.created_at.split('T')[0],
+                    url: item.recipe_url
                 }));
             }
         }
@@ -82,6 +84,5 @@ export default {
     mounted() {
         this.getHistories();
     }
-
 }
 </script>

@@ -129,6 +129,7 @@ class TopController extends Controller
             $newHistory->user_id = $user->id;
             $newHistory->recipe_id = $request['id'];
             $newHistory->recipe_title = $request['recipe_title'];
+            $newHistory->recipe_url = $request['recipe_url'];
             $newHistory->created_at = $request['created_at'];
             $newHistory->save();
         }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('user_id')->constrained()->onDelete('cascade');
             $table->integer('recipe_id')->constrained()->onDelete('cascade')->nullable();
             $table->string('recipe_title')->constrained()->onDelete('cascade');
+            $table->string('recipe_url')->constrained()->onDelete('cascade')->nullable();
             $table->datetime('created_at')->constrained()->onDelete('cascade');
             $table->datetime('updated_at')->constrained()->onDelete('cascade');
             $table->softDeletes();

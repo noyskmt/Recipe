@@ -109,9 +109,11 @@
             },
             // 作成済み登録
             async toggleHistory(recipe) {
+                console.log(recipe.recipeUrl);
                 await axios.post('/top/history/recipe', {
                     id : recipe.id,
                     recipe_title : recipe.recipeTitle,
+                    recipe_url : recipe.recipeUrl,
                     created_at : this.date,
                 });
                 await this.getHistories();

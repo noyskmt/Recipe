@@ -1,6 +1,6 @@
 .modal {
   .modal-window.cal {
-    height: 6.5rem;
+    height: 5.4rem;
   }
 
   .modal-content {
@@ -16,10 +16,11 @@
       display: block;
       text-align: left;
       padding-bottom: 5px;
-      .dish-name {
-        margin: 0, 2rem;
-      }
       
+      .dish-title {
+        width: auto;
+      }
+
       .btn {
         .btn-dark.cal {
           padding: 0.1875rem, 0.375rem, 0.1875rem, 0.375rem, !important; 

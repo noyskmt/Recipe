@@ -7,9 +7,8 @@
                         <label>{{ date }}</label>
                     </div>
                     <div class="dish">
-                        <label>料理名</label><br>
-                        <input v-model="recipeTitle" class="dish-title">
-                        <button @click="addHistory()" class="btn btn-dark cal">追加</button>
+                        <input v-model="recipeTitle" placeholder="料理名を入力" class="dish-title">
+                        <button @click="addHistory()" class="btn btn-dark cal">保存</button>
                     </div>
                 </div>
             </div>

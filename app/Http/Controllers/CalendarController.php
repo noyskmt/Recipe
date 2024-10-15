@@ -19,7 +19,7 @@ class CalendarController extends Controller
 
     public function get_history_recipe() {
         $user = auth()->user();
-        $historyRecipes = History::where('user_id', $user->id)->select('recipe_title', 'created_at')->get();
+        $historyRecipes = History::where('user_id', $user->id)->select('recipe_title', 'created_at', 'recipe_url')->get();
         return response()->json($historyRecipes);
     }
 }
