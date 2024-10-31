@@ -68,7 +68,6 @@ export default {
             this.openModal();
         },
         async handleEventClick(info) {
-            console.log(info.event.id);
             info.jsEvent.preventDefault();
             if (info.event.url === "null") {
                 this.selectedEvent = {

@@ -9,7 +9,6 @@ use App\Models\Food;
 use App\Models\Recipe;
 use App\Models\Favorite;
 use App\Models\History;
-use App\Models\User;
 
 class TopController extends Controller
 {
