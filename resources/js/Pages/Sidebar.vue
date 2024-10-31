@@ -42,7 +42,6 @@
     import MyModal from './MyModal.vue';
     export default {
         components: { MyModal },
-
         data() {
             return {
                 isTabFlag: true,
@@ -51,7 +50,6 @@
                 foods: [],
             };
         },
-
         methods: {
             /**
              *  食材と調味料の切り替えのためのフラグ(真偽値)設定
@@ -59,25 +57,21 @@
             clickTab(flag) {
                 this.isTabFlag = flag;
             },
-
             openModal() {
                 this.modal = true
             },
             closeModal() {
                 this.modal = false
             },
-
             /**
              *  スイッチで食材ありなしの切り替え 
              */
             stockTab(id) {
                 axios.get(`/top/stock_tab/${id}`)
             },
-
             redirectShopPage() {
                 location.href = '/shop';
             },
-
             /**
              *  食材と調味料の追加
              */
@@ -88,19 +82,16 @@
                 } else {
                     isTabFlag = 1;
                 }
-
                 const res =  await axios.post('/top/food', {
                     name : this.newFood,
                     categories : isTabFlag,
                     stock : 1
                 })
-
                 if (res.status === 200) {
                     this.foods = res.data;
                     this.newFood = "";
                 }
             },
-
             /**
              * DBから食材、調味料リストの取得
              */
@@ -109,7 +100,6 @@
                 return res.data;
             },
         },
-
         /**
          * sidebar中の「店リスト」ボタンを/top時のみに表示する
          */
@@ -118,14 +108,11 @@
                 return location.pathname.match(/top/);
             },
         },
-
         /**
          * ページを読み込むたびにfoodListを走らせる
          */
         async mounted() {
             this.foods = await this.foodList();
         }
-
     };
-    
 </script>

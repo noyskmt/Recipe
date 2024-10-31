@@ -23,7 +23,6 @@ export default {
         FullCalendar,
         DayModal,
     },
-    
     data() {
         return {
             calendarOptions: {
@@ -57,7 +56,6 @@ export default {
             },
         };
     },
-
     methods: {
         handleDateClick(info) {
             this.selectedEvent = {
@@ -93,7 +91,6 @@ export default {
                 }
             });
         },
-
         // サーバーからイベントを削除するメソッド
         async deleteEvent(eventId) {
             try {
@@ -101,16 +98,14 @@ export default {
                 id: eventId, // イベントIDをサーバーに送信
                 });
                 if (res.status === 200) {
-                alert('イベントが削除されました');
+                    alert('イベントが削除されました');
                 } else {
-                alert('削除に失敗しました');
+                    alert('削除に失敗しました');
                 }
             } catch (error) {
-                console.error("削除エラー:", error);
                 alert('サーバーとの通信エラーが発生しました');
             }
         },
-
         openModal() {
             this.modal = true
         },

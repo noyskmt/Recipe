@@ -48,7 +48,6 @@ export default {
             cheaps: [],
             selectFood: [],
             selectShopData: [],
-            test: ['12, 13, 14. 15'],
         }
     },
     methods: {
@@ -62,7 +61,6 @@ export default {
             const res = await axios.post('/shop/store', {
                 name : this.newShop,
             })
-            
             if (res.status === 200) {
                 this.shops = res.data;
                 this.newShop = "";
@@ -98,27 +96,15 @@ export default {
             })
         },
     },
-
-    // computed: {
-    //     $store.commit(this.test);
-    // },
-
     async mounted() {
-        /**
-         * axiosでコントローラーからデータ取得
-         */
+        // axiosでコントローラーからデータ取得
         this.shops = await this.getAxios('shop/list');
         this.firstShopData = await this.getAxios('/getData');
-        /**
-         * コントローラーから登録されている店と食材をCheapsListに送るための処理
-         */
+        // コントローラーから登録されている店と食材をCheapsListに送るための処理
         this.shop = this.firstShopData['firstShop'];
         this.cheaps = this.firstShopData['cheaps'];
         this.food = this.firstShopData['food'];
         this.selectFood = this.firstShopData['selectFood'];
-
-        this.$store.dispatch =('testaa', this.test);
-
     },
 }
 </script>

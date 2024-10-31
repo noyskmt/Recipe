@@ -80,7 +80,6 @@
                 showFavorites: true,
             }
         },
-
         methods: {
             redirectCalendarPage() {
                 location.href = '/calendar';
@@ -98,7 +97,7 @@
             goToRecipe(url) {
                 window.open(url, '_blank');
             },
-            // お気に入り追加処理
+            /**お気に入り追加処理 */
             async toggleFavorite(recipe) {
                 await axios.post(`/top/favorite/recipe/${recipe.id}`);
                 // お気に入りの状態を最新に更新
@@ -107,7 +106,7 @@
             isFavorite(recipeId) {
                 return this.favorites.some(fav => fav.id === recipeId);
             },
-            // 作成済み登録
+            /**作成済み登録 */
             async toggleHistory(recipe) {
                 await axios.post('/top/history/recipe', {
                     id : recipe.id,
@@ -133,7 +132,6 @@
                 }
             },
         },
-
         mounted() {
             this.getFavorites();
             this.getHistories();
