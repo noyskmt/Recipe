@@ -1,36 +1,38 @@
 <template>
-    <div class="cheaps-list">
-        <div class="best-list">
-            <p class="title">最安リスト-{{ shop.name }}-</p>
-            <div class="toas" v-show="this.$store.state.isToastFlug">更新しました</div>
-            <button class="bi bi-patch-plus" @click="addForm()"></button>
-            <button class="btn btn-light cl" @click="update(shop.id)">更新</button>
-        </div>
-        <div id="ingredient-list">
-            <li class="added-ingredient" v-for="(cheap, index) in cheaps" :key="index" >
-                <select class="form">
-                    <option v-for="f in food" :selected="f.name == cheap.name">{{ f.name }}</option>
-                </select>
-                <input  class="price-form" v-model="cheap.cheaps.price" @change="actionEdit(cheap.cheaps.id, cheap.cheaps.price)">
-                <button class="bi bi-patch-minus" @click="deleteCheap(cheap.cheaps.id, index)"></button>
-            </li>
-            <li class="add-ingredient" v-for="(form, index) in forms" :key="index">
-                <select class="form" v-model="form.foodId" @change="actionAddCheap()">
-                    <option selected value="">-選択-</option>
-                    <option v-for="f in selectFood" :value="f.id">{{ f.name }}</option>
-                </select>
-                <input  class="price-form" v-model="form.price">
-                <button class="bi bi-patch-minus" @click="deleteForm(index)"></button>
-            </li>
+    <!-- <div class="col-7"> -->
+        <div class="cheaps-list">
+            <div class="best-list">
+                <p class="title">最安リスト-{{ shop.name }}-</p>
+                <div class="toas" v-show="this.$store.state.isToastFlug">更新しました</div>
+                <button class="bi bi-patch-plus" @click="addForm()"></button>
+                <button class="btn btn-light cl" @click="update(shop.id)">更新</button>
+            </div>
+            <div id="ingredient-list">
+                <li class="added-ingredient" v-for="(cheap, index) in cheaps" :key="index" >
+                    <select class="form">
+                        <option v-for="f in food" :selected="f.name == cheap.name">{{ f.name }}</option>
+                    </select>
+                    <input  class="price-form" v-model="cheap.cheaps.price" @change="actionEdit(cheap.cheaps.id, cheap.cheaps.price)">
+                    <button class="bi bi-patch-minus" @click="deleteCheap(cheap.cheaps.id, index)"></button>
+                </li>
+                <li class="add-ingredient" v-for="(form, index) in forms" :key="index">
+                    <select class="form" v-model="form.foodId" @change="actionAddCheap()">
+                        <option selected value="">-選択-</option>
+                        <option v-for="f in selectFood" :value="f.id">{{ f.name }}</option>
+                    </select>
+                    <input  class="price-form" v-model="form.price">
+                    <button class="bi bi-patch-minus" @click="deleteForm(index)"></button>
+                </li>
 
-        </div>
-        <div class="col-12">
-            <div class="remarks">
-                <p class="title">備考</p>
-                <textarea class="textarea" v-model="shop.remarks" @change="actionEditRemarks(shop.id, shop.remarks)" rows="20" cols="110"></textarea>
+            </div>
+            <div class="col-12">
+                <div class="remarks">
+                    <p class="title">備考</p>
+                    <textarea class="textarea" v-model="shop.remarks" @change="actionEditRemarks(shop.id, shop.remarks)" rows="20" cols="110"></textarea>
+                </div>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </template>
 
 <script>
