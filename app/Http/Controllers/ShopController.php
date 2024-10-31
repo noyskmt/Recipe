@@ -20,6 +20,7 @@ class ShopController extends Controller
         $shop = new Shop();
         $shop->name = $request->name;
         $shop->save();
+
         return $this->list();
     }
 
@@ -28,6 +29,7 @@ class ShopController extends Controller
         $shop = Shop::find($request["id"]);
         $shop->remarks = $request["remarks"];
         $shop->update();
+
         return $this->list();
     }
     
@@ -36,10 +38,11 @@ class ShopController extends Controller
         return Shop::all();
     }
 
-    // 登録されている備考の取得
+    /** 登録されている備考の取得 */
     public function remarks() 
     {
         $first_shop = Shop::first();
+
         return Shop::where('id', $first_shop->id)->value('remarks');
     }
 
@@ -64,9 +67,7 @@ class ShopController extends Controller
         ]);
     }
 
-    /**
-     * 各ショップごとのcheapsリストの取得
-     */
+    /** 各ショップごとのcheapsリストの取得 */
     public function changeList($id) 
     {
         $change_cheaps = Food::with(['cheaps'])
@@ -81,5 +82,4 @@ class ShopController extends Controller
             "changeRemarks" => $change_remarks,
         ]);
     }
-
 }

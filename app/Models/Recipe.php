@@ -18,18 +18,15 @@ class Recipe extends Model
         'recipeIndication',
     ];
 
-    public function materials()
-    {
+    public function materials() {
         return $this->belongsToMany(RecipeMaterial::class, 'recipe_recipe_material', 'recipe_id', 'recipe_material_id');
     }
 
-    public function favorites()
-    {
+    public function favorites() {
         return $this->hasMany(Favorite::class);
     }
 
-    public function histories()
-    {
+    public function histories() {
         return $this->hasMany(History::class);
     }
 }

@@ -25,8 +25,7 @@ class RecipeMaterial extends Model
         'deleted_at',
     ];
 
-    public function recipes()
-    {
+    public function recipes() {
         return $this->belongsToMany(Recipe::class, 'recipe_recipe_material', 'recipe_material_id', 'recipe_id');
     }
 }

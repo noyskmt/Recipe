@@ -13,6 +13,7 @@ class CheapController extends Controller
     {
         return Inertia::render('CheapsList');
     }
+
     public function store(Request $request)
     {
         foreach ($request["forms"] as $form)
@@ -23,6 +24,7 @@ class CheapController extends Controller
             $cheap->food_id = $form["foodId"];
             $cheap->save();
         }
+
         return Food::with(['cheaps'])
             ->wherehas('cheaps', function($query) use($form){
             $query->where('shop_id', $form["shopId"]);
@@ -37,16 +39,19 @@ class CheapController extends Controller
             $cheap->price = $editedPrice["price"];
             $cheap->update();
         }
+
         return $this->list();
     }
 
     public function destroy($id) 
     {
         Cheap::find($id)->delete();
+
         return $this->list();
     }
 
-    public function list() {
+    public function list() 
+    {
         return Cheap::all();
     }
 }
