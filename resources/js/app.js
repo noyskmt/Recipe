@@ -28,13 +28,6 @@ const store = new Vuex.Store({
             }
         },
     },
-    actions: {
-        
-    },
-    getters: {
-        
-    },
-
 })
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';

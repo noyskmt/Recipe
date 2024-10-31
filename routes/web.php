@@ -9,20 +9,6 @@ use App\Http\Controllers\CheapController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\CalendarController;
 
-
-// use App\Http\Controllers\BbbController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -71,11 +57,3 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/recipeApi', [ApiController::class, 'index']);
-
-
-// テスト用
-// Route::get('/bbb', [BbbController::class, 'index']);
-// Route::post('/bbb/store', [BbbController::class, 'store']);
-
-
-
