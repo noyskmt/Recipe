@@ -12,13 +12,11 @@ use App\Models\History;
 
 class TopController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         return Inertia::render('Top');
     }
 
-    public function food(Request $request)
-    {
+    public function food(Request $request) {
         $kanjihira_url = config('app.kanjihira_url');
         $katakanahira_url = config('app.katakanahira_url');
 
@@ -43,6 +41,7 @@ class TopController extends Controller
             $food->name_hiragana = $kanjihira_res;
         }
         $food->save();
+        
         return $this->list();
     }
 
@@ -61,6 +60,7 @@ class TopController extends Controller
         $recipe_materials = Recipe::find($recipe_id)->materials()->pluck('name_hiragana');
         // 配列化
         $recipe_material_array = $recipe_materials->toArray();
+
         return $recipe_material_array;
     }
 
@@ -84,9 +84,7 @@ class TopController extends Controller
             if($match_percentage >= $count_percent) {
                 array_push($matching_recipes, $recipe);
             }
-            
         }
-        // \Log::debug($match_count);
         if($matching_recipes) {
             return $matching_recipes;
         } else {
@@ -94,7 +92,7 @@ class TopController extends Controller
         }
     }
 
-    //ユーザーごとのお気に入りレシピを登録
+    /** ユーザーごとのお気に入りレシピを登録 */
     public function add_favorite_recipe($id) {
         $user = auth()->user();
         $favorite = Favorite::where('user_id', $user->id)->where('recipe_id', $id)->first();
@@ -113,6 +111,7 @@ class TopController extends Controller
     public function get_favorite_recipe() {
         $user = auth()->user();
         $favoriteRecipes = Recipe::whereIn('id', $user->favorites()->pluck('recipe_id'))->get();
+
         return response()->json($favoriteRecipes);
     }
 
@@ -137,6 +136,7 @@ class TopController extends Controller
     public function get_history_recipe() {
         $user = auth()->user();
         $historyRecipes = Recipe::whereIn('id', $user->histories()->pluck('recipe_id'))->get();
+
         return response()->json($historyRecipes);
     }
 }
