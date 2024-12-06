@@ -1,38 +1,36 @@
 <template>
-    <!-- <div class="col-7"> -->
-        <div class="cheaps-list">
-            <div class="best-list">
-                <p class="title">最安リスト-{{ shop.name }}-</p>
-                <div class="toas" v-show="this.$store.state.isToastFlug">更新しました</div>
-                <button class="bi bi-patch-plus" @click="addForm()"></button>
-                <button class="btn btn-light cl" @click="update(shop.id)">更新</button>
-            </div>
-            <div id="ingredient-list">
-                <li class="added-ingredient" v-for="(cheap, index) in cheaps" :key="index" >
-                    <select class="form">
-                        <option v-for="f in food" :selected="f.name == cheap.name">{{ f.name }}</option>
-                    </select>
-                    <input  class="price-form" v-model="cheap.cheaps.price" @change="actionEdit(cheap.cheaps.id, cheap.cheaps.price)">
-                    <button class="bi bi-patch-minus" @click="deleteCheap(cheap.cheaps.id, index)"></button>
-                </li>
-                <li class="add-ingredient" v-for="(form, index) in forms" :key="index">
-                    <select class="form" v-model="form.foodId" @change="actionAddCheap()">
-                        <option selected value="">-選択-</option>
-                        <option v-for="f in selectFood" :value="f.id">{{ f.name }}</option>
-                    </select>
-                    <input  class="price-form" v-model="form.price">
-                    <button class="bi bi-patch-minus" @click="deleteForm(index)"></button>
-                </li>
+    <div class="cheaps-list">
+        <div class="best-list">
+            <p class="title">最安リスト-{{ shop.name }}-</p>
+            <div class="toas" v-show="this.$store.state.isToastFlug">更新しました</div>
+            <button class="bi bi-patch-plus" @click="addForm()"></button>
+            <button class="btn btn-light cl" @click="update(shop.id)">更新</button>
+        </div>
+        <div id="ingredient-list">
+            <li class="added-ingredient" v-for="(cheap, index) in cheaps" :key="index" >
+                <select class="form">
+                    <option v-for="f in food" :selected="f.name == cheap.name">{{ f.name }}</option>
+                </select>
+                <input  class="price-form" v-model="cheap.cheaps.price" @change="actionEdit(cheap.cheaps.id, cheap.cheaps.price)">
+                <button class="bi bi-patch-minus" @click="deleteCheap(cheap.cheaps.id, index)"></button>
+            </li>
+            <li class="add-ingredient" v-for="(form, index) in forms" :key="index">
+                <select class="form" v-model="form.foodId" @change="actionAddCheap()">
+                    <option selected value="">-選択-</option>
+                    <option v-for="f in selectFood" :value="f.id">{{ f.name }}</option>
+                </select>
+                <input  class="price-form" v-model="form.price">
+                <button class="bi bi-patch-minus" @click="deleteForm(index)"></button>
+            </li>
 
-            </div>
-            <div class="col-12">
-                <div class="remarks">
-                    <p class="title">備考</p>
-                    <textarea class="textarea" v-model="shop.remarks" @change="actionEditRemarks(shop.id, shop.remarks)" rows="20" cols="110"></textarea>
-                </div>
+        </div>
+        <div class="col-12">
+            <div class="remarks">
+                <p class="title">備考</p>
+                <textarea class="textarea" v-model="shop.remarks" @change="actionEditRemarks(shop.id, shop.remarks)" rows="20" cols="110"></textarea>
             </div>
         </div>
-    <!-- </div> -->
+    </div>
 </template>
 
 <script>
@@ -69,15 +67,11 @@ export default {
         deleteForm (index) {
             this.forms.splice(index, 1)
         },
-        /**
-         * 最安リスト追加有無のフラグ
-         */
+        /** 最安リスト追加有無のフラグ */
         actionAddCheap() {
             this.isActionAddCheapFlug = true
         },
-        /**
-         * 登録済みの価格の変更有無のフラグ
-         */
+        /** 登録済みの価格の変更有無のフラグ */
         actionEdit(id, price) {
             this.isActionEditFlug = true
             this.editedPrice.push({
@@ -85,9 +79,7 @@ export default {
                 price: price,
             })
         },
-        /**
-         * 備考欄の変更有無のフラグ
-         */
+        /** 備考欄の変更有無のフラグ */
         actionEditRemarks(id, remarks) {
             this.isActionAddRemarksFlug = true
             this.remarks.push({
@@ -103,13 +95,10 @@ export default {
                 this.editPrice();
             }
             if (this.isActionAddRemarksFlug === true) {
-                // 備考欄の登録
-                this.$store.commit('updateRemarks', this.shop);
+                this.$store.commit('updateRemarks', this.shop); // 備考欄の登録
             }
         },
-        /**
-         * Cheapsリストの登録
-         */
+        /** Cheapsリストの登録 */
         async addCheap() {
             const res = await axios.post('/cheap/store', {
                 forms: this.forms,
@@ -122,9 +111,7 @@ export default {
                 this.$emit('updateCheaps', this.addedCheaps);
             }
         },
-        /**
-         * 登録済みの価格の変更をphp側へ送信 
-         */
+        /** 登録済みの価格の変更をphp側へ送信 */
         async editPrice() {
             const res = await axios.post('/cheap/update', {
                 editPrice: this.editedPrice,

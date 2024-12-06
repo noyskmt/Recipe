@@ -54,9 +54,7 @@ export default {
         redirectTopPage() {
             location.href = '/top';
         },
-        /**
-         * ショップの登録処理
-         */
+        /** ショップの登録処理 */
         async addShop() {
             const res = await axios.post('/shop/store', {
                 name : this.newShop,
@@ -66,9 +64,7 @@ export default {
                 this.newShop = "";
             }
         },
-        /**
-         * DBに登録されているショップの取得
-         */
+        /** DBに登録されているショップの取得 */
         async getAxios(url) {
             const res = await axios.get(url)
             return res.data;
@@ -83,9 +79,7 @@ export default {
             this.cheaps = res.data['changeCheaps'];
             this.shop = res.data['changeRemarks'];
         },
-        /**
-         * CheapsList.vueで新規追加された食材と価格を代入し、再表示
-         */
+        /** CheapsList.vueで新規追加された食材と価格を代入し、再表示 */
         updateCheaps(addedCheaps) {
             this.cheaps = addedCheaps;
         },

@@ -97,16 +97,16 @@
             goToRecipe(url) {
                 window.open(url, '_blank');
             },
-            /**お気に入り追加処理 */
+            /** お気に入り追加処理 */
             async toggleFavorite(recipe) {
                 await axios.post(`/top/favorite/recipe/${recipe.id}`);
-                // お気に入りの状態を最新に更新
                 await this.getFavorites();
             },
+            /** お気に入りリストに同じrecipeIdがあるか判別 */
             isFavorite(recipeId) {
                 return this.favorites.some(fav => fav.id === recipeId);
             },
-            /**作成済み登録 */
+            /** 履歴リスト追加処理 */
             async toggleHistory(recipe) {
                 await axios.post('/top/history/recipe', {
                     id : recipe.id,
@@ -114,17 +114,21 @@
                     recipe_url : recipe.recipe_url,
                     created_at : this.date,
                 });
+                console.log(this.date);
                 await this.getHistories();
             },
+            /** 履歴リストに同じrecipeIdがあるか判別 */
             isHistory(recipeId) {
                 return this.histories.some(his => his.id === recipeId);
             },
+            /** お気に入りの状態を最新に更新 */
             async getFavorites() {
                 const res = await axios.post('/top/favorite');
                 if (res.status === 200) {
                     this.favorites = res.data;
                 }
             },
+            /** 履歴の状態を最新に更新 */
             async getHistories() {
                 const res = await axios.post('/top/history')
                 if (res.status === 200) {

@@ -51,9 +51,7 @@
             };
         },
         methods: {
-            /**
-             *  食材と調味料の切り替えのためのフラグ(真偽値)設定
-             */
+            /** 食材と調味料の切り替えのためのフラグ(真偽値)設定 */
             clickTab(flag) {
                 this.isTabFlag = flag;
             },
@@ -63,18 +61,14 @@
             closeModal() {
                 this.modal = false
             },
-            /**
-             *  スイッチで食材ありなしの切り替え 
-             */
+            /** スイッチで食材ありなしの切り替え */
             stockTab(id) {
                 axios.get(`/top/stock_tab/${id}`)
             },
             redirectShopPage() {
                 location.href = '/shop';
             },
-            /**
-             *  食材と調味料の追加
-             */
+            /** 食材と調味料の追加 */
             async addFood() {
                 let isTabFlag;
                 if (this.isTabFlag) {
@@ -92,25 +86,19 @@
                     this.newFood = "";
                 }
             },
-            /**
-             * DBから食材、調味料リストの取得
-             */
+            /** DBから食材、調味料リストの取得 */
             async foodList() {
                 const res = await axios.get('top/list')
                 return res.data;
             },
         },
-        /**
-         * sidebar中の「店リスト」ボタンを/top時のみに表示する
-         */
+        /** sidebar中の「店リスト」ボタンを/top時のみに表示する */
         computed: {
             storeList() {
                 return location.pathname.match(/top/);
             },
         },
-        /**
-         * ページを読み込むたびにfoodListを走らせる
-         */
+        /** ページを読み込むたびにfoodListを走らせる */
         async mounted() {
             this.foods = await this.foodList();
         }

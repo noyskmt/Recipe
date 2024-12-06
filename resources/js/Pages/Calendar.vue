@@ -81,21 +81,20 @@ export default {
         handleEventDidMount(info) {
             info.el.addEventListener('contextmenu', async (e) => {
                 e.preventDefault(); // デフォルトの右クリックメニューを無効化
-                
                 const confirmDelete = confirm(`イベント「${info.event.title}」を削除しますか？`);
                 if (confirmDelete) {
-                // サーバーでイベントを削除
-                await this.deleteEvent(info.event.id);
-                // カレンダーからイベントを削除
-                info.event.remove();
+                    // サーバーでイベントを削除
+                    await this.deleteEvent(info.event.id);
+                    // カレンダーからイベントを削除
+                    info.event.remove();
                 }
             });
         },
-        // サーバーからイベントを削除するメソッド
+        /** サーバーからイベントを削除するメソッド */
         async deleteEvent(eventId) {
             try {
                 const res = await axios.post('/calendar/history/delete', {
-                id: eventId, // イベントIDをサーバーに送信
+                    id: eventId, // イベントIDをサーバーに送信
                 });
                 if (res.status === 200) {
                     alert('イベントが削除されました');
@@ -112,6 +111,7 @@ export default {
         closeModal() {
             this.modal = false
         },
+        /** 履歴リストの取得 */
         async getHistories() {
             const res = await axios.post('/calendar/history')
             if (res.status === 200) {

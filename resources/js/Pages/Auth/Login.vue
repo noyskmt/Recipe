@@ -34,7 +34,10 @@ const submit = () => {
 
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+            <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+                <h1 class="text-2xl font-bold text-gray-800">レシピサーチログイン</h1>
+            </div>
+            <!-- <AuthenticationCardLogo /> -->
         </template>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -84,6 +87,11 @@ const submit = () => {
                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
                 </PrimaryButton>
+            </div>
+            <div class="mt-4">
+                <inertia-link href="/register" class="text-blue-500 underline">
+                    新規登録はこちら
+                </inertia-link>
             </div>
         </form>
     </AuthenticationCard>
