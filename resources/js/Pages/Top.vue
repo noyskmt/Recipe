@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <button class="btn btn-dark logout-btn" @click="logout">ログアウト</button>
         <div class="menu">
             <button class="btn btn-outline-dark" @click="redirectCalendarPage()">履歴カレンダー</button>
             <button class="btn btn-outline-dark mode" @click="favoriteRecipe()">お気に入り</button>
@@ -93,6 +94,14 @@
                     this.recipes = res.data;
                 }
                 this.showFavorites = false;
+            },
+            async logout() {
+                try {
+                    await axios.post('/logout');  // Laravelのログアウトエンドポイント
+                    window.location.href = '/login';  // ログインページへリダイレクト
+                } catch (error) {
+                    console.error('ログアウトに失敗しました', error);
+                }
             },
             goToRecipe(url) {
                 window.open(url, '_blank');

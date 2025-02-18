@@ -14,6 +14,7 @@ return new class extends Migration
         if(!Schema::hasTable('shops')){
             Schema::create('shops', function (Blueprint $table) {
                 $table->bigIncrements('id');
+                $table->integer('user_id')->constrained()->onDelete('cascade');
                 $table->string('name');
                 $table->text('remarks')->nullable();
                 $table->timestamps();

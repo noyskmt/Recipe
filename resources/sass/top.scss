@@ -1,4 +1,18 @@
 .container {
+    .logout-btn {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        // background-color: #dc3545;
+        // color: white;
+        // border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000; /* 他の要素より前に表示 */
+        font-size: 14px;
+    }
+
     .menu {
         text-align: right;
         margin: 2% 2% 2% 2%;

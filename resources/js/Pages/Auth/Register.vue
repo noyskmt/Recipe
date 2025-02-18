@@ -26,9 +26,12 @@ const submit = () => {
 <template>
     <Head title="Register" />
 
-    <AuthenticationCard>
+    <AuthenticationCard class="main-register">
         <template #logo>
-            <AuthenticationCardLogo />
+            <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+                <h1 class="text-2xl font-bold text-gray-800">レシピサーチ</h1>
+                <h4 class="text-2xl font-bold text-gray-800">アカウント登録</h4>
+            </div>
         </template>
 
         <form @submit.prevent="submit">

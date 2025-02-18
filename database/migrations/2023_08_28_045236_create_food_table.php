@@ -14,6 +14,7 @@ return new class extends Migration
         if(!Schema::hasTable('food')) {
             Schema::create('food', function (Blueprint $table) {
                 $table->bigIncrements('id');
+                $table->integer('user_id')->constrained()->onDelete('cascade');
                 $table->string('name');
                 $table->string('name_hiragana')->nullable();
                 $table->integer('categories');

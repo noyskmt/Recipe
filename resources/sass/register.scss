@@ -1,0 +1,17 @@
+.main-register {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; /* 水平方向の中央揃え */
+    align-items: center;    /* 垂直方向の中央揃え */
+    height: 100vh;          /* ビューポート全体の高さを占める */
+
+    .min-h-screen {
+        text-align: center;
+    }
+    .text-2xl {
+        margin-bottom: 2rem;
+    }
+    .information-form {
+        margin: 1rem 3rem;
+    }
+}

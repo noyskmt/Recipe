@@ -1,7 +1,6 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
 import Checkbox from '@/Components/Checkbox.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -27,24 +26,26 @@ const submit = () => {
         onFinish: () => form.reset('password'),
     });
 };
+
+
 </script>
 
 <template>
     <Head title="Log in" />
 
-    <AuthenticationCard>
+    <AuthenticationCard class="main-login">
         <template #logo>
             <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-                <h1 class="text-2xl font-bold text-gray-800">レシピサーチログイン</h1>
+                <h1 class="text-2xl font-bold text-gray-800">レシピサーチ</h1>
+                <h4 class="text-2xl font-bold text-gray-800">ログイン</h4>
             </div>
-            <!-- <AuthenticationCardLogo /> -->
         </template>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
+        <form class="information-form" @submit.prevent="submit">
             <div>
                 <InputLabel for="email" value="Email" />
                 <TextInput
@@ -89,9 +90,9 @@ const submit = () => {
                 </PrimaryButton>
             </div>
             <div class="mt-4">
-                <inertia-link href="/register" class="text-blue-500 underline">
+                <Link :href="route('register')" class="underline text-sm text-blue-600 hover:text-blue-900">
                     新規登録はこちら
-                </inertia-link>
+                </Link>
             </div>
         </form>
     </AuthenticationCard>

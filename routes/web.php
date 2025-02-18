@@ -54,6 +54,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/calendar/history', [CalendarController::class, 'get_history_recipe']);
     Route::post('/calendar/history/recipe', [CalendarController::class, 'add_history_recipe']);
     Route::post('/calendar/history/delete', [CalendarController::class, 'delete_history_recipe']);
+    Route::post('/logout', function () {
+        \Illuminate\Support\Facades\Auth::logout();
+        return response()->json(['message' => 'Logged out'], 200);
+    });
 });
 
 Route::get('/recipeApi', [ApiController::class, 'index']);
